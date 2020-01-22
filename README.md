@@ -28,8 +28,9 @@ VR (more immersive) and ~~Mobile (more accessiblity)~~ Desktop w/ Controller
 
 A
 - Finder - Desktop w/ controller, look for pieces in warehouse room, know how the parts fit together 
-- Builder - VR to allow feel for real furniture scale, putting pieces together in workshop, know what parts are needed; if time allows then can have multiple builders
+- Builder - VR to allow feel for real furniture scale, putting pieces together in workshop/living room, know what parts are needed; if time allows then can have multiple builders
 - Both know the objective (final outcome)
+- Builder chooses what to build from a bulletin board of bounties or IKEA catalogue (with star rating of difficulty)
 
 B
 - Finder - VR, looking around and also arms
