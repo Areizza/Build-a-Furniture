@@ -35,3 +35,8 @@ A
 B
 - Finder - VR, looking around and also arms
 - Builder - Desktop controlling legs and knows what is needed (needs to communicate with Finder), builder has full blueprint except the actual materials
+
+# Terminology
+ROLES: Finder, Builder
+LOCATIONS: Warehouse, Living Room
+BUILDER MODES: Build, Disassemble
