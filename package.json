@@ -1,0 +1,27 @@
+{
+  "name": "ds3_termproject",
+  "version": "1.0.0",
+  "description": "A VR furniture building experience.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Areizza/DS3_TermProject.git"
+  },
+  "keywords": [
+    "Furniture",
+    "VR"
+  ],
+  "author": "Seismic Octopus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Areizza/DS3_TermProject/issues"
+  },
+  "homepage": "https://github.com/Areizza/DS3_TermProject#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
