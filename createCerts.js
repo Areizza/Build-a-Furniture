@@ -32,7 +32,7 @@ console.log(pem_pkey);
 console.log(pem_cert);
 //****** END create SSL certs */
 
-//write certs files
+// Write certs files
 fs.writeFile('./SSL_PRIV_KEY.pem', pki.privateKeyToPem(keys.privateKey), function(err) {
     if(err) {
         return console.log(err);

@@ -8,7 +8,7 @@ const LISTEN_PORT = 8080; //make sure greater than 3000. Some ports are reserved
 
 app.use((express.static(__dirname + '/public'))); //set root dir to the public folder
 
-//routes
+// Routes
 app.get('/', function(req, res) 
 {
     res.sendFile(__dirname + '/public/index.html');
@@ -28,7 +28,7 @@ app.get('/', function(req, res)
 socketIO.on('connection', function(socket)
 {
     console.log(socket.id + ' has connected');
-
+    
     socket.on('disconnect', function(data)
     {
         console.log(socket.id + ' has disconnected');
