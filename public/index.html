@@ -26,6 +26,12 @@
                                colliderEndEvent:raycaster-intersection-cleared;
                                colliderEndEventProperty: clearedEls;">
                 </a-mixin>
+                <a-mixin id="sphereCollider"
+                         geometry="primitive: sphere; radius: 0.1; thetaLength: 90;"
+                         sphere-collider
+                         material="color: blue; shader: flat; opacity: 0.4;"
+                         transparent="true">
+                </a-mixin>
 
                 <a-mixin id="part"
                          hoverable grabbable draggable droppable
@@ -34,20 +40,21 @@
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
 
+                <a-mixin id="tableLeg"
+                         mixin="part"
+                         geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
+                         body="type: dynamic; mass: 5; shape: none;"
+                         shape__main="shape: box;
+                                   halfExtents: 0.09 0.5 0.09"
+                         material="color: #663300;">
+
+                </a-mixin>
+
                 <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
                 <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
                 <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
 
             </a-assets>
-
-            <a-entity id="groundPlane"
-                      position="0 0 0"
-                      rotation="-90 0 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="color: green; shader: flat"
-                      static-body>
-            </a-entity>
 
             <a-entity id="tableTop"
                       class="grabbable"
@@ -55,69 +62,75 @@
                       geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
                       position="0 0.09 0"
                       material="color: #663300;"
-                      body="type: dynamic; mass: 5; shape: none;"
-                      shape__main="shape: box; 
+                      body="type: dynamic; mass: 20; shape: none;"
+                      shape__main="shape: box;
                                 halfExtents: 1.3 0.09 0.9">
 
-                <a-entity geometry="primitive: sphere; radius: 0.15; thetaLength: 90;"
-                          position="0 0.08 0"
-                          sphere-collider
-                          material="color: blue; shader: flat">
+                <a-entity position="1.2 0.08 0.8"
+                          mixin="sphereCollider">
+                </a-entity>
+                <a-entity position="-1.2 0.08 -0.8"
+                          mixin="sphereCollider">
+                </a-entity>
+                <a-entity position="-1.2 0.08 0.8"
+                          mixin="sphereCollider">
+                </a-entity>
+                <a-entity position="1.2 0.08 -0.8"
+                          mixin="sphereCollider">
                 </a-entity>
             </a-entity>
 
             <!--<a-entity dynamic-body="shape: none"
-                      body-merger="dynamic-body"
-                      position="0 2 0">
-                <a-entity id="tableTop"
-                          mixin="part"
-                          dynamic-body
-                          geometry="primitive: box; width: 2.6; depth: 1.8; height: 0.18"
-                          position="0 1 0"
-                          material="color: #663300;">
-                </a-entity>
+              body-merger="dynamic-body"
+              position="0 2 0">
+        <a-entity id="tableTop"w
+                  mixin="part"
+                  dynamic-body
+                  geometry="primitive: box; width: 2.6; depth: 1.8; height: 0.18"
+                  position="0 1 0"
+                  material="color: #663300;">
+        </a-entity>
 
-                <a-entity geometry="primitive: sphere; radius: 0.15; thetaLength: 90;"
-                          position="0 0.08 0"
-                          sphere-collider
-                          material="color: blue; shader: flat">
+        <a-entity geometry="primitive: sphere; radius: 0.15; thetaLength: 90;"
+                  position="0 0.08 0"
+                  sphere-collider
+                  material="color: blue; shader: flat">
 
-                </a-entity>
-            </a-entity>-->
-
-
-
+        </a-entity>
+    </a-entity>-->
+            <!--0.9 0.5 0.9-->
             <!-- Table Legs-->
             <a-entity id="tableLeg_BR"
                       class=grabbable
-                      mixin="part"
-                      geometry="primitive: box; width: 0.18; depth: 0.18; height: 1"
-                      body="type: dynamic; mass: 1; shape: none;"
-                      shape__main="shape: box; 
-                                halfExtents: 1.3 0.09 0.9"
-                      position="0 0.7 -4"
-                      material="color: #663300;">
+                      mixin="tableLeg"
+                      position="0 0.7 -4">
+                <a-entity position="0 0.5 0"
+                          mixin="sphereCollider">
+                </a-entity>
             </a-entity>
             <a-entity id="tableLeg_TR"
                       class=grabbable
-                      mixin="part"
-                      geometry="primitive: box; width: 0.18; depth: 0.18; height: 1"
-                      position="3 0.7 -1.5"
-                      material="color: #663300;">
+                      mixin="tableLeg"
+                      position="3 0.7 -1.5">
+                <a-entity position="0 0.5 0"
+                          mixin="sphereCollider">
+                </a-entity>
             </a-entity>
             <a-entity id="tableLeg_BL"
                       class=grabbable
-                      mixin="part"
-                      geometry="primitive: box; width: 0.18; depth: 0.18; height: 1"
-                      position="-3.2 0.7 -1"
-                      material="color: #663300;">
+                      mixin="tableLeg"
+                      position="-3.2 0.7 -1">
+                <a-entity position="0 0.5 0"
+                          mixin="sphereCollider">
+                </a-entity>
             </a-entity>
             <a-entity id="tableLeg_TL"
                       class=grabbable
-                      mixin="part"
-                      geometry="primitive: box; width: 0.18; depth: 0.18; height: 1"
-                      position="-2.5 0.7 -4.5"
-                      material="color: #663300;">
+                      mixin="tableLeg"
+                      position="-2.5 0.7 -4.5">
+                <a-entity position="0 0.5 0"
+                          mixin="sphereCollider">
+                </a-entity>
             </a-entity>
 
             <a-entity camera
@@ -126,11 +139,21 @@
                       position="0 1.2 1.5"
                       capture-mouse
                       raycaster="objects: .grabbable" cursor="rayOrigin:mouse"
-                      static-body="shape: sphere; sphereRadius: 0.001"
+                      static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
+            </a-entity>
+
+            <a-entity id="groundPlane"
+                      position="0 0 0"
+                      rotation="-90 0 0"
+                      scale="1 1 1"
+                      geometry="primitive: plane; width: 25.0; height: 25.0"
+                      material="color: green; shader: flat"
+                      static-body
+                      shadow>
             </a-entity>
 
             <!-- Tried to add a cursor retical -->
