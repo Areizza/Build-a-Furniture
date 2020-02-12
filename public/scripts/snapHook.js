@@ -1,14 +1,30 @@
 //https://interactjs.io/
 //https://github.com/harlyq/aframe-snapto-component
+'use strict'
 
-AFRAME.registerComponent('snap-hook', {
+AFRAME.registerComponent('snap-point', {
     schema:
     {
-        snapId: { default: 'enemy0' },
-        bulletName: { default: 'enemy-slow' },
-        shootingDelay: { default: 200 }, // ms
-        health: { default: 1 },
-        color: { default: '#fff' },
-        scale: { default: 1 },
-        canShoot: { default: true }
+        isParent: { default: false },
+        snapId: { default: 0 },
+        snapTo: { default: 0 }
+    },
+
+    init: function ()
+    {
+        this.el.addEventListener('collisions', function(event)
+        {
+            if (this.isParent)
+            {
+
+            }
+
+            for (var i = 0; i < event.els.length; i++)
+            {
+                if (event.els[i].snap-point.snapId == this.snapTo)
+                {
+
+                }
+            }
+        });
     },
