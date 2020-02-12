@@ -4,6 +4,7 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
     <script>
@@ -16,7 +17,7 @@
     <!--https://softwareengineering.stackexchange.com/questions/213332/best-way-to-define-snap-points-between-two-arbitrary-objects-in-3d-->
 </head>
     <body>
-        <a-scene touch-to-click-converter>
+        <a-scene touch-to-click-converter physics="debug: true;">
             <a-assets>
                 <a-mixin id="pointer"
                          raycaster="showLine: true; objects: .part, a-link"
@@ -26,10 +27,9 @@
                                colliderEndEventProperty: clearedEls;">
                 </a-mixin>
 
-                <a-mixin id="part" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"
+                <a-mixin id="part"
                          hoverable grabbable draggable droppable
                          shadow
-                         dynamic-body
                          event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
@@ -45,22 +45,56 @@
                       rotation="-90 0 0"
                       scale="1 1 1"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="color: black; shader: flat"
+                      material="color: green; shader: flat"
                       static-body>
             </a-entity>
 
             <a-entity id="tableTop"
-                      class=grabbable
+                      class="grabbable"
                       mixin="part"
-                      geometry="primitive: box; width: 2.6; depth: 1.8; height: 0.18"
-                      material="color: #663300;">
+                      geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
+                      position="0 0.09 0"
+                      material="color: #663300;"
+                      body="type: dynamic; mass: 5; shape: none;"
+                      shape__main="shape: box; 
+                                halfExtents: 1.3 0.09 0.9">
+
+                <a-entity geometry="primitive: sphere; radius: 0.15; thetaLength: 90;"
+                          position="0 0.08 0"
+                          sphere-collider
+                          material="color: blue; shader: flat">
+                </a-entity>
             </a-entity>
+
+            <!--<a-entity dynamic-body="shape: none"
+                      body-merger="dynamic-body"
+                      position="0 2 0">
+                <a-entity id="tableTop"
+                          mixin="part"
+                          dynamic-body
+                          geometry="primitive: box; width: 2.6; depth: 1.8; height: 0.18"
+                          position="0 1 0"
+                          material="color: #663300;">
+                </a-entity>
+
+                <a-entity geometry="primitive: sphere; radius: 0.15; thetaLength: 90;"
+                          position="0 0.08 0"
+                          sphere-collider
+                          material="color: blue; shader: flat">
+
+                </a-entity>
+            </a-entity>-->
+
+
 
             <!-- Table Legs-->
             <a-entity id="tableLeg_BR"
                       class=grabbable
                       mixin="part"
                       geometry="primitive: box; width: 0.18; depth: 0.18; height: 1"
+                      body="type: dynamic; mass: 1; shape: none;"
+                      shape__main="shape: box; 
+                                halfExtents: 1.3 0.09 0.9"
                       position="0 0.7 -4"
                       material="color: #663300;">
             </a-entity>
