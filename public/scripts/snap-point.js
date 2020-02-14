@@ -83,34 +83,20 @@ AFRAME.registerComponent('snap-point', {
 
                             let clone = targetEl.parentEl.cloneNode();
 
-                            //clone.removeAttribute('body');
-                            //clone.removeAttribute('shape__main');
-
                             clone.setAttribute('rotation', { x: 0, y: 0, z: 0 })
                             clone.setAttribute('position', { x: el.object3D.position.x, y: -1 * targetEl.getAttribute('position').y, z: el.object3D.position.z });
 
                             clone.setAttribute('dynamic-body', { mass: "1" });
                             clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
-                            clone.setAttribute('body', { type: 'dynamic', mass: "1", shape: 'none' });
-                            clone.setAttribute('shape__main', { shape: 'box', halfExtents: "1.3 0.09 0.9" });
+                            //clone.setAttribute('body', { type: 'dynamic', mass: "1", shape: 'none' });
+                            //clone.setAttribute('shape__main', { shape: 'box', halfExtents: "1.3 0.09 0.9" });
                             clone.removeAttribute('grabbable');
 
                             el.parentEl.appendChild(clone);
-                            //targetEl.parentEl.removeAttribute('body')
-                            //targetEl.parentEl.removeAttribute('shape__main');
-                            //targetEl.parentEl.parentEl.removeChild(targetEl.parentEl);
-                            //clone.setAttribute('dynamic-body', { mass: "1" });
-                            //clone.removeAttribute('body');
-                            //clone.removeAttribute('shape__main');
 
-                            // Attaching the existing object. Sort of works but crash prone.
-                            //targetEl.parentEl.flushToDOM(true);
-
-                            //el.parentEl.appendChild(targetEl.parentEl);
-                            //targetEl.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 })
-                            //targetEl.parentEl.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z })
-                            //targetEl.parentEl.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
+                            el.setAttribute('visible', 'false');
+                            targetEl.parentEl.setAttribute('visible', 'false');
                         }
                         else
                         {
