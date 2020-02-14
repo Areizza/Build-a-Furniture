@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
@@ -32,12 +32,6 @@
                                colliderEndEvent:raycaster-intersection-cleared;
                                colliderEndEventProperty: clearedEls;">
                 </a-mixin>
-                <!--<a-mixin id="sphereCollider"
-                 geometry="primitive: sphere; radius: 0.12;"
-                 sphere-collider
-                 material="color: blue; shader: flat; opacity: 0.4;"
-                 transparent="true">
-        </a-mixin>-->
 
                 <a-mixin id="sphereCollider"
                          geometry="primitive: sphere; radius: 0.12;"
@@ -92,27 +86,26 @@
                       shape__main="shape: box;
                                 halfExtents: 1.3 0.09 0.9">
 
-                <a-entity position="1.13 -0.08 0.73"
+                <a-entity position="1.13 -0.09 0.73"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="-1.13 -0.08 -0.73"
+                <a-entity position="-1.13 -0.09 -0.73"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="-1.13 -0.08 0.73"
+                <a-entity position="-1.13 -0.09 0.73"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="1.13 -0.08 -0.73"
+                <a-entity position="1.13 -0.09 -0.73"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
             </a-entity>
 
             <!-- Table Legs-->
-            <a-entity id="tableLeg_BR"
-                      class=grabbable
+            <a-entity class=grabbable
                       mixin="tableLeg"
                       position="0 0.7 -4">
                 <a-entity position="0 0.5 0"
@@ -120,8 +113,7 @@
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
             </a-entity>
-            <a-entity id="tableLeg_TR"
-                      class=grabbable
+            <a-entity class=grabbable
                       mixin="tableLeg"
                       position="3 0.7 -1.5">
                 <a-entity position="0 0.5 0"
@@ -129,8 +121,7 @@
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
             </a-entity>
-            <a-entity id="tableLeg_BL"
-                      class=grabbable
+            <a-entity class=grabbable
                       mixin="tableLeg"
                       position="-3.2 0.7 -1">
                 <a-entity position="0 0.5 0"
@@ -138,8 +129,7 @@
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
             </a-entity>
-            <a-entity id="tableLeg_TL"
-                      class=grabbable
+            <a-entity class=grabbable
                       mixin="tableLeg"
                       position="-2.5 0.7 -4.5">
                 <a-entity position="0 0.5 0"
