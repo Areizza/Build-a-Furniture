@@ -20,6 +20,11 @@
     <body>
         <a-scene >
             <a-assets>
+                <!-- load asset models -->
+                <a-asset-item   id="livingRoom"
+                                src="/assets/environments/livingRoom.obj">
+                </a-asset-item>
+
                 <a-mixin id="pointer"
                          raycaster="showLine: true; objects: .part, a-link"
                          super-hands="colliderEvent: raycaster-intersection;
@@ -80,6 +85,12 @@
                 <a-box mixin="cube" dynamic-body position="0 1.364 0" color="blue">
                 </a-box>
             </a-entity>-->
+            <a-entity   id="livingRoomEnv"
+                        obj-model="obj: #livingRoom;"
+                        position="0 0 0"
+                        scale="5 5 5"
+                        material="metalness: 0.2">
+            </a-entity>
 
             <a-entity id="tableTop"
                       class="grabbable"
@@ -168,11 +179,11 @@
             </a-entity>
 
             <a-entity camera
-                      wasd-controls
+                      wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
-                      position="0 1.2 1.5"
+                      position="0 4.2 1.5"
                       capture-mouse
-                      raycaster="objects: .grabbable; far: 5; interval: 100;" 
+                      raycaster="objects: .grabbable; far: 5; interval: 1000;" 
                       cursor="rayOrigin:mouse"
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
@@ -182,11 +193,11 @@
             </a-entity>
 
             <a-entity id="groundPlane"
-                      position="0 0 0"
+                      position="0 -0.01 0"
                       rotation="-90 0 0"
                       scale="1 1 1"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="color: green; shader: flat"
+                      material="color: white; shader: flat"
                       static-body
                       shadow>
             </a-entity>
