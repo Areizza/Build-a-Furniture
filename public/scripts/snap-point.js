@@ -72,26 +72,36 @@ AFRAME.registerComponent('snap-point', {
                         console.log("Snapping to " + data.snapTo);
 
                         data.isEnabled = false;
+                        //targetSnapComp.isEnabled = false;
                         console.log("Disabling snapping for " + this.data.snapId);
-                        el.removeEventListener("collisions", this.eventHandlerFn);
 
                         if (data.isParent)
                         {
-                            //targetEl.parentNode.flushToDOM();
+                            // Tried to create a clone a add it but, but it doesn't clone the bounding box.
                             //let clone = targetEl.parentEl.cloneNode();
                             //el.parentEl.appendChild(clone);
+                            //clone.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z})
+                            //clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
-                            targetEl.parentEl.flushToDOM();
-                            //targetEl.parentEl.setAttribute('static-body', '');
+                            targetEl.parentEl.flushToDOM(true);
+
                             el.parentEl.appendChild(targetEl.parentEl);
+                            targetEl.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 })
+                            targetEl.parentEl.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z })
+                            targetEl.parentEl.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
-                            //contextEl.parentNode.removeChild(contextEl);
-                            //targetEl.parentNode.removeChild(targetEl);
+                            //targetEl.parentEl.flushToDOM();
+                            //targetEl.parentEl.setAttribute('static-body', '');
+                            //el.parentEl.appendChild(targetEl.parentEl);
+
                         }
                         else
                         {
-
+                            el.parentEl.setAttribute('constraint', { target: "#" + targetEl.parentEl.id, collideConnected: false });
                         }
+
+                        el.parentEl.removeChild(el);
+                        el.removeEventListener("collisions", this.eventHandlerFn);
                     }
                 }
                 else
