@@ -14,11 +14,9 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
-        //let snappedTo = null;
 
         this.eventHandlerFn = function (event)
         {
-            //const contextEl = this;
             const targetEls = event.detail.els;
             self.checkCollision(targetEls);
         };
@@ -81,17 +79,17 @@ AFRAME.registerComponent('snap-point', {
                             //targetEl.parentEl.flushToDOM(true);
                             //targetEl.parentEl.flushToDOM();
 
-                            let clone = targetEl.parentEl.cloneNode();
+                            let clone = targetEl.parentEl.cloneNode(true);
 
                             clone.setAttribute('rotation', { x: 0, y: 0, z: 0 })
                             clone.setAttribute('position', { x: el.object3D.position.x, y: -1 * targetEl.getAttribute('position').y, z: el.object3D.position.z });
 
                             clone.setAttribute('dynamic-body', { mass: "1" });
-                            clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
                             //clone.setAttribute('body', { type: 'dynamic', mass: "1", shape: 'none' });
                             //clone.setAttribute('shape__main', { shape: 'box', halfExtents: "1.3 0.09 0.9" });
                             clone.removeAttribute('grabbable');
+                            clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
                             el.parentEl.appendChild(clone);
 
