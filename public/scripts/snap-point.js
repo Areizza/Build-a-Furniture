@@ -14,11 +14,9 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
-        //let snappedTo = null;
 
         this.eventHandlerFn = function (event)
         {
-            //const contextEl = this;
             const targetEls = event.detail.els;
             self.checkCollision(targetEls);
         };
@@ -52,7 +50,7 @@ AFRAME.registerComponent('snap-point', {
         if (data.isEnabled)
         {
             console.log("Disabling snapping for " + this.data.snapId);
-            //el.removeEventListener("collisions", this.eventHandlerFn);
+            el.removeEventListener("collisions", this.eventHandlerFn);
         }
     },
 
@@ -80,30 +78,22 @@ AFRAME.registerComponent('snap-point', {
                             // Tried to create a clone and add it but, but it doesn't clone the bounding box.
                             //targetEl.parentEl.flushToDOM(true);
 
-                            let clone = targetEl.parentEl.cloneNode();
-                            clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
+                            let clone = targetEl.parentEl.cloneNode(true);
 
-                            clone.setAttribute('id', "clone");
-                            clone.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+                            clone.setAttribute('rotation', { x: 0, y: 0, z: 0 })
                             clone.setAttribute('position', { x: el.object3D.position.x, y: -1 * targetEl.getAttribute('position').y, z: el.object3D.position.z });
 
-                            clone.removeAttribute('body');
-                            //clone.removeAttribute('static-body');
                             clone.setAttribute('dynamic-body', { mass: "1" });
 
-                            //clone.setAttribute('body', { type: 'dynamic', mass: "1", shape: 'none' });
-                            //clone.setAttribute('shape__main', { shape: 'box', halfExtents: "1.3 0.09 0.9" });
+                            clone.setAttribute('body', { type: 'dynamic', mass: "1", shape: 'none' });
+                            clone.setAttribute('shape__main', { shape: 'box', halfExtents: "1.3 0.09 0.9" });
                             clone.removeAttribute('grabbable');
-                            
-
-                            clone.removeAttribute('grabbable');
+                            clone.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
 
                             el.parentEl.appendChild(clone);
-                            targetEl.removeAttribute('static-body');
-                            targetEl.setAttribute('snap-point', { isEnabled: false });
-                            targetEl.setAttribute('visibility', 'hidden');
-                            targetEl.parentEl.removeAttribute('static-body');
-                            targetEl.parentEl.removeChild(targetEl);
+
+                            el.setAttribute('visible', 'false');
+                            targetEl.parentEl.setAttribute('visible', 'false');
                         }
                         else
                         {
