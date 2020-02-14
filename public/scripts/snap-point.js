@@ -14,62 +14,90 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
+        //let snappedTo = null;
 
-        this.el.addEventListener('collisions', function (event)
+        this.eventHandlerFn = function (event)
         {
-            const contextEl = this;
+            //const contextEl = this;
             const targetEls = event.detail.els;
-            const thisSnapComp = contextEl.getAttribute('snap-point');
-
-            this.eventHandlerFn = function ()
-            {
-                if (thisSnapComp.isEnabled)
-                {
-                    this.checkCollision(targetEls);
-                }
-            };
-
-        });
+            self.checkCollision(targetEls);
+        };
     },
 
-    update: function ()
+    update: function (oldData)
     {
         let data = this.data;
         let el = this.el;
 
+        if (data.isEnabled != oldData.isEnabled)
+        {
+            if (data.isEnabled)
+            {
+                console.log("Enabling snapping for " + this.data.snapId);
+                el.addEventListener("collisions", this.eventHandlerFn);
+            }
+            else
+            {
+                console.log("Disabling snapping for " + this.data.snapId);
+                el.removeEventListener("collisions", this.eventHandlerFn);
+            }
+        }
+    },
 
+    remove: function ()
+    {
+        var data = this.data;
+        var el = this.el;
+
+        if (data.isEnabled)
+        {
+            console.log("Disabling snapping for " + this.data.snapId);
+            el.removeEventListener("collisions", this.eventHandlerFn);
+        }
     },
 
     checkCollision: function (targetEls)
     {
-        for (var i = 0; i < targetEls.length; i++)
+        var data = this.data;
+        var el = this.el;
+
+        if (data.isEnabled)
         {
-            const targetSnapComp = targetEls[i].getAttribute('snap-point');
+            for (var i = 0; i < targetEls.length; i++) {
+                let targetEl = targetEls[i]
+                let targetSnapComp = targetEl.getAttribute('snap-point');
 
-            if (targetSnapComp)
-            {
-                if (targetSnapComp.snapId == thisSnapComp.snapTo)
-                {
-                    thisSnapComp.isEnabled = false;
-                    targetSnapComp.isEnabled = false;
-                    console.log("Snapping to " + targetSnapComp.snapId);
-                    if (thisSnapComp.isParent)
-                    {
-                        //contextEl.parentNode.appendChild(targetEls[i].parentNode);
-                        //targetEls[i].parentNode.appendChild(targetEls[i]);
+                if (targetSnapComp) {
+                    if (targetSnapComp.snapId == data.snapTo) {
+                        console.log("Snapping to " + data.snapTo);
 
-                        //contextEl.parentNode.removeChild(contextEl);
-                        //targetEls[i].parentNode.removeChild(targetEls[i]);
-                    }
-                    else
-                    {
+                        data.isEnabled = false;
+                        console.log("Disabling snapping for " + this.data.snapId);
+                        el.removeEventListener("collisions", this.eventHandlerFn);
 
+                        if (data.isParent)
+                        {
+                            //targetEl.parentNode.flushToDOM();
+                            //let clone = targetEl.parentEl.cloneNode();
+                            //el.parentEl.appendChild(clone);
+
+                            targetEl.parentEl.flushToDOM();
+                            //targetEl.parentEl.setAttribute('static-body', '');
+                            el.parentEl.appendChild(targetEl.parentEl);
+
+                            //contextEl.parentNode.removeChild(contextEl);
+                            //targetEl.parentNode.removeChild(targetEl);
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
-            }
-            else
-            {
-                console.log("No snap-point component.");
+                else
+                {
+                    console.log("No snap-point component.");
+                }
             }
         }
     }
