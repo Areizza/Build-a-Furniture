@@ -89,7 +89,7 @@
                         obj-model="obj: #livingRoom;"
                         position="0 0 0"
                         scale="5 5 5"
-                        material="metalness: 0.2">
+                        material="metalness: 0.1">
             </a-entity>
 
             <a-entity id="tableTop"
@@ -200,6 +200,22 @@
                       material="color: white; shader: flat"
                       static-body
                       shadow>
+            </a-entity>
+
+            <!-- lights -->
+            <a-entity   light="type: point; color: #CCC; intensity: 0.25"
+                        position="0 8 -3">
+            </a-entity>
+
+            <a-entity   light="type: point; color: #CCC; intensity: 0.25"
+                        position="31 30 -56">
+            </a-entity>
+
+            <a-entity   light="type: point; color: #CCC; intensity: 0.25"
+                        position="-31 30 -56">
+            </a-entity>
+
+            <a-entity   light="type: ambient; color: #CCC; intensity: 0.25">
             </a-entity>
 
             <!-- Tried to add a cursor retical -->
