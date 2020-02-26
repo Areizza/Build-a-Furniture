@@ -77,22 +77,18 @@ AFRAME.registerComponent('snap-point', {
 
                         if (data.isParent)
                         {
-                            targetEl.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 });
-                            targetEl.parentEl.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
+
+                            targetEl.parentEl.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
+                            //targetEl.parentEl.body.rotation.set(0, 0, 0);
+                            targetEl.parentEl.body.velocity.set(0, 0, 0);
+                            targetEl.parentEl.body.angularVelocity.set(0, 0, 0);
+                            //targetEl.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+                            //targetEl.parentEl.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
                             targetEl.parentEl.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
-
-                            //targetEl.parentEl.object3D.rotation.set(0, 0, 0);
-                            //targetEl.parentEl.object3D.position.set(2, 4, 1);
-                            //targetEl.parentEl.object3D.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
-
-                            //el.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 });
-                            //el.parentEl.setAttribute('position', { x: 2, y: 2.2, z: 1 });
-
-                            //el.parentEl.appendChild(targetEl.parentEl);
+                            el.parentEl.appendChild(targetEl.parentEl);
 
                             //targetEl.parentEl.flushToDOM();
                             //targetEl.parentEl.setAttribute('static-body', '');
-                            //el.parentEl.appendChild(targetEl.parentEl);
 
                         }
                         else

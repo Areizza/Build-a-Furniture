@@ -77,10 +77,6 @@
                       material="metalness: 0.1">
             </a-entity>
 
-            <!--<a-entity>
-
-    </a-entity>-->
-
             <a-entity id="tableTop"
                       class="grabbable"
                       mixin="part"
@@ -153,13 +149,17 @@
                       look-controls="pointerLockEnabled:true"
                       position="0 1.2 1.5"
                       capture-mouse
-                      raycaster="objects: .grabbable; far: 5; interval: 100;"
                       cursor="rayOrigin:mouse"
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
+                <a-cursor id="cursor"
+                          far="3"
+                          interval="100"
+                          objects=".clickable">
+                </a-cursor>
             </a-entity>
 
             <a-entity id="groundPlane"
@@ -172,7 +172,7 @@
                       shadow>
             </a-entity>
 
-            <!-- lights -->
+            <!-- Lights -->
             <a-entity light="type: point; color: #CCC; intensity: 0.25"
                       position="0 8 -3">
             </a-entity>
