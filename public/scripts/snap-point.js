@@ -14,13 +14,16 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
-        //let snappedTo = null;
 
-        this.eventHandlerFn = function (event)
+        this.collideHandler = function (event)
         {
-            //const contextEl = this;
-            const targetEls = event.detail.els;
-            self.checkCollision(targetEls);
+            if (event.detail)
+            {
+                let targetEl = event.detail.el;
+                if (targetEl && targetEl != self.el) {
+                    self.checkCollision(targetEl);
+                }
+            }
         };
     },
 
@@ -34,12 +37,12 @@ AFRAME.registerComponent('snap-point', {
             if (data.isEnabled)
             {
                 console.log("Enabling snapping for " + this.data.snapId);
-                el.addEventListener("collisions", this.eventHandlerFn);
+                el.addEventListener('hit', this.collideHandler);
             }
             else
             {
                 console.log("Disabling snapping for " + this.data.snapId);
-                el.removeEventListener("collisions", this.eventHandlerFn);
+                el.removeEventListener('hit', this.collideHandler);
             }
         }
     },
@@ -52,69 +55,74 @@ AFRAME.registerComponent('snap-point', {
         if (data.isEnabled)
         {
             console.log("Disabling snapping for " + this.data.snapId);
-            el.removeEventListener("collisions", this.eventHandlerFn);
+            el.removeEventListener("hit", this.collideHandler);
         }
     },
 
-    checkCollision: function (targetEls)
+    checkCollision: function (targetEl)
     {
         var data = this.data;
         var el = this.el;
 
         if (data.isEnabled)
         {
-            for (var i = 0; i < targetEls.length; i++) {
-                let targetEl = targetEls[i]
-                let targetSnapComp = targetEl.getAttribute('snap-point');
+            let targetSnapComp = targetEl.getAttribute('snap-point');
 
-                if (targetSnapComp) {
-                    if (targetSnapComp.snapId == data.snapTo) {
-                        console.log("Snapping to " + data.snapTo);
+            if (targetSnapComp) {
+                if (targetSnapComp.snapId == data.snapTo) {
+                    console.log("Snapping to " + data.snapTo);
 
-                        data.isEnabled = false;
-                        //targetSnapComp.isEnabled = false;
-                        console.log("Disabling snapping for " + this.data.snapId);
+                    data.isEnabled = false;
+                    //targetSnapComp.isEnabled = false;
+                    console.log("Disabling snapping for " + this.data.snapId);
 
-                        if (data.isParent)
-                        {
-                            let parentPiece = el.parentEl;
-                            let targetPiece = targetEl.parentEl;
-                            el.removeAttribute("physics-collider");
-                            targetEl.removeAttribute("physics-collider");
-                            targetEl.removeAttribute("static-body");
-                            targetPiece.removeAttribute("hoverable");
-                            targetPiece.removeAttribute("grabbable");
-                            targetPiece.removeAttribute("draggable");
-                            targetPiece.removeAttribute("droppable");
-                            parentPiece.appendChild(targetPiece);
+                    if (data.isParent) {
+                        let parentPiece = el.parentEl;
+                        let childPiece = targetEl.parentEl;
+                        //childPiece.removeAttribute('body');
+                        //parentPiece.appendChild(childPiece);
 
-                            //let newPiece = document.createElement('a-entity');
-                            //newPiece.addComponent();
+                        let newPiece = document.createElement('a-entity');
+                        let geo = childPiece.components.geometry.data;
+                        newPiece.setAttribute('geometry',
+                            {
+                                primitive: geo.primitive,
+                                width: geo.width,
+                                height: geo.height,
+                                depth: geo.depth,
+                            });
+                        parentPiece.appendChild(newPiece);
+                        newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z });
+                        parentPiece.setAttribute('shape__leg',
+                            {
+                                offset: { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z },
+                                halfExtents: { width: geo.width / 2, height: geo.height / 2, depth: geo.depth / 2 }
+                            });
 
-                            targetPiece.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
-                            //targetPiece.body.rotation.set(0, 0, 0);
-                            targetPiece.body.velocity.set(0, 0, 0);
-                            targetPiece.body.angularVelocity.set(0, 0, 0);
-                            targetPiece.setAttribute('constraint', { target: "#" + parentPiece.id, collideConnected: false });
+                        //childPiece.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
+                        //childPiece.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
+                        //targetPiece.body.rotation.set(0, 0, 0);
+                        //childPiece.body.velocity.set(0, 0, 0);
+                        //childPiece.body.angularVelocity.set(0, 0, 0);
+                        //childPiece.setAttribute('constraint', { target: "#" + parentPiece.id, collideConnected: false });
 
-                            targetPiece.removeChild(targetEl);
-                            parentPiece.removeChild(el);
+                        childPiece.removeChild(targetEl);
+                        parentPiece.removeChild(el);
 
-                            //targetEl.parentEl.flushToDOM();
-                        }
-                        else
-                        {
-                            //el.parentEl.setAttribute('constraint', { target: "#" + targetEl.parentEl.id, collideConnected: false });
-                        }
-
-                        //el.parentEl.removeChild(el);
-                        el.removeEventListener("collisions", this.eventHandlerFn);
+                        //targetEl.parentEl.flushToDOM();
                     }
+                    else
+                    {
+                        //el.parentEl.setAttribute('constraint', { target: "#" + targetEl.parentEl.id, collideConnected: false });
+                    }
+
+                    //el.parentEl.removeChild(el);
+                    el.removeEventListener("collisions", this.collideHandler);
                 }
-                else
-                {
-                    console.log("No snap-point component.");
-                }
+            }
+            else
+            {
+                console.log("No snap-point component.");
             }
         }
     }

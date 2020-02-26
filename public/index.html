@@ -25,26 +25,25 @@
                               src="/assets/environments/livingRoom.obj">
                 </a-asset-item>
 
-                <a-mixin id="pointer"
-                         raycaster="showLine: true; objects: .part, a-link"
-                         super-hands="colliderEvent: raycaster-intersection;
-                               colliderEventProperty: els;
-                               colliderEndEvent:raycaster-intersection-cleared;
-                               colliderEndEventProperty: clearedEls;">
+                <a-mixin id="sphereCollider"
+                         class="snapPoint"
+                         geometry="primitive: sphere; radius: 0.12;"
+                         material="color: blue; shader: flat; opacity: 0.4;"
+                         transparent="true"
+                         sphere-collider="objects: .snapPoint; radius: 0.1">
                 </a-mixin>
 
-                <a-mixin id="sphereCollider"
+                <!--<a-mixin id="sphereCollider"
                          geometry="primitive: sphere; radius: 0.12;"
                          static-body
                          physics-collider="ignoreSleep: true;"
                          collision-filter="group: snapPoints; collidesWith: snapPoints; collisionForces: false;"
                          material="color: blue; shader: flat; opacity: 0.4;"
                          transparent="true">
-                </a-mixin>
+                </a-mixin>-->
 
                 <a-mixin id="part"
                          hoverable grabbable draggable droppable
-                         shadow
                          event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
@@ -83,18 +82,22 @@
                                 halfExtents: 1.3 0.09 0.9">
 
                 <a-entity position="1.13 -0.08 0.73"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
                 <a-entity position="-1.13 -0.08 -0.73"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
                 <a-entity position="-1.13 -0.08 0.73"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
                 <a-entity position="1.13 -0.08 -0.73"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="isParent: true; snapId: 1; snapTo: 2;">
                 </a-entity>
@@ -106,6 +109,7 @@
                       mixin="tableLeg"
                       position="0 0.7 -4">
                 <a-entity position="0 0.5 0"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
@@ -115,6 +119,7 @@
                       mixin="tableLeg"
                       position="3 0.7 -1.5">
                 <a-entity position="0 0.5 0"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
@@ -124,6 +129,7 @@
                       mixin="tableLeg"
                       position="-3.2 0.7 -1">
                 <a-entity position="0 0.5 0"
+                          class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
@@ -138,21 +144,22 @@
                 </a-entity>
             </a-entity>
 
+            <!-- Camera -->
             <a-entity camera
                       wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
                       position="0 1.2 1.5"
                       capture-mouse
-                      cursor="rayOrigin:entity"
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
                 <a-cursor id="cursor"
+                          rayOrigin="entity"
                           far="3"
                           interval="100"
-                          objects=".clickable">
+                          objects=".grabbable">
                 </a-cursor>
             </a-entity>
 
@@ -181,39 +188,6 @@
 
             <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
             </a-entity>
-
-            <!-- Tried to add a cursor retical; needs more work to function correctly. -->
-            <!--<a-entity camera
-              wasd-controls
-              look-controls="pointerLockEnabled:true"
-              position="0 1.2 1.5">
-        <a-entity cursor="rayOrigin:mouse"
-                  raycaster="objects: .cube"
-                  capture-mouse
-                  static-body="shape: sphere; sphereRadius: 0.001"
-                  super-hands="colliderevent: raycaster-intersection;
-                          collidereventproperty: els;
-                          colliderendevent: raycaster-intersection-cleared;
-                          colliderendeventproperty: clearedels"
-                  geometry="primitive: ring; radiusinner: 0.1; radiusouter: 0.12"
-                  material="color: black; shader: flat"
-                  position="0 0 -1.5">
-        </a-entity>
-    </a-entity>-->
-            <!--<a-entity class="rig" movement-controls="controls:keyboard; constraintonavmesh:true; speed:0.25" rotation="" keyboard-controls="">
-        <a-entity camera="" look-controls="pointerlockenabled:true" position="0 1.6 0" rotation="">
-            <a-entity cursor="fuse: false; fusetimeout: 500"
-                      raycaster="objects: .clickable"
-                      super-hands="colliderevent: raycaster-intersection;
-                          collidereventproperty: els;
-                          colliderendevent: raycaster-intersection-cleared;
-                          colliderendeventproperty: clearedels"
-                      geometry="primitive: ring; radiusinner: 0.01; radiusouter: 0.012"
-                      material="color: black; shader: flat"
-                      position="0 0 -0.5">
-            </a-entity>
-        </a-entity>
-    </a-entity>-->
         </a-scene>
     </body>
 </html>
