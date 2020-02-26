@@ -32,12 +32,6 @@
                                colliderEndEvent:raycaster-intersection-cleared;
                                colliderEndEventProperty: clearedEls;">
                 </a-mixin>
-                <!--<a-mixin id="sphereCollider"
-                 geometry="primitive: sphere; radius: 0.12;"
-                 sphere-collider
-                 material="color: blue; shader: flat; opacity: 0.4;"
-                 transparent="true">
-        </a-mixin>-->
 
                 <a-mixin id="sphereCollider"
                          geometry="primitive: sphere; radius: 0.12;"
@@ -149,7 +143,7 @@
                       look-controls="pointerLockEnabled:true"
                       position="0 1.2 1.5"
                       capture-mouse
-                      cursor="rayOrigin:mouse"
+                      cursor="rayOrigin:entity"
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;

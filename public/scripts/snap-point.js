@@ -77,19 +77,30 @@ AFRAME.registerComponent('snap-point', {
 
                         if (data.isParent)
                         {
+                            let parentPiece = el.parentEl;
+                            let targetPiece = targetEl.parentEl;
+                            el.removeAttribute("physics-collider");
+                            targetEl.removeAttribute("physics-collider");
+                            targetEl.removeAttribute("static-body");
+                            targetPiece.removeAttribute("hoverable");
+                            targetPiece.removeAttribute("grabbable");
+                            targetPiece.removeAttribute("draggable");
+                            targetPiece.removeAttribute("droppable");
+                            parentPiece.appendChild(targetPiece);
 
-                            targetEl.parentEl.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
-                            //targetEl.parentEl.body.rotation.set(0, 0, 0);
-                            targetEl.parentEl.body.velocity.set(0, 0, 0);
-                            targetEl.parentEl.body.angularVelocity.set(0, 0, 0);
-                            //targetEl.parentEl.setAttribute('rotation', { x: 0, y: 0, z: 0 });
-                            //targetEl.parentEl.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
-                            targetEl.parentEl.setAttribute('constraint', { target: "#" + el.parentEl.id, collideConnected: false });
-                            el.parentEl.appendChild(targetEl.parentEl);
+                            //let newPiece = document.createElement('a-entity');
+                            //newPiece.addComponent();
+
+                            targetPiece.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
+                            //targetPiece.body.rotation.set(0, 0, 0);
+                            targetPiece.body.velocity.set(0, 0, 0);
+                            targetPiece.body.angularVelocity.set(0, 0, 0);
+                            targetPiece.setAttribute('constraint', { target: "#" + parentPiece.id, collideConnected: false });
+
+                            targetPiece.removeChild(targetEl);
+                            parentPiece.removeChild(el);
 
                             //targetEl.parentEl.flushToDOM();
-                            //targetEl.parentEl.setAttribute('static-body', '');
-
                         }
                         else
                         {
@@ -97,7 +108,7 @@ AFRAME.registerComponent('snap-point', {
                         }
 
                         //el.parentEl.removeChild(el);
-                        //el.removeEventListener("collisions", this.eventHandlerFn);
+                        el.removeEventListener("collisions", this.eventHandlerFn);
                     }
                 }
                 else
