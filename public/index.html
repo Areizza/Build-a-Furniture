@@ -17,171 +17,65 @@
     </script>
     <!--https://softwareengineering.stackexchange.com/questions/213332/best-way-to-define-snap-points-between-two-arbitrary-objects-in-3d-->
 </head>
-    <body>
-        <a-scene physics="debug: true">
-            <a-assets>
-                <!-- load asset models -->
-                <a-asset-item id="livingRoom"
-                              src="/assets/environments/livingRoom.obj">
-                </a-asset-item>
+<body>
+    <!--physics="debug: true"-->
+    <a-scene>
+        <a-assets>
+            <!-- load asset models -->
+            <a-asset-item id="livingRoom"
+                          src="/assets/environments/livingRoom.obj">
+            </a-asset-item>
 
-                <a-mixin id="pointer"
-                         raycaster="showLine: true; objects: .part, a-link"
-                         super-hands="colliderEvent: raycaster-intersection;
+            <a-mixin id="pointer"
+                     raycaster="showLine: true; objects: .part, a-link"
+                     super-hands="colliderEvent: raycaster-intersection;
                                colliderEventProperty: els;
                                colliderEndEvent:raycaster-intersection-cleared;
                                colliderEndEventProperty: clearedEls;">
-                </a-mixin>
+            </a-mixin>
 
-                <a-mixin id="sphereCollider"
-                         geometry="primitive: sphere; radius: 0.12;"
-                         static-body
-                         physics-collider="ignoreSleep: true;"
-                         collision-filter="group: snapPoints; collidesWith: snapPoints; collisionForces: false;"
-                         material="color: blue; shader: flat; opacity: 0.4;"
-                         transparent="true">
-                </a-mixin>
+            <a-mixin id="sphereCollider"
+                     geometry="primitive: sphere; radius: 0.12;"
+                     static-body
+                     physics-collider="ignoreSleep: true;"
+                     collision-filter="group: snapPoints; collidesWith: snapPoints; collisionForces: false;"
+                     material="color: blue; shader: flat; opacity: 0.4;"
+                     transparent="true">
+            </a-mixin>
 
-                <a-mixin id="part"
-                         hoverable grabbable draggable droppable
-                         shadow
-                         event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                         event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
-                </a-mixin>
+            <a-mixin id="part"
+                     hoverable grabbable draggable droppable
+                     shadow
+                     event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                     event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
+            </a-mixin>
 
-                <a-mixin id="tableLeg"
-                         mixin="part"
-                         geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
-                         body="type: dynamic; mass: 1; shape: none;"
-                         shape__main="shape: box;
+            <a-mixin id="tableLeg"
+                     mixin="part"
+                     geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
+                     body="type: dynamic; mass: 1; shape: none;"
+                     shape__main="shape: box;
                                    halfExtents: 0.09 0.5 0.09"
-                         material="color: #4d2600;">
+                     material="color: #4d2600;">
 
-                </a-mixin>
+            </a-mixin>
 
-                <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
-                <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
-                <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
-            </a-assets>
+            <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
+            <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
+            <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
+        </a-assets>
 
-            <a-entity id="livingRoomEnv"
-                      obj-model="obj: #livingRoom;"
-                      position="0 0 0"
-                      scale="5 5 5"
-                      material="metalness: 0.1">
-            </a-entity>
+        <a-entity id="livingRoomEnv"
+                  obj-model="obj: #livingRoom;"
+                  position="0 0 0"
+                  scale="5 5 5"
+                  material="metalness: 0.1">
+        </a-entity>
 
-            <!--<a-entity>
+        <!--<a-entity>
 
-    </a-entity>-->
+        </a-entity>-->
 
-            <a-entity id="tableTop"
-                      class="grabbable"
-                      mixin="part"
-                      geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
-                      position="0 0.09 0"
-                      rotation="180 0 0"
-                      material="color: #663300;"
-                      body="type: dynamic; mass: 20; shape: none;"
-                      shape__main="shape: box;
-                                halfExtents: 1.3 0.09 0.9">
-
-                <a-entity position="1.13 -0.09 0.73"
-                          mixin="sphereCollider"
-                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="-1.13 -0.09 -0.73"
-                          mixin="sphereCollider"
-                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="-1.13 -0.09 0.73"
-                          mixin="sphereCollider"
-                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="1.13 -0.09 -0.73"
-                          mixin="sphereCollider"
-                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
-                </a-entity>
-            </a-entity>
-
-            <!-- Table Legs-->
-            <a-entity class=grabbable
-                      mixin="tableLeg"
-                      position="0 0.7 -4">
-                <a-entity position="0 0.5 0"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            <a-entity class=grabbable
-                      mixin="tableLeg"
-                      position="3 0.7 -1.5">
-                <a-entity position="0 0.5 0"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            <a-entity class=grabbable
-                      mixin="tableLeg"
-                      position="-3.2 0.7 -1">
-                <a-entity position="0 0.5 0"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            <a-entity class=grabbable
-                      mixin="tableLeg"
-                      position="-2.5 0.7 -4.5">
-                <a-entity position="0 0.5 0"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-
-            <a-entity camera
-                      wasd-controls="acceleration: 100"
-                      look-controls="pointerLockEnabled:true"
-                      position="0 1.2 1.5"
-                      capture-mouse
-                      raycaster="objects: .grabbable; far: 5; interval: 100;"
-                      cursor="rayOrigin:mouse"
-                      static-body="shape: sphere; sphereRadius: 0.0002"
-                      super-hands="colliderEvent: raycaster-intersection;
-                             colliderEventProperty: els;
-                             colliderEndEvent:raycaster-intersection-cleared;
-                             colliderEndEventProperty: clearedEls;">
-            </a-entity>
-
-            <a-entity id="groundPlane"
-                      position="0 -0.01 0"
-                      rotation="-90 0 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="color: white; shader: flat"
-                      static-body
-                      shadow>
-            </a-entity>
-
-            <!-- lights -->
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="0 8 -3">
-            </a-entity>
-
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="31 30 -56">
-            </a-entity>
-
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="-31 30 -56">
-            </a-entity>
-
-            <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
-            </a-entity>
-
-            <!-- Merged Dynamic Body -- Seems to be out of date and doesn't work. -->
-            <!--<a-entity dynamic-body="shape: none"
-              body-merger="dynamic-body"
-              position="0 2 0">
         <a-entity id="tableTop"
                   class="grabbable"
                   mixin="part"
@@ -189,65 +83,172 @@
                   position="0 0.09 0"
                   rotation="180 0 0"
                   material="color: #663300;"
-                  body="type: dynamic; mass: 20; shape: none;" s
+                  body="type: dynamic; mass: 20; shape: none;"
                   shape__main="shape: box;
-                        halfExtents: 1.3 0.09 0.9">
+                                halfExtents: 1.3 0.09 0.9">
 
-            <a-entity position="1.13 -0.08 0.73"
+            <a-entity position="1.13 -0.09 0.73"
                       mixin="sphereCollider"
                       snap-point="isParent: true; snapId: 1; snapTo: 2;">
             </a-entity>
-            <a-entity position="-1.13 -0.08 -0.73"
+            <a-entity position="-1.13 -0.09 -0.73"
                       mixin="sphereCollider"
                       snap-point="isParent: true; snapId: 1; snapTo: 2;">
             </a-entity>
-            <a-entity position="-1.13 -0.08 0.73"
+            <a-entity position="-1.13 -0.09 0.73"
                       mixin="sphereCollider"
                       snap-point="isParent: true; snapId: 1; snapTo: 2;">
             </a-entity>
-            <a-entity position="1.13 -0.08 -0.73"
+            <a-entity position="1.13 -0.09 -0.73"
                       mixin="sphereCollider"
                       snap-point="isParent: true; snapId: 1; snapTo: 2;">
             </a-entity>
         </a-entity>
-        <a-entity id="tableLeg_TR"
-                  class=grabbable
+
+        <!-- Table Legs-->
+        <a-entity class=grabbable
+                  mixin="tableLeg"
+                  position="0 0.7 -4">
+            <a-entity position="0 0.5 0"
+                      mixin="sphereCollider"
+                      snap-point="snapId: 2; snapTo: 1;">
+            </a-entity>
+        </a-entity>
+        <a-entity class=grabbable
                   mixin="tableLeg"
                   position="3 0.7 -1.5">
-        </a-entity>
-    </a-entity>-->
-            <!-- Tried to add a cursor retical; needs more work to function correctly. -->
-            <!--<a-entity camera
-              wasd-controls
-              look-controls="pointerLockEnabled:true"
-              position="0 1.2 1.5">
-        <a-entity cursor="rayOrigin:mouse"
-                  raycaster="objects: .cube"
-                  capture-mouse
-                  static-body="shape: sphere; sphereRadius: 0.001"
-                  super-hands="colliderevent: raycaster-intersection;
-                          collidereventproperty: els;
-                          colliderendevent: raycaster-intersection-cleared;
-                          colliderendeventproperty: clearedels"
-                  geometry="primitive: ring; radiusinner: 0.1; radiusouter: 0.12"
-                  material="color: black; shader: flat"
-                  position="0 0 -1.5">
-        </a-entity>
-    </a-entity>-->
-            <!--<a-entity class="rig" movement-controls="controls:keyboard; constraintonavmesh:true; speed:0.25" rotation="" keyboard-controls="">
-        <a-entity camera="" look-controls="pointerlockenabled:true" position="0 1.6 0" rotation="">
-            <a-entity cursor="fuse: false; fusetimeout: 500"
-                      raycaster="objects: .clickable"
-                      super-hands="colliderevent: raycaster-intersection;
-                          collidereventproperty: els;
-                          colliderendevent: raycaster-intersection-cleared;
-                          colliderendeventproperty: clearedels"
-                      geometry="primitive: ring; radiusinner: 0.01; radiusouter: 0.012"
-                      material="color: black; shader: flat"
-                      position="0 0 -0.5">
+            <a-entity position="0 0.5 0"
+                      mixin="sphereCollider"
+                      snap-point="snapId: 2; snapTo: 1;">
             </a-entity>
         </a-entity>
-    </a-entity>-->
-        </a-scene>
-    </body>
+        <a-entity class=grabbable
+                  mixin="tableLeg"
+                  position="-3.2 0.7 -1">
+            <a-entity position="0 0.5 0"
+                      mixin="sphereCollider"
+                      snap-point="snapId: 2; snapTo: 1;">
+            </a-entity>
+        </a-entity>
+        <a-entity class=grabbable
+                  mixin="tableLeg"
+                  position="-2.5 0.7 -4.5">
+            <a-entity position="0 0.5 0"
+                      mixin="sphereCollider"
+                      snap-point="snapId: 2; snapTo: 1;">
+            </a-entity>
+        </a-entity>
+
+        <a-entity camera
+                  wasd-controls="acceleration: 100"
+                  look-controls="pointerLockEnabled:true"
+                  position="0 1.2 1.5"
+                  capture-mouse
+                  raycaster="objects: .grabbable; far: 5; interval: 100;"
+                  cursor="rayOrigin: mouse"
+                  static-body="shape: sphere; sphereRadius: 0.0002"
+                  super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;">
+        </a-entity>
+
+        <a-entity id="groundPlane"
+                  position="0 -0.01 0"
+                  rotation="-90 0 0"
+                  scale="1 1 1"
+                  geometry="primitive: plane; width: 25.0; height: 25.0"
+                  material="color: white; shader: flat"
+                  static-body
+                  shadow>
+        </a-entity>
+
+        <!-- lights -->
+        <a-entity light="type: point; color: #CCC; intensity: 0.25"
+                  position="0 8 -3">
+        </a-entity>
+
+        <a-entity light="type: point; color: #CCC; intensity: 0.25"
+                  position="31 30 -56">
+        </a-entity>
+
+        <a-entity light="type: point; color: #CCC; intensity: 0.25"
+                  position="-31 30 -56">
+        </a-entity>
+
+        <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
+        </a-entity>
+
+        <!-- Merged Dynamic Body -- Seems to be out of date and doesn't work. -->
+        <!--<a-entity dynamic-body="shape: none"
+                  body-merger="dynamic-body"
+                  position="0 2 0">
+            <a-entity id="tableTop"
+                      class="grabbable"
+                      mixin="part"
+                      geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
+                      position="0 0.09 0"
+                      rotation="180 0 0"
+                      material="color: #663300;"
+                      body="type: dynamic; mass: 20; shape: none;" s
+                      shape__main="shape: box;
+                            halfExtents: 1.3 0.09 0.9">
+
+                <a-entity position="1.13 -0.08 0.73"
+                          mixin="sphereCollider"
+                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
+                </a-entity>
+                <a-entity position="-1.13 -0.08 -0.73"
+                          mixin="sphereCollider"
+                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
+                </a-entity>
+                <a-entity position="-1.13 -0.08 0.73"
+                          mixin="sphereCollider"
+                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
+                </a-entity>
+                <a-entity position="1.13 -0.08 -0.73"
+                          mixin="sphereCollider"
+                          snap-point="isParent: true; snapId: 1; snapTo: 2;">
+                </a-entity>
+            </a-entity>
+            <a-entity id="tableLeg_TR"
+                      class=grabbable
+                      mixin="tableLeg"
+                      position="3 0.7 -1.5">
+            </a-entity>
+        </a-entity>-->
+        <!-- Tried to add a cursor retical; needs more work to function correctly. -->
+        <!--<a-entity camera
+                  wasd-controls
+                  look-controls="pointerLockEnabled:true"
+                  position="0 1.2 1.5">
+            <a-entity cursor="rayOrigin:mouse"
+                      raycaster="objects: .cube"
+                      capture-mouse
+                      static-body="shape: sphere; sphereRadius: 0.001"
+                      super-hands="colliderevent: raycaster-intersection;
+                              collidereventproperty: els;
+                              colliderendevent: raycaster-intersection-cleared;
+                              colliderendeventproperty: clearedels"
+                      geometry="primitive: ring; radiusinner: 0.1; radiusouter: 0.12"
+                      material="color: black; shader: flat"
+                      position="0 0 -1.5">
+            </a-entity>
+        </a-entity>-->
+        <!--<a-entity class="rig" movement-controls="controls:keyboard; constraintonavmesh:true; speed:0.25" rotation="" keyboard-controls="">
+            <a-entity camera="" look-controls="pointerlockenabled:true" position="0 1.6 0" rotation="">
+                <a-entity cursor="fuse: false; fusetimeout: 500"
+                          raycaster="objects: .clickable"
+                          super-hands="colliderevent: raycaster-intersection;
+                              collidereventproperty: els;
+                              colliderendevent: raycaster-intersection-cleared;
+                              colliderendeventproperty: clearedels"
+                          geometry="primitive: ring; radiusinner: 0.01; radiusouter: 0.012"
+                          material="color: black; shader: flat"
+                          position="0 0 -0.5">
+                </a-entity>
+            </a-entity>
+        </a-entity>-->
+    </a-scene>
+</body>
 </html>
