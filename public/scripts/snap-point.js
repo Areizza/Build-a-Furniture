@@ -96,7 +96,7 @@ AFRAME.registerComponent('snap-point', {
                         parentPiece.setAttribute('shape__leg',
                             {
                                 offset: { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z },
-                                halfExtents: { width: geo.width / 2, height: geo.height / 2, depth: geo.depth / 2 }
+                                halfExtents: { x: geo.width / 2, y: geo.height / 2, z: geo.depth / 2 }
                             });
 
                         //childPiece.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
