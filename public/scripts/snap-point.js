@@ -7,6 +7,7 @@ AFRAME.registerComponent('snap-point', {
     {
         isParent: {type: 'boolean', default: false },
         isEnabled: { type: 'boolean', default: true },
+        tier: { type: 'int', default: 0 },
         snapId: { type: 'int', default: 0 },
         snapTo: { type: 'int', default: 0 }
     },
@@ -99,17 +100,9 @@ AFRAME.registerComponent('snap-point', {
                                 halfExtents: { x: geo.width / 2, y: geo.height / 2, z: geo.depth / 2 }
                             });
 
-                        //childPiece.setAttribute('position', { x: el.object3D.position.x, y: el.object3D.position.y, z: el.object3D.position.z });
-                        //childPiece.body.position.set(el.object3D.position.x, el.object3D.position.y, el.object3D.position.z);
-                        //targetPiece.body.rotation.set(0, 0, 0);
-                        //childPiece.body.velocity.set(0, 0, 0);
-                        //childPiece.body.angularVelocity.set(0, 0, 0);
-                        //childPiece.setAttribute('constraint', { target: "#" + parentPiece.id, collideConnected: false });
-
                         childPiece.removeChild(targetEl);
                         parentPiece.removeChild(el);
 
-                        //targetEl.parentEl.flushToDOM();
                     }
                     else
                     {
