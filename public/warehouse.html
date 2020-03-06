@@ -39,6 +39,11 @@
                         src="assets/sounds/pinTrack.ogg" preload="auto">
                 </audio>
 
+                <!-- load instructions -->
+                <img id="instructionTable_0"
+                     src="assets/graphics/warehouse/WH_instructions_table.png">
+                </img>
+
                 <!-- mixins -->
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
@@ -147,8 +152,24 @@
                         sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
             </a-entity>
 
-            <!-- Lights -->
+            <!-- Shipping Platform -->
+            <a-entity   id="platform"
+                        position= "1 0.1 0"
+                        scale = "1 1 1"
+                        geometry="primitive:box; width:2; height:0.1; depth:1.5;"
+                        material="color:#46d246;">
+            </a-entity>
 
+            <!-- instructions to update -->
+            <!-- we need a function to update the src for this a-image -->
+            <a-image    id="instructions"
+                        src="#instructionTable_0"
+                        position="2.3 0.5 0"
+                        rotation= "-20 -90 0"
+                        scale= "1 0.6 1">
+            </a-image>
+
+            <!-- Lights -->
             <!-- this first one goes above the shipping platform -->
             <a-entity light="type: point; color: #CCC; intensity: 0.50"
                       position="1 3 0">
