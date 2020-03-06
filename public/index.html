@@ -53,9 +53,18 @@
 
                 <!--geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"-->
                 <!--body="type: dynamic; mass: 1; shape: none;"
-        shape__main="shape: box;
-        halfExtents: 0.09 0.5 0.09"-->
+            shape__main="shape: box;
+                         halfExtents: 0.09 0.5 0.09"-->
+                <!--gltf-model="#tableLegModel"-->
+                <!--shape__main="shape: box;
+                     halfExtents: 0.036 0.345 0.036"-->
+
                 <a-mixin id="tableLeg"
+                         gltf-model="#tableLegModel"
+                         scale="2 2 2"
+                         body="type: dynamic; mass: 1; shape: none;"
+                         shape__main="shape: box;
+                                    halfExtents: 0.036 0.345 0.036;"
                          furniture="tier: 1; totalSnapPoints: 1;"
                          mixin="part">
 
@@ -75,13 +84,18 @@
 
             <!--geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"-->\
             <!--body="type: dynamic; mass: 20; shape: none;"
-            shape__main="shape: box;
-            halfExtents: 1.3 0.09 0.9"-->
+    shape__main="shape: box;
+    halfExtents: 1.3 0.09 0.9"-->
+
             <a-entity id="tableTop"
                       class="grabbable"
                       furniture="tier: 0; totalSnapPoints: 4;"
                       mixin="part"
+                      scale="2 2 2"
                       gltf-model="#tableTopModel"
+                      body="type: dynamic; mass: 20; shape: none;"
+                      shape__main="shape: box;
+                                  halfExtents: 0.72 0.061 0.72"
                       position="0 0.09 0"
                       rotation="180 0 0">
 
@@ -110,21 +124,20 @@
             <!-- Table Legs-->
             <a-entity id="tableLeg_BR"
                       class=grabbable
-                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="0 0.7 -4">
-                <a-entity position="0 0.5 0"
+                <a-entity position="0 0.345 0"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
                 </a-entity>
             </a-entity>
+            
             <a-entity id="tableLeg_TR"
                       class=grabbable
-                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="3 0.7 -1.5">
-                <a-entity position="0 0.5 0"
+                <a-entity position="0 0.345 0"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
@@ -132,10 +145,9 @@
             </a-entity>
             <a-entity id="tableLeg_BL"
                       class=grabbable
-                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="-3.2 0.7 -1">
-                <a-entity position="0 0.5 0"
+                <a-entity position="0 0.345 0"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">
@@ -143,10 +155,9 @@
             </a-entity>
             <a-entity id="tableLeg_TL"
                       class=grabbable
-                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="-2.5 0.7 -4.5">
-                <a-entity position="0 0.5 0"
+                <a-entity position="0 0.345 0"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 2; snapTo: 1;">

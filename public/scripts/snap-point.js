@@ -83,8 +83,8 @@ AFRAME.registerComponent('snap-point', {
 
                         // Create a new piece and attach it instead.
                         let newPiece = document.createElement('a-entity');
-                        let geo = childPiece.components.geometry.data;
-                        newPiece.setAttribute('gltf-model', childPiece.components('gltf-model'));
+                        let shape = childPiece.components.shape__main.data;
+                        newPiece.setAttribute('gltf-model', childPiece.components['gltf-model']);
 
                         //newPiece.setAttribute('geometry',
                         //    {
@@ -95,13 +95,13 @@ AFRAME.registerComponent('snap-point', {
                         //    });
 
                         parentPiece.appendChild(newPiece);
-                        newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z });
+                        newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * shape.halfExtents.y, z: el.object3D.position.z });
 
                         // Copy the bounding box of the original object and add it to the parent object using the currentAttached value as the shape__id.
                         parentPiece.setAttribute('shape__' + self.furnitureData.currentAttached,
                             {
-                                offset: { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z },
-                                halfExtents: { x: geo.width / 2, y: geo.height / 2, z: geo.depth / 2 }
+                                offset: { x: el.object3D.position.x, y: -1 * shape.height, z: el.object3D.position.z },
+                                halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z }
                             });
 
                         // Remove the snap-points and then the original child object.
