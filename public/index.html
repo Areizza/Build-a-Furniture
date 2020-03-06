@@ -17,7 +17,6 @@
             console.log("Context menu disabled for right click.")
         }, false);
     </script>
-    <!--https://softwareengineering.stackexchange.com/questions/213332/best-way-to-define-snap-points-between-two-arbitrary-objects-in-3d-->
 </head>
     <body>
         <a-scene physics="debug: true;">
@@ -26,11 +25,16 @@
                 <a-asset-item id="livingRoom"
                               src="/assets/environments/livingRoom.obj">
                 </a-asset-item>
+                <a-asset-item id="tableTopModel"
+                              src="/assets/models/tableTopConnected/tableTopConnected.gltf">
+                </a-asset-item>
+                <a-asset-item id="tableLegModel"
+                              src="/assets/models/tableLeg/tableLeg.gltf">
+                </a-asset-item>
 
                 <!-- load audio files -->
-                <audio  id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
-                        src="assets/sounds/livingRoomAmbiance.ogg" preload="auto">
-                </audio>
+                <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
 
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
@@ -46,14 +50,14 @@
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
 
+
+                <!--geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"-->
+                <!--body="type: dynamic; mass: 1; shape: none;"
+        shape__main="shape: box;
+        halfExtents: 0.09 0.5 0.09"-->
                 <a-mixin id="tableLeg"
                          furniture="tier: 1; totalSnapPoints: 1;"
-                         mixin="part"
-                         geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
-                         body="type: dynamic; mass: 1; shape: none;"
-                         shape__main="shape: box;
-                                   halfExtents: 0.09 0.5 0.09"
-                         material="color: #4d2600;">
+                         mixin="part">
 
                 </a-mixin>
 
@@ -69,17 +73,17 @@
                       material="metalness: 0.1">
             </a-entity>
 
+            <!--geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"-->\
+            <!--body="type: dynamic; mass: 20; shape: none;"
+            shape__main="shape: box;
+            halfExtents: 1.3 0.09 0.9"-->
             <a-entity id="tableTop"
                       class="grabbable"
                       furniture="tier: 0; totalSnapPoints: 4;"
                       mixin="part"
-                      geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
+                      gltf-model="#tableTopModel"
                       position="0 0.09 0"
-                      rotation="180 0 0"
-                      material="color: #663300;"
-                      body="type: dynamic; mass: 20; shape: none;"
-                      shape__main="shape: box;
-                                halfExtents: 1.3 0.09 0.9">
+                      rotation="180 0 0">
 
                 <a-entity position="1.13 -0.08 0.73"
                           class="snapPoint"
@@ -106,6 +110,7 @@
             <!-- Table Legs-->
             <a-entity id="tableLeg_BR"
                       class=grabbable
+                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="0 0.7 -4">
                 <a-entity position="0 0.5 0"
@@ -116,6 +121,7 @@
             </a-entity>
             <a-entity id="tableLeg_TR"
                       class=grabbable
+                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="3 0.7 -1.5">
                 <a-entity position="0 0.5 0"
@@ -126,6 +132,7 @@
             </a-entity>
             <a-entity id="tableLeg_BL"
                       class=grabbable
+                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="-3.2 0.7 -1">
                 <a-entity position="0 0.5 0"
@@ -136,6 +143,7 @@
             </a-entity>
             <a-entity id="tableLeg_TL"
                       class=grabbable
+                      gltf-model="#tableLegModel"
                       mixin="tableLeg"
                       position="-2.5 0.7 -4.5">
                 <a-entity position="0 0.5 0"
@@ -174,14 +182,14 @@
                       shadow>
             </a-entity>
 
-            <!-- ambient sound plane -->
-            <a-entity   id="ceilingPlane"
-                        position= "0 13 0"
-                        rotation = "90 0 0"
-                        scale = "1 1 1"
-                        geometry="primitive:plane; width:25; height:25;"
-                        material="transparent: true;"
-                        sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;">
+            <!-- Ambient sound plane -->
+            <a-entity id="ceilingPlane"
+                      position="0 13 0"
+                      rotation="90 0 0"
+                      scale="1 1 1"
+                      geometry="primitive:plane; width:25; height:25;"
+                      material="transparent: true;"
+                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;">
             </a-entity>
 
             <!-- Lights -->

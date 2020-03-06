@@ -45,7 +45,6 @@ AFRAME.registerComponent('snap-point', {
             }
             else
             {
-                console.log("Disabling snapping for " + this.data.snapId);
                 el.removeEventListener('hit', this.collideHandler);
             }
         }
@@ -85,13 +84,15 @@ AFRAME.registerComponent('snap-point', {
                         // Create a new piece and attach it instead.
                         let newPiece = document.createElement('a-entity');
                         let geo = childPiece.components.geometry.data;
-                        newPiece.setAttribute('geometry',
-                            {
-                                primitive: geo.primitive,
-                                width: geo.width,
-                                height: geo.height,
-                                depth: geo.depth,
-                            });
+                        newPiece.setAttribute('gltf-model', childPiece.components('gltf-model'));
+
+                        //newPiece.setAttribute('geometry',
+                        //    {
+                        //        primitive: geo.primitive,
+                        //        width: geo.width,
+                        //        height: geo.height,
+                        //        depth: geo.depth,
+                        //    });
 
                         parentPiece.appendChild(newPiece);
                         newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z });
