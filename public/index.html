@@ -7,10 +7,12 @@
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.js"></script>
+    <script src="scripts/furniture.js"></script>
     <script src="scripts/snap-point.js"></script>
     <script>
         // Prevent context menu.
-        document.addEventListener("contextmenu", function (e) {
+        document.addEventListener("contextmenu", function (e)
+        {
             e.preventDefault();
             console.log("Context menu disabled for right click.")
         }, false);
@@ -38,15 +40,6 @@
                          sphere-collider="objects: .snapPoint; radius: 0.1">
                 </a-mixin>
 
-                <!--<a-mixin id="sphereCollider"
-                         geometry="primitive: sphere; radius: 0.12;"
-                         static-body
-                         physics-collider="ignoreSleep: true;"
-                         collision-filter="group: snapPoints; collidesWith: snapPoints; collisionForces: false;"
-                         material="color: blue; shader: flat; opacity: 0.4;"
-                         transparent="true">
-                </a-mixin>-->
-
                 <a-mixin id="part"
                          hoverable grabbable draggable droppable
                          event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
@@ -54,6 +47,7 @@
                 </a-mixin>
 
                 <a-mixin id="tableLeg"
+                         furniture="tier: 1; totalSnapPoints: 1;"
                          mixin="part"
                          geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
                          body="type: dynamic; mass: 1; shape: none;"
@@ -77,6 +71,7 @@
 
             <a-entity id="tableTop"
                       class="grabbable"
+                      furniture="tier: 0; totalSnapPoints: 4;"
                       mixin="part"
                       geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"
                       position="0 0.09 0"
