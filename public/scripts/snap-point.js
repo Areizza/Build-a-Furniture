@@ -7,7 +7,6 @@ AFRAME.registerComponent('snap-point', {
     {
         isParent: { type: 'boolean', default: false },
         isEnabled: { type: 'boolean', default: true },
-        //tier: { type: 'int', default: 0 },
         snapId: { type: 'int', default: 0 },
         snapTo: { type: 'int', default: 0 }
     },
@@ -15,13 +14,10 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
-        //this.furnitureData = this.el.parentEl.addEventListener('loaded', function (event)
         this.el.parentEl.addEventListener('loaded', function (event)
         {
             self.furnitureData = self.el.parentEl.getAttribute('furniture');
         });
-
-        //this.tier = this.el.parentEl.getAttribute('furniture').tier;
 
         this.collideHandler = function (event)
         {
@@ -45,7 +41,6 @@ AFRAME.registerComponent('snap-point', {
         {
             if (data.isEnabled)
             {
-                console.log("Enabling snapping for " + this.data.snapId);
                 el.addEventListener('hit', this.collideHandler);
             }
             else
@@ -63,7 +58,6 @@ AFRAME.registerComponent('snap-point', {
 
         if (data.isEnabled)
         {
-            console.log("Disabling snapping for " + this.data.snapId);
             el.removeEventListener("hit", this.collideHandler);
         }
     },
@@ -82,11 +76,7 @@ AFRAME.registerComponent('snap-point', {
             {
                 if (targetSnapComp.data.snapId == data.snapTo) 
                 {
-                    console.log("Snapping to " + data.snapTo);
-
                     data.isEnabled = false;
-                    console.log("Disabling snapping for " + this.data.snapId);
-
                     let parentPiece = el.parentEl;
                     if (targetSnapComp.furnitureData.tier - self.furnitureData.tier === 1) 
                     {
@@ -105,23 +95,25 @@ AFRAME.registerComponent('snap-point', {
 
                         parentPiece.appendChild(newPiece);
                         newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z });
+
+                        // Copy the bounding box of the original object and add it to the parent object using the currentAttached value as the shape__id.
                         parentPiece.setAttribute('shape__' + self.furnitureData.currentAttached,
                             {
                                 offset: { x: el.object3D.position.x, y: -1 * geo.height / 2, z: el.object3D.position.z },
                                 halfExtents: { x: geo.width / 2, y: geo.height / 2, z: geo.depth / 2 }
                             });
 
+                        // Remove the snap-points and then the original child object.
                         childPiece.removeChild(targetEl);
                         parentPiece.removeChild(el);
+                        childPiece.parentEl.removeChild(childPiece);
+
+                        // Increment the number of objects currently attached to the parent
                         self.furnitureData.currentAttached += 1;
-                    }
-                    else
-                    {
-                        //el.parentEl.setAttribute('constraint', { target: "#" + targetEl.parentEl.id, collideConnected: false });
+
                     }
 
-                    //el.parentEl.removeChild(el);
-                    el.removeEventListener("collisions", this.collideHandler);
+                    //el.removeEventListener("collisions", this.collideHandler);
                 }
             }
             else
