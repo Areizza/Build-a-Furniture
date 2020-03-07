@@ -1,0 +1,120 @@
+{
+    "table":
+    [
+        {
+            "id": "tableTop",
+            "class": "grabbable",
+            "furniture": "tier: 0; totalSnapPoints: 4;",
+            "mixin": "part",
+            "scale": "2 2 2",
+            "gltf-model": "#tableTopModel",
+            "body": "type: dynamic; mass: 20; shape: none;",
+            "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
+            "position": "0 0.09 0",
+            "rotation": "180 0 0",
+
+            "a-entity":
+            [
+                {
+                    "position": "1.13 -0.08 0.73",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 1; snapTo: 2;"
+                },
+                {
+                    "position": "-1.13 -0.08 -0.73",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 1; snapTo: 2;"
+                },
+                {
+                    "position": "-1.13 -0.08 -0.73",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 1; snapTo: 2;"
+                },
+                {
+                    "position": "-1.13 -0.08 -0.73",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 1; snapTo: 2;"
+                }
+            ]
+
+        },
+
+        {
+            "id": "tableLeg_BR",
+            "class": "grabbable",
+            "mixin": "tableLeg",
+            "position": "0 0.7 -4",
+
+            "a-entity":
+            [
+                {
+                    "position": "0 0.345 0",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 2; snapTo: 1;"
+                }
+            ]
+            
+        },
+
+        {
+            "id": "tableLeg_TR",
+            "class": "grabbable",
+            "mixin": "tableLeg",
+            "position": "3 0.7 -1.5",
+
+            "a-entity":
+            [
+                {
+                    "position": "0 0.345 0",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 2; snapTo: 1;"
+                }
+            ]
+            
+        },
+
+        {
+            "id": "tableLeg_BL",
+            "class": "grabbable",
+            "mixin": "tableLeg",
+            "position": "-3.2 0.7 -1",
+
+            "a-entity":
+            [
+                {
+                    "position": "0 0.345 0",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 2; snapTo: 1;"
+                }
+            ]
+            
+        },
+
+        {
+            "id": "tableLeg_TL",
+            "class": "grabbable",
+            "mixin": "tableLeg",
+            "position": "-2.5 0.7 -4.5",
+
+            "a-entity":
+            [
+                {
+                    "position": "0 0.345 0",
+                    "class": "snapPoint",
+                    "mixin": "sphereCollider",
+                    "snap-point": "snapId: 2; snapTo: 1;"
+                }
+            ]
+            
+        }
+    ]
+
+}
+
