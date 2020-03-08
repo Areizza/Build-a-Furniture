@@ -21,10 +21,12 @@
     <body>
         <a-scene physics="debug: true;">
             <a-assets>
-                <!-- load asset models -->
+                <!-- load environment models -->
                 <a-asset-item id="livingRoom"
-                              src="/assets/environments/livingRoom.obj">
+                              src="/assets/environments/livingRoom/PBR - Metallic Roughness Alpha-blend.gltf">
                 </a-asset-item>
+
+                <!-- load asset models -->
                 <a-asset-item id="tableTopModel"
                               src="/assets/models/tableTopConnected/tableTopConnected.gltf">
                 </a-asset-item>
@@ -76,10 +78,9 @@
             </a-assets>
 
             <a-entity id="livingRoomEnv"
-                      obj-model="obj: #livingRoom;"
+                     gltf-model="#livingRoom"
                       position="0 0 0"
-                      scale="5 5 5"
-                      material="metalness: 0.1">
+                      scale="3 3 3">
             </a-entity>
 
             <!--geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"-->\
@@ -168,7 +169,7 @@
             <a-entity camera
                       wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
-                      position="0 1.2 1.5"
+                      position="0 3.2 1.5"
                       capture-mouse
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
@@ -186,34 +187,71 @@
             <a-entity id="groundPlane"
                       position="0 -0.01 0"
                       rotation="-90 0 0"
-                      scale="1 1 1"
+                      scale="1 1.5 1"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="color: white; shader: flat"
+                      material="transparent: true; opacity: 0.0;"
+                      static-body
+                      shadow>
+            </a-entity>
+            <a-entity id="frontWall"
+                      position="0 3.5 -18"
+                      rotation="0 0 0"
+                      scale="1 1 1"
+                      geometry="primitive: plane; width: 25.0; height: 10.5"
+                      material="transparent: true; opacity: 0.0;"
+                      static-body
+                      shadow>
+            </a-entity>
+            <a-entity id="leftWall"
+                      position="-11.7 4.1 0"
+                      rotation="0 90 0"
+                      scale="1 1 1"
+                      geometry="primitive: plane; width: 36.5; height: 9.4"
+                      material="transparent: true; opacity: 0.0;"
+                      static-body
+                      shadow>
+            </a-entity>
+            <a-entity id="backWall"
+                      position="0 3.5 18"
+                      rotation="-180 0 0"
+                      scale="1 1 1"
+                      geometry="primitive: plane; width: 25.0; height: 10.5"
+                      material="transparent: true; opacity: 0.0;"
+                      static-body
+                      shadow>
+            </a-entity>
+            <a-entity id="rightWall"
+                      position="11.7 4.1 0"
+                      rotation="0 -90 0"
+                      scale="1 1 1"
+                      geometry="primitive: plane; width: 36.5; height: 9.4"
+                      material="transparent: true; opacity: 0.0;"
                       static-body
                       shadow>
             </a-entity>
 
             <!-- Ambient sound plane -->
             <a-entity id="ceilingPlane"
-                      position="0 13 0"
+                      position="0 8.5 0"
                       rotation="90 0 0"
-                      scale="1 1 1"
+                      scale="1 1.5 1"
                       geometry="primitive:plane; width:25; height:25;"
-                      material="transparent: true;"
-                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;">
+                      material="transparent: true; opacity: 0.0;"
+                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;"
+                      static-body>
             </a-entity>
 
             <!-- Lights -->
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="0 8 -3">
+            <a-entity light="type: point; color: #CCC; intensity: 0.5"
+                      position="0 5.8 0">
             </a-entity>
 
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="31 30 -56">
+            <a-entity light="type: point; color: #CCC; intensity: 0.15"
+                      position="-5.7 3.5 -17">
             </a-entity>
 
-            <a-entity light="type: point; color: #CCC; intensity: 0.25"
-                      position="-31 30 -56">
+            <a-entity light="type: point; color: #CCC; intensity: 0.15"
+                      position="1 5.8 12.2">
             </a-entity>
 
             <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
