@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
@@ -21,153 +22,20 @@
     <body>
         <a-scene physics="debug: true;">
             <a-assets>
-                <!-- load environment models -->
                 <a-asset-item id="livingRoom"
                               src="/assets/environments/livingRoom/PBR - Metallic Roughness Alpha-blend.gltf">
                 </a-asset-item>
-
-                <!-- load asset models -->
-                <a-asset-item id="tableTopModel"
-                              src="/assets/models/tableTopConnected/tableTopConnected.gltf">
-                </a-asset-item>
-                <a-asset-item id="tableLegModel"
-                              src="/assets/models/tableLeg/tableLeg.gltf">
-                </a-asset-item>
-
-                <!-- load audio files -->
-                <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
-                       src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
-
-                <a-mixin id="sphereCollider"
-                         class="snapPoint"
-                         geometry="primitive: sphere; radius: 0.12;"
-                         material="color: blue; shader: flat; opacity: 0.4;"
-                         transparent="true"
-                         sphere-collider="objects: .snapPoint; radius: 0.1">
-                </a-mixin>
-
-                <a-mixin id="part"
-                         hoverable grabbable draggable droppable
-                         event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                         event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
-                </a-mixin>
-
-
-                <!--geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"-->
-                <!--body="type: dynamic; mass: 1; shape: none;"
-            shape__main="shape: box;
-                         halfExtents: 0.09 0.5 0.09"-->
-                <!--gltf-model="#tableLegModel"-->
-                <!--shape__main="shape: box;
-                     halfExtents: 0.036 0.345 0.036"-->
-
-                <a-mixin id="tableLeg"
-                         gltf-model="#tableLegModel"
-                         scale="2 2 2"
-                         body="type: dynamic; mass: 1; shape: none;"
-                         shape__main="shape: box;
-                                    halfExtents: 0.036 0.345 0.036;"
-                         furniture="tier: 1; totalSnapPoints: 1;"
-                         mixin="part">
-
-                </a-mixin>
-
-                <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
-                <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
-                <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
             </a-assets>
 
+            <!-- Background -->
             <a-entity id="livingRoomEnv"
-                     gltf-model="#livingRoom"
+                      gltf-model="#livingRoom"
                       position="0 0 0"
                       scale="3 3 3">
             </a-entity>
 
-            <!--geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"-->\
-            <!--body="type: dynamic; mass: 20; shape: none;"
-    shape__main="shape: box;
-    halfExtents: 1.3 0.09 0.9"-->
-
-            <a-entity id="tableTop"
-                      class="grabbable"
-                      furniture="tier: 0; totalSnapPoints: 4;"
-                      mixin="part"
-                      scale="2 2 2"
-                      gltf-model="#tableTopModel"
-                      body="type: dynamic; mass: 20; shape: none;"
-                      shape__main="shape: box;
-                                  halfExtents: 0.72 0.061 0.72"
-                      position="0 0.09 0"
-                      rotation="180 0 0">
-
-                <a-entity position="1.13 -0.08 0.73"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="-1.13 -0.08 -0.73"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="-1.13 -0.08 0.73"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 1; snapTo: 2;">
-                </a-entity>
-                <a-entity position="1.13 -0.08 -0.73"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 1; snapTo: 2;">
-                </a-entity>
-            </a-entity>
-
-            <!-- Table Legs-->
-            <a-entity id="tableLeg_BR"
-                      class=grabbable
-                      mixin="tableLeg"
-                      position="0 0.7 -4">
-                <a-entity position="0 0.345 0"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            
-            <a-entity id="tableLeg_TR"
-                      class=grabbable
-                      mixin="tableLeg"
-                      position="3 0.7 -1.5">
-                <a-entity position="0 0.345 0"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            <a-entity id="tableLeg_BL"
-                      class=grabbable
-                      mixin="tableLeg"
-                      position="-3.2 0.7 -1">
-                <a-entity position="0 0.345 0"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-            <a-entity id="tableLeg_TL"
-                      class=grabbable
-                      mixin="tableLeg"
-                      position="-2.5 0.7 -4.5">
-                <a-entity position="0 0.345 0"
-                          class="snapPoint"
-                          mixin="sphereCollider"
-                          snap-point="snapId: 2; snapTo: 1;">
-                </a-entity>
-            </a-entity>
-
             <!-- Camera -->
             <a-entity camera
-                      wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
                       position="0 3.2 1.5"
                       capture-mouse
@@ -180,7 +48,7 @@
                           rayOrigin="entity"
                           far="3"
                           interval="100"
-                          objects=".grabbable">
+                          objects=".clickable">
                 </a-cursor>
             </a-entity>
 
@@ -189,42 +57,6 @@
                       rotation="-90 0 0"
                       scale="1 1.5 1"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="transparent: true; opacity: 0.0;"
-                      static-body
-                      shadow>
-            </a-entity>
-            <a-entity id="frontWall"
-                      position="0 3.5 -18"
-                      rotation="0 0 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 25.0; height: 10.5"
-                      material="transparent: true; opacity: 0.0;"
-                      static-body
-                      shadow>
-            </a-entity>
-            <a-entity id="leftWall"
-                      position="-11.7 4.1 0"
-                      rotation="0 90 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 36.5; height: 9.4"
-                      material="transparent: true; opacity: 0.0;"
-                      static-body
-                      shadow>
-            </a-entity>
-            <a-entity id="backWall"
-                      position="0 3.5 18"
-                      rotation="-180 0 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 25.0; height: 10.5"
-                      material="transparent: true; opacity: 0.0;"
-                      static-body
-                      shadow>
-            </a-entity>
-            <a-entity id="rightWall"
-                      position="11.7 4.1 0"
-                      rotation="0 -90 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 36.5; height: 9.4"
                       material="transparent: true; opacity: 0.0;"
                       static-body
                       shadow>
