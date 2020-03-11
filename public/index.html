@@ -46,9 +46,12 @@
                 <a-text value="Builder"></a-text>
             </a-entity>
 
+            <a-entity id="leftHand" laser-controls="hand: left; color: #ffcccc" raycaster="#finderButton"></a-entity>
+            <a-entity id="rightHand" laser-controls="hand: right; color: #ffcccc" raycaster=".clickable"></a-entity>
+
             <!-- Camera -->
             <a-entity camera
-                      look-controls="pointerLockEnabled:true"
+                      look-controls="enabled:true"
                       position="0 1.8 1.5"
                       capture-mouse
                       super-hands="colliderEvent: raycaster-intersection;

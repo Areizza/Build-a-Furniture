@@ -15,5 +15,7 @@ AFRAME.registerComponent('navigate',
         {
             window.location.href = data.url;
         });
+
+        
     }
 });        
