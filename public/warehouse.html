@@ -53,15 +53,6 @@
                          sphere-collider="objects: .snapPoint; radius: 0.1">
                 </a-mixin>
 
-                <!--<a-mixin id="sphereCollider"
-                         geometry="primitive: sphere; radius: 0.12;"
-                         static-body
-                         physics-collider="ignoreSleep: true;"
-                         collision-filter="group: snapPoints; collidesWith: snapPoints; collisionForces: false;"
-                         material="color: blue; shader: flat; opacity: 0.4;"
-                         transparent="true">
-                </a-mixin>-->
-
                 <a-mixin id="part"
                          hoverable grabbable draggable droppable
                          event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"

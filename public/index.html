@@ -24,25 +24,27 @@
                 </a-asset-item>
             </a-assets>
 
-            <a-box id="finderButton" 
-                   class="clickable"
-                   position="1.5 2.0 -1 "
-                   navigate="url: /warehouse"
-                   event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                   event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                   color="#4CC3D9">
+            <a-entity id="finderButton" 
+                      class="clickable"
+                      position="1.5 2.0 -1 "
+                      geometry="primitive: box; "
+                      navigate="url: /warehouse"
+                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                      color="#4CC3D9">
+                <a-text value="Finder"></a-text>
+            </a-entity>
 
-            </a-box>
-
-            <a-box id="builderButton"
-                   class="clickable"
-                   position="-1.5 2.0 -1 "
-                   navigate="url: /livingroom"
-                   event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                   event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                   color="#4BC3D9">
-
-            </a-box>
+            <a-entity id="builderButton"
+                      class="clickable"
+                      geometry="primitive: box; "
+                      position="-1.5 2.0 -1 "
+                      navigate="url: /livingroom"
+                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                      color="#4CC3D9">
+                <a-text value="Builder"></a-text>
+            </a-entity>
 
             <!-- Camera -->
             <a-entity camera
