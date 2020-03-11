@@ -4,12 +4,9 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.js"></script>
-    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.js"></script>
-    <script src="scripts/furniture.js"></script>
-    <script src="scripts/snap-point.js"></script>
+    <script src="scripts/navigate.js"></script>
     <script>
         // Prevent context menu.
         document.addEventListener("contextmenu", function (e)
@@ -20,26 +17,38 @@
     </script>
 </head>
     <body>
-        <a-scene physics="debug: true;">
+        <a-scene>
             <a-assets>
                 <a-asset-item id="livingRoom"
                               src="/assets/environments/livingRoom/PBR - Metallic Roughness Alpha-blend.gltf">
                 </a-asset-item>
             </a-assets>
 
-            <!-- Background -->
-            <a-entity id="livingRoomEnv"
-                      gltf-model="#livingRoom"
-                      position="0 0 0"
-                      scale="3 3 3">
-            </a-entity>
+            <a-box id="finderButton" 
+                   class="clickable"
+                   position="1.5 2.0 -1 "
+                   navigate="url: /warehouse"
+                   event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                   event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                   color="#4CC3D9">
+
+            </a-box>
+
+            <a-box id="builderButton"
+                   class="clickable"
+                   position="-1.5 2.0 -1 "
+                   navigate="url: /livingroom"
+                   event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                   event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                   color="#4BC3D9">
+
+            </a-box>
 
             <!-- Camera -->
             <a-entity camera
                       look-controls="pointerLockEnabled:true"
                       position="0 3.2 1.5"
                       capture-mouse
-                      static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
@@ -58,7 +67,6 @@
                       scale="1 1.5 1"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
                       material="transparent: true; opacity: 0.0;"
-                      static-body
                       shadow>
             </a-entity>
 
@@ -69,8 +77,14 @@
                       scale="1 1.5 1"
                       geometry="primitive:plane; width:25; height:25;"
                       material="transparent: true; opacity: 0.0;"
-                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;"
-                      static-body>
+                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;">
+            </a-entity>
+
+            <!-- Background -->
+            <a-entity id="livingRoomEnv"
+                      gltf-model="#livingRoom"
+                      position="0 0 0"
+                      scale="3 3 3">
             </a-entity>
 
             <!-- Lights -->

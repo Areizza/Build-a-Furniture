@@ -14,15 +14,15 @@ app.get('/', function(req, res)
     res.sendFile(__dirname + '/public/index.html');
 });
 
-// app.get('/colour', function(req, res) 
-// {
-//     res.sendFile(__dirname + '/public/colour.html');
-// });
+ app.get('/livingroom', function(req, res) 
+ {
+     res.sendFile(__dirname + '/public/livingroom.html');
+ });
 
-// app.get('/controller', function(req, res) 
-// {
-//     res.sendFile(__dirname + '/public/controller.html');
-// });
+ app.get('/warehouse', function(req, res) 
+ {
+     res.sendFile(__dirname + '/public/warehouse.html');
+ });
 
 // Websocket events
 socketIO.on('connection', function(socket)
