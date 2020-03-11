@@ -34,12 +34,12 @@ socketIO.on('connection', function(socket)
         console.log(socket.id + ' has disconnected');
     });
 
-//     // Custom events
-//     socket.on('redEvent', function(data)
-//     {
-//         console.log('red event heard');
-//         socketIO.sockets.emit('colourChangeEvent', {r:255, g:0, b:0});
-//     });
+     // Custom events
+     socket.on('sendEvent', function(data)
+     {
+         console.log('Piece sent heard');
+         socketIO.sockets.emit('spawnPieceEvent', {data.pieceId});
+     });
 
 //     socket.on('greenEvent', function(data)
 //     {

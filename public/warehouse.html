@@ -21,12 +21,12 @@
     <body>
         <a-scene physics="debug: true;">
             <a-assets>
-                <!-- load environment model -->
+                <!-- Load environment model -->
                 <a-asset-item id="warehouse"
                               src="/assets/environments/warehouse/warehouse.gltf">
                 </a-asset-item>
 
-                <!-- load audio files -->
+                <!-- Load audio files -->
                 <audio  id="warehouseAmbiance" crossorigin="anonymous" response-type="arraybuffer"
                         src="assets/sounds/warehouseAmbiance.ogg" preload="auto">
                 </audio>
@@ -40,11 +40,11 @@
                         src="assets/sounds/pinTrack.ogg" preload="auto">
                 </audio>
 
-                <!-- load instructions -->
+                <!-- Load instructions -->
                 <img id="instructionTable_0"
                      src="assets/graphics/warehouse/WH_instructions_table.png">
 
-                <!-- mixins -->
+                <!-- Mixins -->
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
                          geometry="primitive: sphere; radius: 0.12;"
@@ -69,9 +69,6 @@
 
                 </a-mixin>
 
-                <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
-                <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
-                <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
             </a-assets>
 
             <a-entity id="warehouseEnv"
