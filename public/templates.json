@@ -16,25 +16,25 @@
             "a-entity":
             [
                 {
-                    "position": "1.13 -0.08 0.73",
+                    "position": "0.62 -0.07 0.62",
                     "class": "snapPoint",
                     "mixin": "sphereCollider",
                     "snap-point": "snapId: 1; snapTo: 2;"
                 },
                 {
-                    "position": "-1.13 -0.08 -0.73",
+                    "position": "-0.62 -0.07 -0.62",
                     "class": "snapPoint",
                     "mixin": "sphereCollider",
                     "snap-point": "snapId: 1; snapTo: 2;"
                 },
                 {
-                    "position": "-1.13 -0.08 -0.73",
+                    "position": "-0.62 -0.07 0.62",
                     "class": "snapPoint",
                     "mixin": "sphereCollider",
                     "snap-point": "snapId: 1; snapTo: 2;"
                 },
                 {
-                    "position": "-1.13 -0.08 -0.73",
+                    "position": "0.62 -0.07 -0.62",
                     "class": "snapPoint",
                     "mixin": "sphereCollider",
                     "snap-point": "snapId: 1; snapTo: 2;"

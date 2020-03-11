@@ -41,10 +41,10 @@
 
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
-                         geometry="primitive: sphere; radius: 0.12;"
+                         geometry="primitive: sphere; radius: 0.10;"
                          material="color: blue; shader: flat; opacity: 0.4;"
                          transparent="true"
-                         sphere-collider="objects: .snapPoint; radius: 0.1">
+                         sphere-collider="objects: .snapPoint; radius: 0.08">
                 </a-mixin>
 
                 <a-mixin id="part"
@@ -53,18 +53,9 @@
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
 
-
-                <!--geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"-->
-                <!--body="type: dynamic; mass: 1; shape: none;"
-            shape__main="shape: box;
-                         halfExtents: 0.09 0.5 0.09"-->
-                <!--gltf-model="#tableLegModel"-->
-                <!--shape__main="shape: box;
-                     halfExtents: 0.036 0.345 0.036"-->
-
                 <a-mixin id="tableLeg"
                          gltf-model="#tableLegModel"
-                         scale="2 2 2"
+                         scale="3 3 3"
                          body="type: dynamic; mass: 1; shape: none;"
                          shape__main="shape: box;
                                     halfExtents: 0.036 0.345 0.036;"
@@ -72,10 +63,6 @@
                          mixin="part">
 
                 </a-mixin>
-
-                <!--event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"-->
-                <!--event-set__dragon="_event: dragover-start; material.wireframe: true"-->
-                <!--event-set__dragoff="_event: dragover-end; material.wireframe: false"-->
             </a-assets>
 
             <a-entity id="livingRoomEnv"
@@ -84,16 +71,11 @@
                       scale="3 3 3">
             </a-entity>
 
-            <!--geometry="primitive: box; width: 2.6; height: 0.18; depth: 1.8;"-->\
-            <!--body="type: dynamic; mass: 20; shape: none;"
-    shape__main="shape: box;
-    halfExtents: 1.3 0.09 0.9"-->
-
             <a-entity id="tableTop"
                       class="grabbable"
                       furniture="tier: 0; totalSnapPoints: 4;"
                       mixin="part"
-                      scale="2 2 2"
+                      scale="3 3 3"
                       gltf-model="#tableTopModel"
                       body="type: dynamic; mass: 20; shape: none;"
                       shape__main="shape: box;
@@ -101,22 +83,22 @@
                       position="0 0.09 0"
                       rotation="180 0 0">
 
-                <a-entity position="1.13 -0.08 0.73"
+                <a-entity position="0.62 -0.07 0.62"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="-1.13 -0.08 -0.73"
+                <a-entity position="-0.62 -0.07 -0.62"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="-1.13 -0.08 0.73"
+                <a-entity position="-0.62 -0.07 0.62"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 1; snapTo: 2;">
                 </a-entity>
-                <a-entity position="1.13 -0.08 -0.73"
+                <a-entity position="0.62 -0.07 -0.62"
                           class="snapPoint"
                           mixin="sphereCollider"
                           snap-point="snapId: 1; snapTo: 2;">
@@ -179,7 +161,7 @@
                              colliderEndEventProperty: clearedEls;">
                 <a-cursor id="cursor"
                           rayOrigin="entity"
-                          far="3"
+                          far="5"
                           interval="100"
                           objects=".grabbable">
                 </a-cursor>
