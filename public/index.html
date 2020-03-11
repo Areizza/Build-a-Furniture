@@ -1,61 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-        <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-        <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
-        <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
-        <script>  
-            // Prevent context menu.
-            document.addEventListener("contextmenu", function (e)
-            {
-                e.preventDefault();
-                console.log("Context menu disabled for right click.")
-            }, false);
-        </script>
-    </head>
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.js"></script>
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.js"></script>
+    <script src="scripts/navigate.js"></script>
+    <script>
+        // Prevent context menu.
+        document.addEventListener("contextmenu", function (e)
+        {
+            e.preventDefault();
+            console.log("Context menu disabled for right click.")
+        }, false);
+    </script>
+</head>
     <body>
-        <a-scene touch-to-click-converter>
+        <a-scene>
             <a-assets>
-                <a-mixin id="pointer"
-                         raycaster="showLine: true; objects: .cube, a-link"
-                         super-hands="colliderEvent: raycaster-intersection;
-                               colliderEventProperty: els;
-                               colliderEndEvent:raycaster-intersection-cleared;
-                               colliderEndEventProperty: clearedEls;">
-                </a-mixin>
-                <a-mixin id="cube" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"
-                         hoverable grabbable stretchable draggable droppable
-                         shadow
-                         event-set__dragdrop="_event: drag-drop; geometry.radius: 0.25; geometry.primitive: sphere"
-                         event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-                         event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                         event-set__dragon="_event: dragover-start; material.wireframe: true"
-                         event-set__dragoff="_event: dragover-end; material.wireframe: false">
-                </a-mixin>
-
+                <a-asset-item id="livingRoom"
+                              src="/assets/environments/livingRoom/livingroom.gltf">
+                </a-asset-item>
             </a-assets>
 
-            <a-entity id="ground_plane"
-                      position="0 0 0"
-                      rotation="-90 0 0"
-                      scale="1 1 1"
-                      geometry="primitive: plane; width: 20.0; height: 20.0"
-                      static-body>
+            <a-entity id="finderButton" 
+                      class="clickable"
+                      position="1.5 2.0 -1 "
+                      geometry="primitive: box; "
+                      navigate="url: /warehouse"
+                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                      color="#4CC3D9">
+                <a-text value="Finder"></a-text>
             </a-entity>
 
-            <a-entity   camera wasd-controls position="0 1.2 1.5" 
-                        capture-mouse
-                        raycaster="objects: .cube" cursor="rayOrigin:mouse"
-                        static-body="shape: sphere; sphereRadius: 0.001"
-                        super-hands="colliderEvent: raycaster-intersection;
+            <a-entity id="builderButton"
+                      class="clickable"
+                      geometry="primitive: box; "
+                      position="-1.5 2.0 -1 "
+                      navigate="url: /livingroom"
+                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
+                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                      color="#4CC3D9">
+                <a-text value="Builder"></a-text>
+            </a-entity>
+
+            <!-- Camera -->
+            <a-entity camera
+                      look-controls="pointerLockEnabled:true"
+                      position="0 3.2 1.5"
+                      capture-mouse
+                      super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
+                <a-cursor id="cursor"
+                          rayOrigin="entity"
+                          far="3"
+                          interval="100"
+                          objects=".clickable">
+                </a-cursor>
             </a-entity>
 
-            <a-box class="cube" mixin="cube" color="blue" position="0 0 -1"></a-box>
+            <a-entity id="groundPlane"
+                      position="0 -0.01 0"
+                      rotation="-90 0 0"
+                      scale="1 1.5 1"
+                      geometry="primitive: plane; width: 25.0; height: 25.0"
+                      material="transparent: true; opacity: 0.0;"
+                      shadow>
+            </a-entity>
+
+            <!-- Ambient sound plane -->
+            <a-entity id="ceilingPlane"
+                      position="0 8.5 0"
+                      rotation="90 0 0"
+                      scale="1 1.5 1"
+                      geometry="primitive:plane; width:25; height:25;"
+                      material="transparent: true; opacity: 0.0;"
+                      sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;">
+            </a-entity>
+
+            <!-- Background -->
+            <a-entity id="livingRoomEnv"
+                      gltf-model="#livingRoom"
+                      position="0 0 0"
+                      scale="3 3 3">
+            </a-entity>
+
+            <!-- Lights -->
+            <a-entity light="type: point; color: #CCC; intensity: 0.5"
+                      position="0 5.8 0">
+            </a-entity>
+
+            <a-entity light="type: point; color: #CCC; intensity: 0.15"
+                      position="-5.7 3.5 -17">
+            </a-entity>
+
+            <a-entity light="type: point; color: #CCC; intensity: 0.15"
+                      position="1 5.8 12.2">
+            </a-entity>
+
+            <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
+            </a-entity>
         </a-scene>
     </body>
 </html>

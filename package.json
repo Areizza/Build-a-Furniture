@@ -22,6 +22,8 @@
   "homepage": "https://github.com/Areizza/DS3_TermProject#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "node-forge": "^0.9.1",
     "socket.io": "^2.3.0"
-  }
+  },
+  "devDependencies": {}
 }
