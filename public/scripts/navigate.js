@@ -1,6 +1,7 @@
 'use strict';
 
-AFRAME.registerComponent('navigate', {
+AFRAME.registerComponent('navigate',
+{
     schema: {
         url: { default: '' }
     },
