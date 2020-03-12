@@ -20,12 +20,20 @@
     </script>
 </head>
     <body>
-        <a-scene physics="debug: true;">
+        <a-scene physics="debug: false;">
             <a-assets>
                 <!-- Load environment model -->
                 <a-asset-item id="warehouse"
                               src="/assets/environments/warehouse/warehouse.gltf">
                 </a-asset-item>
+
+                <!-- load asset models -->
+                <a-asset-item id="tableTopModel"
+                              src="/assets/models/tableTopConnected/tableTopConnected.gltf">
+                </a-asset-item>
+                <a-asset-item id="tableLegModel"
+                              src="/assets/models/tableLeg/tableLeg.gltf">
+                </a-asset-item>                
 
                 <!-- Load audio files -->
                 <audio  id="warehouseAmbiance" crossorigin="anonymous" response-type="arraybuffer"
@@ -48,10 +56,11 @@
                 <!-- Mixins -->
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
-                         geometry="primitive: sphere; radius: 0.12;"
-                         material="color: blue; shader: flat; opacity: 0.4;"
+                         geometry="primitive: sphere; radius: 0.10;"
+                         material="color: blue; shader: flat; opacity: 0.0;"
                          transparent="true"
-                         sphere-collider="objects: .snapPoint; radius: 0.1">
+                         visible="false"
+                         sphere-collider="objects: .snapPoint; radius: 0.08">
                 </a-mixin>
 
                 <a-mixin id="part"
@@ -60,14 +69,14 @@
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
 
-                <a-mixin id="tableLeg"
-                         mixin="part"
-                         geometry="primitive: box; width: 0.18; height: 1; depth: 0.18;"
-                         body="type: dynamic; mass: 1; shape: none;"
+                <a-mixin id="legTable"
+                         gltf-model="#tableLegModel"
+                         scale="3 3 3"
+                         body="type: dynamic; mass: 10; shape: none;"
                          shape__main="shape: box;
-                                   halfExtents: 0.09 0.5 0.09"
-                         material="color: #4d2600;">
-
+                                    halfExtents: 0.036 0.345 0.036;"
+                         furniture="tier: 1; totalSnapPoints: 1;"
+                         mixin="part">
                 </a-mixin>
 
             </a-assets>
