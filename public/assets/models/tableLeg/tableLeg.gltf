@@ -67,7 +67,7 @@
   "buffers": [
     {
       "byteLength": 2736,
-      "uri": "PBR - Metallic Roughness Alpha-blend.bin"
+      "uri": "tableLeg.bin"
     }
   ],
   "images": [
@@ -139,6 +139,11 @@
         0.343994140625,
         0.343994140625,
         0.343994140625
+      ],
+      "translation": [
+        0.0,
+        0.343994140625,
+        0.0
       ]
     },
     {

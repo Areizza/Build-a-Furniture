@@ -48,12 +48,12 @@ const templates =
                 {
                     "id": "tableLeg",
                     "class": "grabbable table tableLeg",
-                    "mixin": "legTable",
-                    "furniture": " ",
-                    "scale": " ",
-                    "gltf": " ",
-                    "body": " ",
-                    "shape__main": " ",
+                    "mixin": "part",
+                    "furniture": "tier: 1; totalSnapPoints: 1;",
+                    "scale": "3 3 3",
+                    "gltf": "#tableLegModel",
+                    "body": "type: dynamic; mass: 10; shape: none;",
+                    "shape__main": "shape: box; halfExtents: 0.036 0.345 0.036;",
                     "rotation": " ",
                     "position": "0 0.7 -4",
         
