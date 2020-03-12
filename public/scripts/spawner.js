@@ -48,7 +48,13 @@ const templates =
                 {
                     "id": "tableLeg",
                     "class": "grabbable table tableLeg",
-                    "mixin": "tableLeg",
+                    "mixin": "legTable",
+                    "furniture": " ",
+                    "scale": " ",
+                    "gltf": " ",
+                    "body": " ",
+                    "shape__main": " ",
+                    "rotation": " ",
                     "position": "0 0.7 -4",
         
                     "entity":
@@ -80,15 +86,18 @@ AFRAME.registerComponent('spawner',
 
             this.el.addEventListener('click', function (event)
             {
-                self.makeTemplate(self.data.furniture, self.data.piece);
-                //self.spawnPiece();
+                self.spawnPiece(self.data.furniture, self.data.piece);
+                //self.spawnPiece(output);
             });
         },
 
-        
-
-        makeTemplate: function(furniture, piece)
+        spawnPiece: function(furniture, piece)
         {
+            const self = this;
+            const sceneEl = this.el.sceneEl;
+
+            let entity = document.createElement("a-entity");
+
             let jsonStr= templates;
             //let jsonObj = JSON.parse(jsonStr);
 
@@ -127,34 +136,57 @@ AFRAME.registerComponent('spawner',
             output += "position= '" + result.position + "' ";
             output += "rotation= '" + result.rotation + "'>";
 
+            entity.setAttribute('id', result.id);
+            entity.setAttribute('class', result.class);
+            entity.setAttribute('furniture', result.furniture);
+            entity.setAttribute('mixin', result.mixin);
+            entity.setAttribute('scale', result.scale);
+            entity.setAttribute('gltf-model', result.gltf);
+            entity.setAttribute('body', result.body);
+            entity.setAttribute('shape__main', result.shape__main);
+            entity.setAttribute('position', result.position);
+            entity.setAttribute('rotation', result.rotation);
+
             for (let i = 0; i < result.entity.length; i++)
             {
+                let childEntity = document.createElement("a-entity");
+
                 output += "<a-entity ";
                 output += "position= '" + result.entity[i].position + "' ";
                 output += "class= '" + result.entity[i].class + "' ";
                 output += "mixin= '" + result.entity[i].mixin + "' ";
                 output += "snap-point= '" + result.entity[i].snap_point + "'>";
                 output += "</a-entity>";
+
+                childEntity.setAttribute('position', result.entity[i].position);
+                childEntity.setAttribute('class', result.entity[i].class);
+                childEntity.setAttribute('mixin', result.entity[i].mixin);
+                childEntity.setAttribute('snap-point', result.entity[i].snap_point);
+
+                entity.appendChild(childEntity);
             }
 
             output += "</a-entity>";
 
             //console.log(output);
 
+            //return output;
+
             //console.log(jsonStr.table[0]);
             //console.log(jsonStr.length);
         
-        },
-
-        spawnPiece: function ()
-        {
-            const self = this;
-            const sceneEl = this.el.sceneEl;
-
-            let entity = document.createElement('a-entity');
-            // entity.setAttribute('template', { src: self.data.templateSrc });
-            entity.setAttribute('position', { x: self.data.spawnPosition.x, y: self.data.spawnPosition.data.y, z: self.data.spawnPosition.z });
-
             sceneEl.appendChild(entity);
         },
+
+        // spawnPiece: function (output)
+        // {
+        //     const self = this;
+        //     const sceneEl = this.el.sceneEl;
+
+        //     let entity = document.createElement(output);
+        //     // entity.setAttribute('template', { src: self.data.templateSrc });
+        //     //entity.setAttribute('position', { x: self.data.spawnPosition.x, y: self.data.spawnPosition.data.y, z: self.data.spawnPosition.z });
+
+        //     sceneEl.appendChild(entity);
+        // },
     });
