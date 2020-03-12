@@ -4,7 +4,7 @@ const http      = require('http');
 const server    = http.createServer(app);
 const socketIO = require('socket.io')(server); // get package and instantiate with server
 
-const LISTEN_PORT = 8080; //make sure greater than 3000. Some ports are reserved/blocked by firewall ...
+const LISTEN_PORT = 8080;
 
 app.use((express.static(__dirname + '/public'))); //set root dir to the public folder
 
@@ -34,18 +34,22 @@ socketIO.on('connection', function(socket)
         console.log(socket.id + ' has disconnected');
     });
 
+    socket.on('buildChosen', function (data)
+    {
+        socketIO.sockets.emit('spawnPieceEvent', data.pieceId);
+    });
+
      // Custom events
-     socket.on('sendEvent', function(data)
+     socket.on('sendPiece', function(data)
      {
          console.log('Piece sent heard');
-         socketIO.sockets.emit('spawnPieceEvent', {data.pieceId});
+         socketIO.sockets.emit('spawnPieceEvent', data.pieceId);
      });
 
-//     socket.on('greenEvent', function(data)
-//     {
-//         console.log('green event heard');
-//         socketIO.sockets.emit('colourChangeEvent', {r:0, g:255, b:0});
-//     });
+     socket.on('progress', function(data)
+     {
+         socketIO.sockets.emit('nextStepEvent', {r:0, g:255, b:0});
+     });
 
 //     socket.on('blueEvent', function(data)
 //     {
