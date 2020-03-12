@@ -14,16 +14,5 @@ AFRAME.registerComponent('furniture',
     {
         const self = this;
         const el = this.el;
-
-        el.addEventListener('loaded', function (event)
-        {
-            //el.setAttribute('dynamic-body', {shape: 'box'});
-
-            //<a-entity position="0 0.5 0"
-            //    class="snapPoint"
-            //    mixin="sphereCollider"
-            //    snap-point="snapId: 2; snapTo: 1;">
-            //</a-entity>
-        });
     },
 });

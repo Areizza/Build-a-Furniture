@@ -6,7 +6,7 @@ const templates =
             [
                 {
                     "id": "tableTop",
-                    "class": "grabbable",
+                    "class": "grabbable table tableTop",
                     "furniture": "tier: 0; totalSnapPoints: 4;",
                     "mixin": "part",
                     "scale": "2 2 2",
@@ -47,7 +47,7 @@ const templates =
         
                 {
                     "id": "tableLeg",
-                    "class": "grabbable",
+                    "class": "grabbable table tableLeg",
                     "mixin": "tableLeg",
                     "position": "0 0.7 -4",
         
@@ -139,7 +139,7 @@ AFRAME.registerComponent('spawner',
 
             output += "</a-entity>";
 
-            console.log(output);
+            //console.log(output);
 
             //console.log(jsonStr.table[0]);
             //console.log(jsonStr.length);

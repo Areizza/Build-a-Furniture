@@ -1,5 +1,3 @@
-//https://interactjs.io/
-//https://github.com/harlyq/aframe-snapto-component
 'use strict'
 
 AFRAME.registerComponent('snap-point', {
@@ -112,6 +110,7 @@ AFRAME.registerComponent('snap-point', {
 
                         // Increment the number of objects currently attached to the parent
                         self.furnitureData.currentAttached += 1;
+                        el.sceneEl.emit('pieceSnapped');
 
                     }
 
