@@ -114,7 +114,7 @@
                           rayOrigin="entity"
                           far="5"
                           interval="100"
-                          objects=".grabbable">
+                          objects=".grabbable, .clickable">
                 </a-cursor>
             </a-entity>
 
@@ -169,7 +169,7 @@
                       geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
                       material="color:lightblue;"
                       spawner="furniture:table; piece:tableTop; position: -2.5 0.1 -0.4"
-                      class="clickable grabbable">
+                      class="clickable">
             </a-entity>
             <a-entity id="boxTableLeg"
                       position="-10.7 0.75 0"
@@ -177,7 +177,7 @@
                       geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
                       material="color:lightblue;"
                       spawner="furniture:table; piece:tableLeg; position: -10.7 1.0 1"
-                      class="clickable grabbable">
+                      class="clickable">
             </a-entity>
 
             <a-entity id="warehouseEnv"

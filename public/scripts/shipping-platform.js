@@ -21,7 +21,7 @@ AFRAME.registerComponent('shipping-platform', {
                     //el.sceneEl.emit('ship', { piece: self.data.requiredPiece});
                     el.sceneEl.removeChild(targetEl);
                     socket.emit('sendPiece', { pieceId: self.data.requiredPiece, });
-                    self.data.requiredPiece = 'tableLeg';
+                    //self.data.requiredPiece = 'tableLeg';
                 }
                 else
                 {
@@ -29,7 +29,5 @@ AFRAME.registerComponent('shipping-platform', {
                 }
             }
         });
-
-        socket.on
     },
 });

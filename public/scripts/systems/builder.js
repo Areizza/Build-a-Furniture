@@ -13,23 +13,18 @@ AFRAME.registerSystem('builder', {
         const self = this;
         const sceneEl = this.sceneEl;
 
-        socket.on('connect', function ()
-        {
-            console.log("Builder connected!");
-        });
-
         socket.on('spawnPiece', function (data)
         {
             console.log("Spawning piece");
             let spawner = document.createElement("a-entity");
-            entity.setAttribute('geometry', { primitive: box });
-            entity.setAttribute('dynamic-body', '');
-            entity.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
-            entity.setAttribute('set__hoveron', "_event: hover-start; material.opacity: 0.8; transparent: true;");
-            entity.setAttribute('set__hoveroff', "_event: hover-end; material.opacity: 1; transparent: false;");
+            spawner.setAttribute('class', 'clickable');
+            spawner.setAttribute('geometry', { primitive: 'box', width: 1, height: 1, depth: 1});
+            spawner.setAttribute('material', { color: '#996600', });
+            spawner.setAttribute('dynamic-body', '');
+            spawner.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
+            spawner.setAttribute('position', { x: -7, y: 1, z: 1});
 
             sceneEl.appendChild(spawner);
-            // -7 1 1
         });
     },
 });

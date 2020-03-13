@@ -44,8 +44,7 @@ io.on('connection', function(socket)
     socket.on('sendPiece', function(data)
     {
         console.log('Piece sent heard');
-        //io.sockets.emit('spawnPiece', data);
-        socket.emit('spawnPiece', data);
+        socket.broadcast.emit('spawnPiece', data);
     });
 
     socket.on('progress', function(data)
@@ -55,6 +54,6 @@ io.on('connection', function(socket)
     });
 });
 
-// Finally, start server
+// Start server
 server.listen(LISTEN_PORT);
 console.log('listening to port: ' + LISTEN_PORT);
