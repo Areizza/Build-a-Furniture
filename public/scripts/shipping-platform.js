@@ -20,6 +20,7 @@ AFRAME.registerComponent('shipping-platform', {
                 {
                     el.sceneEl.emit('ship', { piece: self.data.requiredPiece});
                     el.sceneEl.removeChild(targetEl);
+                    self.data.requiredPiece = 'tableLeg';
                 }
                 else
                 {
