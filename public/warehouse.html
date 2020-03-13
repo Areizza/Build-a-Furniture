@@ -8,8 +8,10 @@
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.js"></script>
+    <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
     <script src="scripts/spawner.js"></script>
     <script src="scripts/snap-point.js"></script>
+    <script src="scripts/shipping-platform.js"></script>
     <script>
         // Prevent context menu.
         document.addEventListener("contextmenu", function (e)
@@ -20,7 +22,7 @@
     </script>
 </head>
     <body>
-        <a-scene physics="debug: false;">
+        <a-scene physics="debug: true;">
             <a-assets>
                 <!-- Load environment model -->
                 <a-asset-item id="warehouse"
@@ -33,20 +35,20 @@
                 </a-asset-item>
                 <a-asset-item id="tableLegModel"
                               src="/assets/models/tableLeg/tableLeg.gltf">
-                </a-asset-item>                
+                </a-asset-item>
 
                 <!-- Load audio files -->
-                <audio  id="warehouseAmbiance" crossorigin="anonymous" response-type="arraybuffer"
-                        src="assets/sounds/warehouseAmbiance.ogg" preload="auto">
+                <audio id="warehouseAmbiance" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/warehouseAmbiance.ogg" preload="auto">
                 </audio>
-                <audio  id="weldTrack" crossorigin="anonymous" response-type="arraybuffer"
-                        src="assets/sounds/weldTrack.ogg" preload="auto">
+                <audio id="weldTrack" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/weldTrack.ogg" preload="auto">
                 </audio>
-                <audio  id="woodTrack" crossorigin="anonymous" response-type="arraybuffer"
-                        src="assets/sounds/woodTrack.ogg" preload="auto">
+                <audio id="woodTrack" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/woodTrack.ogg" preload="auto">
                 </audio>
-                <audio  id="pinTrack" crossorigin="anonymous" response-type="arraybuffer"
-                        src="assets/sounds/pinTrack.ogg" preload="auto">
+                <audio id="pinTrack" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/pinTrack.ogg" preload="auto">
                 </audio>
 
                 <!-- Load instructions -->
@@ -69,23 +71,26 @@
                          event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false">
                 </a-mixin>
 
-                <!-- <a-mixin id="legTable"
-                         gltf-model="#tableLegModel"
-                         scale="3 3 3"
-                         body="type: dynamic; mass: 10; shape: none;"
-                         shape__main="shape: box;
-                                    halfExtents: 0.036 0.345 0.036;"
-                         furniture="tier: 1; totalSnapPoints: 1;"
-                         mixin="part">
-                </a-mixin> -->
-
             </a-assets>
 
-            <a-entity id="warehouseEnv"
-                      gltf-model="#warehouse"
-                      position="8 0 0"
-                      scale="1 1 1">
+            <!-- Shipping Platform -->
+            <a-entity id="platform"
+                      position="1 0.1 0"
+                      scale="1 1 1"
+                      aabb-collider="objects: .grabbable; interval: 80; debug: false"
+                      shipping-platform="requiredPiece: tableTop;"
+                      geometry="primitive:box; width:2; height:0.1; depth:1.5;"
+                      material="color:#46d246;">
             </a-entity>
+
+            <!-- Instructions to update -->
+            <!-- we need a function to update the src for this a-image -->
+            <a-image id="instructions"
+                     src="#instructionTable_0"
+                     position="2.3 0.5 0"
+                     rotation="-20 -90 0"
+                     scale="1 0.6 1">
+            </a-image>
 
             <!-- Camera -->
             <a-entity camera
@@ -109,7 +114,7 @@
             <a-entity id="groundPlane"
                       position="-7 -0.01 0"
                       rotation="-90 0 0"
-                      scale = "0.973 -0.684 -0.478"
+                      scale="0.973 -0.684 -0.478"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
                       material="transparent: true;"
                       static-body
@@ -117,79 +122,68 @@
             </a-entity>
 
             <!-- ambient sound plane -->
-            <a-entity   id="ceilingPlane"
-                        position= "-7 3.5 0"
-                        rotation = "90 0 0"
-                        scale = "0.973 -0.684 -0.478"
-                        geometry="primitive:plane; width:25; height:25;"
-                        material="transparent: true;"
-                        sound="src: #warehouseAmbiance; volume: 5.0; autoplay: true; loop: true;">
+            <a-entity id="ceilingPlane"
+                      position="-7 3.5 0"
+                      rotation="90 0 0"
+                      scale="0.973 -0.684 -0.478"
+                      geometry="primitive:plane; width:25; height:25;"
+                      material="transparent: true;"
+                      sound="src: #warehouseAmbiance; volume: 5.0; autoplay: true; loop: true;">
             </a-entity>
             <!-- welding sound -->
-            <a-entity   id="weldEmit"
-                        position= "-4.5 1 6"
-                        scale = "1 1 1"
-                        geometry="primitive:sphere; radius:0.5;"
-                        material="transparent: true;"
-                        sound="src: #weldTrack; volume: 5.0; autoplay: true; loop: true;">
+            <a-entity id="weldEmit"
+                      position="-4.5 1 6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #weldTrack; volume: 5.0; autoplay: true; loop: true;">
             </a-entity>
             <!-- wood sound -->
-            <a-entity   id="woodEmit"
-                        position= "-16 1 -6"
-                        scale = "1 1 1"
-                        geometry="primitive:sphere; radius:0.5;"
-                        material="transparent: true;"
-                        sound="src: #woodTrack; volume: 4.0; autoplay: true; loop: true;">
+            <a-entity id="woodEmit"
+                      position="-16 1 -6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #woodTrack; volume: 4.0; autoplay: true; loop: true;">
             </a-entity>
             <!-- pin sound -->
-            <a-entity   id="pinEmit"
-                        position= "0 1 -6"
-                        scale = "1 1 1"
-                        geometry="primitive:sphere; radius:0.5;"
-                        material="transparent: true;"
-                        sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
+            <a-entity id="pinEmit"
+                      position="0 1 -6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
             </a-entity>
 
             <!-- Boxes -->
-            <a-entity   id="boxTableTop"
-                        position= "-5.7 1.252 0"
-                        scale = "1 1 1"
-                        geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
-                        material="color:lightblue;"
-                        spawner="furniture:table; piece:tableTop"
-                        class="clickable grabbable">
+            <a-entity id="boxTableTop"
+                      position="-5.7 1.252 0"
+                      scale="1 1 1"
+                      geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
+                      material="color:lightblue;"
+                      spawner="furniture:table; piece:tableTop; position: -2.5 0.1 -0.4"
+                      class="clickable grabbable">
             </a-entity>
-            <a-entity   id="boxTableLeg"
-                        position= "-10.7 0.75 0"
-                        scale = "1 1 1"
-                        geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
-                        material="color:lightblue;"
-                        spawner="furniture:table; piece:tableLeg"
-                        class="clickable grabbable">
-            </a-entity>
-
-            <!-- Shipping Platform -->
-            <a-entity   id="platform"
-                        position= "1 0.1 0"
-                        scale = "1 1 1"
-                        geometry="primitive:box; width:2; height:0.1; depth:1.5;"
-                        material="color:#46d246;">
+            <a-entity id="boxTableLeg"
+                      position="-10.7 0.75 0"
+                      scale="1 1 1"
+                      geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
+                      material="color:lightblue;"
+                      spawner="furniture:table; piece:tableLeg; position: -10.7 1.0 1"
+                      class="clickable grabbable">
             </a-entity>
 
-            <!-- Instructions to update -->
-            <!-- we need a function to update the src for this a-image -->
-            <a-image    id="instructions"
-                        src="#instructionTable_0"
-                        position="2.3 0.5 0"
-                        rotation= "-20 -90 0"
-                        scale= "1 0.6 1">
-            </a-image>
+            <a-entity id="warehouseEnv"
+                      gltf-model="#warehouse"
+                      position="8 0 0"
+                      scale="1 1 1">
+            </a-entity>
 
             <!-- Lights -->
             <!-- this first one goes above the shipping platform -->
             <a-entity light="type: point; color: #CCC; intensity: 0.50"
                       position="1 3 0">
-            </a-entity> 
+            </a-entity>
 
             <a-entity light="type: point; color: #CCC; intensity: 0.25"
                       position="0 3 -3">
@@ -202,7 +196,7 @@
             <a-entity light="type: point; color: #CCC; intensity: 0.25"
                       position="0 3 3">
             </a-entity>
-            
+
             <a-entity light="type: point; color: #CCC; intensity: 0.25"
                       position="-11 3 3">
             </a-entity>

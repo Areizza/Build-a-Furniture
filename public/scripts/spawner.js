@@ -9,12 +9,12 @@ const templates =
                     "class": "grabbable table tableTop",
                     "furniture": "tier: 0; totalSnapPoints: 4;",
                     "mixin": "part",
-                    "scale": "2 2 2",
+                    "scale": "1 1 1",
                     "gltf": "#tableTopModel",
                     "body": "type: dynamic; mass: 20; shape: none;",
                     "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
-                    "position": "0 0.09 0",
-                    "rotation": "180 0 0",
+                    //"position": "0 0.09 0",
+                    //"rotation": "180 0 0",
         
                     "entity":
                     [
@@ -50,12 +50,12 @@ const templates =
                     "class": "grabbable table tableLeg",
                     "mixin": "part",
                     "furniture": "tier: 1; totalSnapPoints: 1;",
-                    "scale": "3 3 3",
+                    "scale": "2 2 2",
                     "gltf": "#tableLegModel",
                     "body": "type: dynamic; mass: 10; shape: none;",
                     "shape__main": "shape: box; halfExtents: 0.036 0.345 0.036;",
-                    "rotation": " ",
-                    "position": "0 0.7 -4",
+                    //"rotation": " ",
+                    //"position": "0 0.7 -4",
         
                     "entity":
                     [
@@ -144,8 +144,8 @@ AFRAME.registerComponent('spawner',
             entity.setAttribute('gltf-model', result.gltf);
             entity.setAttribute('body', result.body);
             entity.setAttribute('shape__main', result.shape__main);
-            entity.setAttribute('position', result.position);
-            entity.setAttribute('rotation', result.rotation);
+            entity.setAttribute('position', self.data.position);
+            //entity.setAttribute('rotation', result.rotation);
 
             for (let i = 0; i < result.entity.length; i++)
             {
