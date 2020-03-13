@@ -9,7 +9,7 @@ const templates =
                     "class": "grabbable table tableTop",
                     "furniture": "tier: 0; totalSnapPoints: 4;",
                     "mixin": "part",
-                    "scale": "1 1 1",
+                    "scale": "2 2 2",
                     "gltf": "#tableTopModel",
                     "body": "type: dynamic; mass: 20; shape: none;",
                     "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
@@ -83,11 +83,50 @@ AFRAME.registerComponent('spawner',
     init: function ()
     {
         const self = this;
+        const el = this.el;
 
         this.el.addEventListener('click', function (event)
         {
             self.spawnPiece(self.data.furniture, self.data.piece);
-            //self.spawnPiece(output);
+        });
+
+        el.addEventListener('hover-start', function (event)
+        {
+            //self.el.object3D.material.set(1, 0.9, 1);
+
+            let mesh = el.getObject3D('mesh');
+
+            if (mesh)
+            {
+                mesh.traverse(function (node)
+                {
+                    if (node.isMesh)
+                    {
+                        node.material.opacity = 0.8;
+                        node.material.transparent = true;
+                        node.material.needsUpdate = true;
+                    }
+                });
+            }
+        });
+
+        el.addEventListener('hover-end', function (event)
+        {
+
+            let mesh = el.getObject3D('mesh');
+
+            if (mesh)
+            {
+                mesh.traverse(function (node)
+                {
+                    if (node.isMesh)
+                    {
+                        node.material.opacity = 1.0;
+                        node.material.transparent = false;
+                        node.material.needsUpdate = true;
+                    }
+                });
+            }
         });
     },
 
@@ -168,7 +207,7 @@ AFRAME.registerComponent('spawner',
         // remove the spawner element. Otherwise use the spawnPosition.
         if (self.data.isOneUse)
         {
-            entity.setAttribute('position', self.el.body.data.position);
+            entity.setAttribute('position', self.el.body.position);
             sceneEl.removeChild(self.el);
         }
         else

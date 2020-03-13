@@ -21,6 +21,7 @@ AFRAME.registerSystem('builder', {
             spawner.setAttribute('geometry', { primitive: 'box', width: 1, height: 1, depth: 1});
             spawner.setAttribute('material', { color: '#996600', });
             spawner.setAttribute('dynamic-body', '');
+            spawner.setAttribute('hoverable', '');
             spawner.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
             spawner.setAttribute('position', { x: -7, y: 1, z: 1});
 
