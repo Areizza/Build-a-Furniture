@@ -2,7 +2,7 @@ const express   = require('express');
 const app       = express();
 const http      = require('http');
 const server    = http.createServer(app);
-const socketIO = require('socket.io')(server); // get package and instantiate with server
+const io = require('socket.io')(server); // get package and instantiate with server
 
 const LISTEN_PORT = 8080;
 
@@ -25,7 +25,7 @@ app.get('/', function(req, res)
  });
 
 // Websocket events
-socketIO.on('connection', function(socket)
+io.on('connection', function(socket)
 {
     console.log(socket.id + ' has connected');
     
@@ -36,26 +36,23 @@ socketIO.on('connection', function(socket)
 
     socket.on('buildChosen', function (data)
     {
-        socketIO.sockets.emit('spawnPieceEvent', data.pieceId);
+         console.log('Build chosen heard');
+        //socket.broadcast.emit('spawnPiece', data.pieceId);
     });
 
-     // Custom events
-     socket.on('sendPiece', function(data)
-     {
-         console.log('Piece sent heard');
-         socketIO.sockets.emit('spawnPieceEvent', data.pieceId);
-     });
+    // Custom events
+    socket.on('sendPiece', function(data)
+    {
+        console.log('Piece sent heard');
+        //io.sockets.emit('spawnPiece', data);
+        socket.emit('spawnPiece', data);
+    });
 
-     socket.on('progress', function(data)
-     {
-         socketIO.sockets.emit('nextStepEvent', {r:0, g:255, b:0});
-     });
-
-//     socket.on('blueEvent', function(data)
-//     {
-//         console.log('blue event heard');
-//         socketIO.sockets.emit('colourChangeEvent', {r:0, g:0, b:255});
-//     });
+    socket.on('progress', function(data)
+    {
+        console.log('Progress heard');
+        socket.broadcast.emit('nextStep');
+    });
 });
 
 // Finally, start server

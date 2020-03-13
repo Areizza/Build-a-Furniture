@@ -1,18 +1,17 @@
 'use strict';
 
 AFRAME.registerComponent('furniture',
+{
+    schema:
     {
-        schema:
-        {
-            tier: { type: 'number', default: 0 },
-            totalSnapPoints: { type: 'number', default: 0 },
-            currentAttached: { type: 'number', default: 0 },
-            snapPositions: { default: {} },
+        tier: { type: 'number', default: 0 },
+        totalSnapPoints: { type: 'number', default: 0 },
+        currentAttached: { type: 'number', default: 0 },
     },
 
-    init: function ()
-    {
-        const self = this;
-        const el = this.el;
-    },
+init: function ()
+{
+    const self = this;
+    const el = this.el;
+},
 });

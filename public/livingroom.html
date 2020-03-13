@@ -8,8 +8,6 @@
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.js"></script>
     <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.js"></script>
-    <script src="scripts/furniture.js"></script>
-    <script src="scripts/snap-point.js"></script>
     <script>
         // Prevent context menu.
         document.addEventListener("contextmenu", function (e)
@@ -17,7 +15,17 @@
             e.preventDefault();
             console.log("Context menu disabled for right click.")
         }, false);
+
+        const socket = io();
+
+        socket.on('connect', function ()
+        {
+            console.log("connected!");
+        });
     </script>
+    <script src="scripts/systems/builder.js"></script>
+    <script src="scripts/furniture.js"></script>
+    <script src="scripts/snap-point.js"></script>
 </head>
     <body>
         <a-scene physics="debug: true;">
