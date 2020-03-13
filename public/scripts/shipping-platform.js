@@ -21,13 +21,17 @@ AFRAME.registerComponent('shipping-platform', {
                     //el.sceneEl.emit('ship', { piece: self.data.requiredPiece});
                     el.sceneEl.removeChild(targetEl);
                     socket.emit('sendPiece', { pieceId: self.data.requiredPiece, });
-                    //self.data.requiredPiece = 'tableLeg';
                 }
                 else
                 {
                     targetEl.body.velocity.set(-5, 6, 0);
                 }
             }
+        });
+
+        socket.on('nextStep', function (data)
+        {
+            self.data.requiredPiece = 'tableLeg';
         });
     },
 });

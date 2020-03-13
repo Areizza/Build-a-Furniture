@@ -50,7 +50,13 @@ io.on('connection', function(socket)
     socket.on('progress', function(data)
     {
         console.log('Progress heard');
-        socket.broadcast.emit('nextStep');
+        socket.broadcast.emit('nextStep', data);
+    });
+
+    socket.on('buildComplete', function (data)
+    {
+        console.log('Build complete heard');
+        socket.broadcast.emit('endGame');
     });
 });
 
