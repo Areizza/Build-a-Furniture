@@ -22,29 +22,47 @@
                 <a-asset-item id="livingRoom"
                               src="/assets/environments/livingRoom/livingroom.gltf">
                 </a-asset-item>
+                <img id="title"
+                     src="assets/graphics/title.png">
+                <img id="finder"
+                     src="assets/graphics/finder.png">
+                <img id="builder"
+                     src="assets/graphics/builder.png">
             </a-assets>
 
-            <a-entity id="finderButton" 
-                      class="clickable"
-                      position="1.5 2.0 -1 "
-                      geometry="primitive: box; "
-                      navigate="url: /warehouse"
-                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                      color="#4CC3D9">
-                <a-text value="Finder"></a-text>
-            </a-entity>
+            <a-image id="titleText"
+                     src="#title"
+                     position="0 3.5 -1"
+                     rotation="0 0 0"
+                     scale="2.5 2.5 2.5"
+                     material="alphaTest: 0.5">
+            </a-image>
 
-            <a-entity id="builderButton"
-                      class="clickable"
-                      geometry="primitive: box; "
-                      position="-1.5 2.0 -1 "
-                      navigate="url: /livingroom"
-                      event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                      event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                      color="#4CC3D9">
-                <a-text value="Builder"></a-text>
-            </a-entity>
+            <!-- Finder button (Warehouse) -->
+            <a-image id="finderButton"
+                     src="#finder"
+                     class="clickable"
+                     position="1.5 2.0 -1"
+                     rotation="0 0 0"
+                     scale="1 1 1"
+                     navigate="url: /warehouse"
+                     material="alphaTest: 0.5"
+                     event-set__hoveron="_event: hover-start; scale: 2 2 2"
+                     event-set__hoveroff="_event: hover-end; scale: 0.5 0.5 0.5">
+            </a-image>
+
+            <!-- Buidler button (Living Room) -->
+            <a-image id="builderButton"
+                     src="#builder"
+                     class="clickable"
+                     position="-1.5 2.0 -1"
+                     rotation="0 0 0"
+                     scale="1 1 1"
+                     navigate="url: /livingroom"
+                     material="alphaTest: 0.5"
+                     event-set__hoveron="_event: hover-start; scale: 2 2 2"
+                     event-set__hoveroff="_event: hover-end; scale: 0.5 0.5 0.5">
+            </a-image>
 
             <!-- Camera -->
             <a-entity camera
