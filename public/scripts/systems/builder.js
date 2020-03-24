@@ -38,9 +38,14 @@ AFRAME.registerSystem('builder', {
             spawner.setAttribute('dynamic-body', '');
             spawner.setAttribute('hoverable', '');
             spawner.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
-            spawner.setAttribute('position', { x: -7, y: 1, z: 1});
+            spawner.setAttribute('position', { x: -9, y: 2, z: 1});
 
             sceneEl.appendChild(spawner);
+            spawner.addEventListener('loaded', function (event)
+            {
+                // Add some velocity to the box once it has loaded.
+                spawner.body.velocity.set(3, -1, 0);
+            });
 
             if (self.data.step == 0)
             {
