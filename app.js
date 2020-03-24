@@ -6,6 +6,12 @@ const io = require('socket.io')(server); // get package and instantiate with ser
 
 const LISTEN_PORT = 8080;
 
+app.use(function (req, res, next)
+{
+    res.set('X-Clacks-Overhead', 'GNU Terry Pratchet');
+    next();
+});
+
 app.use((express.static(__dirname + '/public'))); //set root dir to the public folder
 
 // Routes
