@@ -27,6 +27,7 @@
     <script src="scripts/spawner.js"></script>
     <script src="scripts/snap-point.js"></script>
     <script src="scripts/shipping-platform.js"></script>
+    <script src="scripts/cursor-extend.js"></script>
 </head>
     <body>
         <a-scene physics="debug: false;">
@@ -101,8 +102,8 @@
 
             <!-- Camera -->
             <a-entity id="rig"
-                      position="0 0 0"
-                      movement-controls>
+                      movement-controls
+                      position="0 0 0">
                 <a-entity id="camera"
                           camera
                           wasd-controls="acceleration: 125"
@@ -115,8 +116,9 @@
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
                     <a-cursor id="cursor"
-                              downEvents="gamepadbuttondown:7"
-                              upEvents="gamepadbuttonup:7"
+                              cursor-extend
+                              downEvents="gamepadbuttondown"
+                              upEvents="gamepadbuttonup"
                               rayOrigin="entity"
                               far="5"
                               interval="100"

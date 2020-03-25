@@ -37,7 +37,6 @@ AFRAME.registerSystem('builder', {
             spawner.setAttribute('material', { color: '#996600', });
             spawner.setAttribute('dynamic-body', '');
             spawner.setAttribute('hoverable', '');
-            spawner.setAttribute('clickable', { startButtons: gamepadbuttondown, endButtons: gamepadbuttonup});
             spawner.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
             spawner.setAttribute('position', { x: -9, y: 2, z: 1});
 
