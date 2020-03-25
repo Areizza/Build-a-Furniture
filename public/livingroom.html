@@ -58,9 +58,9 @@
             </a-mixin>
 
             <a-mixin id="part"
-                     hoverable grabbable draggable droppable>
+                     hoverable grabbable="startButtons: gamepadbuttondown; endButtons: gamepadbuttonup" draggable droppable>
                 <!--event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"-->
+            event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"-->
             </a-mixin>
 
             <a-mixin id="tableLeg"
@@ -82,22 +82,26 @@
         </a-entity>
 
         <!-- Camera -->
-        <a-entity camera
-                  wasd-controls="acceleration: 150"
-                  look-controls="pointerLockEnabled:true"
-                  position="0 3.2 1.5"
-                  capture-mouse
-                  static-body="shape: sphere; sphereRadius: 0.0002"
-                  super-hands="colliderEvent: raycaster-intersection;
+        <a-entity id="rig"
+                  movement-controls
+                  position="0 0 1.5">
+            <a-entity camera
+                      wasd-controls="acceleration: 150"
+                      look-controls="pointerLockEnabled:true"
+                      position="0 1.6 0"
+                      capture-mouse
+                      static-body="shape: sphere; sphereRadius: 0.0002"
+                      super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
-            <a-cursor id="cursor"
-                      rayOrigin="entity"
-                      far="5"
-                      interval="100"
-                      objects=".grabbable, .clickable">
-            </a-cursor>
+                <a-cursor id="cursor"
+                          rayOrigin="entity"
+                          far="5"
+                          interval="100"
+                          objects=".grabbable, .clickable">
+                </a-cursor>
+            </a-entity>
         </a-entity>
 
         <a-entity id="groundPlane"
@@ -150,7 +154,7 @@
         <a-entity id="ceilingPlane"
                   position="0 8.5 0"
                   rotation="90 0 0"
-                  scale="1 1.5 1"
+                  scale="1 1.6 1"
                   geometry="primitive:plane; width:25; height:25;"
                   material="transparent: true; opacity: 0.0;"
                   sound="src: #livingRoomAmbiance; volume: 10.0; autoplay: true; loop: true;"

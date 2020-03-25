@@ -13,8 +13,6 @@ const templates =
                     "gltf": "#tableTopModel",
                     "body": "type: dynamic; mass: 20; shape: none;",
                     "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
-                    //"position": "0 0.09 0",
-                    //"rotation": "180 0 0",
         
                     "entity":
                     [
@@ -54,8 +52,6 @@ const templates =
                     "gltf": "#tableLegModel",
                     "body": "type: dynamic; mass: 10; shape: none;",
                     "shape__main": "shape: box; halfExtents: 0.036 0.345 0.036;",
-                    //"rotation": " ",
-                    //"position": "0 0.7 -4",
         
                     "entity":
                     [
@@ -90,10 +86,13 @@ AFRAME.registerComponent('spawner',
             self.spawnPiece(self.data.furniture, self.data.piece);
         });
 
+        //this.el.addEventListener('gamepadbuttondown', function (event)
+        //{
+        //    self.spawnPiece(self.data.furniture, self.data.piece);
+        //});
+
         el.addEventListener('hover-start', function (event)
         {
-            //self.el.object3D.material.set(1, 0.9, 1);
-
             let mesh = el.getObject3D('mesh');
 
             if (mesh)
@@ -138,7 +137,6 @@ AFRAME.registerComponent('spawner',
         let entity = document.createElement("a-entity");
 
         let jsonStr= templates;
-        //let jsonObj = JSON.parse(jsonStr);
 
         let search = eval("jsonStr." + furniture);
         let result;
@@ -148,17 +146,9 @@ AFRAME.registerComponent('spawner',
         for (let i = 0; i < search.length; i++)
         {
             if (search[i].id == piece) {
-                //console.log(search[i].id);
                 result = search[i];
             }
         }
-            
-        // for(let property in result) {
-        //     output += property + "='" + result.property + "' ";
-                //THIS IS SO DUMB THAT IT DOESN'T WORK >:(
-        //     console.log(property)
-        //     //console.log(result.id);
-        // }
 
         output += "id= '" + result.id + "' ";
         output += "class= '" + result.class + "' ";

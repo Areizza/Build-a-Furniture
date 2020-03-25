@@ -100,22 +100,29 @@
             </a-image>
 
             <!-- Camera -->
-            <a-entity camera
-                      wasd-controls="acceleration: 125"
-                      look-controls="pointerLockEnabled:true"
-                      position="0 1.2 1.5"
-                      capture-mouse
-                      static-body="shape: sphere; sphereRadius: 0.0002"
-                      super-hands="colliderEvent: raycaster-intersection;
+            <a-entity id="rig"
+                      position="0 0 0"
+                      movement-controls>
+                <a-entity id="camera"
+                          camera
+                          wasd-controls="acceleration: 125"
+                          look-controls="pointerLockEnabled:true"
+                          position="0 1.6 0"
+                          capture-mouse
+                          static-body="shape: sphere; sphereRadius: 0.0002"
+                          super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
-                <a-cursor id="cursor"
-                          rayOrigin="entity"
-                          far="5"
-                          interval="100"
-                          objects=".grabbable, .clickable">
-                </a-cursor>
+                    <a-cursor id="cursor"
+                              downEvents="gamepadbuttondown:7"
+                              upEvents="gamepadbuttonup:7"
+                              rayOrigin="entity"
+                              far="5"
+                              interval="100"
+                              objects=".grabbable, .clickable">
+                    </a-cursor>
+                </a-entity>
             </a-entity>
 
             <a-entity id="groundPlane"
