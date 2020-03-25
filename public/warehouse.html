@@ -24,12 +24,13 @@
             console.log("connected!");
         });
     </script>
+    <script src="scripts/templates.js"></script>
     <script src="scripts/spawner.js"></script>
     <script src="scripts/snap-point.js"></script>
     <script src="scripts/shipping-platform.js"></script>
 </head>
     <body>
-        <a-scene physics="debug: false;">
+        <a-scene physics="debug: true;">
             <a-assets>
                 <!-- Load environment model -->
                 <a-asset-item id="warehouse"
@@ -38,10 +39,13 @@
 
                 <!-- load asset models -->
                 <a-asset-item id="tableTopModel"
-                              src="/assets/models/tableTopConnected/tableTopConnected.gltf">
+                              src="/assets/models/table/tableTop/tableTop.gltf">
+                </a-asset-item>
+                <a-asset-item id="tableSkirtModel"
+                              src="/assets/models/table/tableSkirt/tableSkirt.gltf">
                 </a-asset-item>
                 <a-asset-item id="tableLegModel"
-                              src="/assets/models/tableLeg/tableLeg.gltf">
+                              src="/assets/models/table/tableLeg/tableLeg.gltf">
                 </a-asset-item>
 
                 <!-- Load audio files -->
@@ -66,9 +70,9 @@
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
                          geometry="primitive: sphere; radius: 0.10;"
-                         material="color: blue; shader: flat; opacity: 0.0;"
+                         material="color: blue; shader: flat; opacity: 0.6;"
                          transparent="true"
-                         visible="false"
+                         visible="true"
                          sphere-collider="objects: .snapPoint; radius: 0.08">
                 </a-mixin>
 
@@ -100,22 +104,29 @@
             </a-image>
 
             <!-- Camera -->
-            <a-entity camera
-                      wasd-controls="acceleration: 125"
-                      look-controls="pointerLockEnabled:true"
-                      position="0 1.2 1.5"
-                      capture-mouse
-                      static-body="shape: sphere; sphereRadius: 0.0002"
-                      super-hands="colliderEvent: raycaster-intersection;
+            <a-entity id="rig"
+                      movement-controls
+                      position="0 0 0">
+                <a-entity id="camera"
+                          camera
+                          wasd-controls="acceleration: 125"
+                          look-controls="pointerLockEnabled:true"
+                          position="0 1.6 0"
+                          capture-mouse
+                          static-body="shape: sphere; sphereRadius: 0.0002"
+                          super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
-                <a-cursor id="cursor"
-                          rayOrigin="entity"
-                          far="5"
-                          interval="100"
-                          objects=".grabbable, .clickable">
-                </a-cursor>
+                    <a-cursor id="cursor"
+                              downEvents="gamepadbuttondown"
+                              upEvents="gamepadbuttonup"
+                              rayOrigin="entity"
+                              far="5"
+                              interval="100"
+                              objects=".grabbable, .clickable">
+                    </a-cursor>
+                </a-entity>
             </a-entity>
 
             <a-entity id="groundPlane"
@@ -169,6 +180,7 @@
                       geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
                       material="color:lightblue;"
                       hoverable
+                      clickable
                       spawner="furniture:table; piece:tableTop; position: -2.5 0.1 -0.4"
                       class="clickable">
             </a-entity>
@@ -178,7 +190,18 @@
                       geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
                       material="color:lightblue;"
                       hoverable
+                      clickable
                       spawner="furniture:table; piece:tableLeg; position: -10.7 1.0 1"
+                      class="clickable">
+            </a-entity>
+
+            <a-entity id="boxTableSkirt"
+                      position="-12.7 0.75 0"
+                      geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
+                      material="color:lightblue;"
+                      hoverable
+                      clickable
+                      spawner="furniture:table; piece:tableSkirt; position: -12.7 2.0 1"
                       class="clickable">
             </a-entity>
 

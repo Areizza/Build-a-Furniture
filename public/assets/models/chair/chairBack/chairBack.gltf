@@ -1,0 +1,195 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 2202,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 759,
+      "max": [
+        0.466219574213028,
+        -0.577326059341431,
+        0.0843442678451538
+      ],
+      "min": [
+        -0.466219574213028,
+        -1.42302107810974,
+        -0.0234754979610443
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 759,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 759,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Substance Painter 2019.3.3",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 8808,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9108,
+      "byteOffset": 8808,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 9108,
+      "byteOffset": 17916,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 6072,
+      "byteOffset": 27024,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 33096,
+      "uri": "chairBack.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "chairMat_baseColor.png"
+    },
+    {
+      "uri": "chairMat_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "chairMat_normal.png"
+    },
+    {
+      "uri": "chairMat_emissive.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "BLEND",
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 3
+      },
+      "name": "chairMat",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "backRest",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "root",
+      "scale": [
+        0.454962521791458,
+        0.454962521791458,
+        0.454962521791458
+      ],
+      "translation": [
+        0.0,
+        0.455041527748108,
+        -0.0138465017080307
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "backRest"
+    },
+    {
+      "mesh": 0,
+      "name": "backRest"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    }
+  ]
+}

@@ -23,13 +23,14 @@
             console.log("connected!");
         });
     </script>
+    <script src="scripts/templates.js"></script>
     <script src="scripts/furniture.js"></script>
     <script src="scripts/snap-point.js"></script>
     <script src="scripts/spawner.js"></script>
     <script src="scripts/systems/builder.js"></script>
 </head>
 <body>
-    <a-scene physics="debug: false;">
+    <a-scene physics="debug: true;">
         <a-assets>
             <!-- load environment models -->
             <a-asset-item id="livingRoom"
@@ -38,10 +39,13 @@
 
             <!-- load asset models -->
             <a-asset-item id="tableTopModel"
-                          src="/assets/models/tableTopConnected/tableTopConnected.gltf">
+                          src="/assets/models/table/tableTop/tableTop.gltf">
+            </a-asset-item>
+            <a-asset-item id="tableSkirtModel"
+                          src="/assets/models/table/tableTop/tableTop.gltf">
             </a-asset-item>
             <a-asset-item id="tableLegModel"
-                          src="/assets/models/tableLeg/tableLeg.gltf">
+                          src="/assets/models/table/tableLeg/tableLeg.gltf">
             </a-asset-item>
 
             <!-- load audio files -->
@@ -51,16 +55,14 @@
             <a-mixin id="sphereCollider"
                      class="snapPoint"
                      geometry="primitive: sphere; radius: 0.10;"
-                     material="color: blue; shader: flat; opacity: 0.0;"
+                     material="color: blue; shader: flat; opacity: 0.8;"
                      transparent="true"
-                     visible="false"
+                     visible="true"
                      sphere-collider="objects: .snapPoint; radius: 0.08">
             </a-mixin>
 
             <a-mixin id="part"
                      hoverable grabbable draggable droppable>
-                <!--event-set__hoveron="_event: hover-start; material.opacity: 0.8; transparent: true"
-                event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"-->
             </a-mixin>
 
             <a-mixin id="tableLeg"
@@ -82,22 +84,28 @@
         </a-entity>
 
         <!-- Camera -->
-        <a-entity camera
-                  wasd-controls="acceleration: 150"
-                  look-controls="pointerLockEnabled:true"
-                  position="0 1.2 1.5"
-                  capture-mouse
-                  static-body="shape: sphere; sphereRadius: 0.0002"
-                  super-hands="colliderEvent: raycaster-intersection;
+        <a-entity id="rig"
+                  movement-controls
+                  position="0 0 0">
+            <a-entity camera
+                      wasd-controls="acceleration: 150"
+                      look-controls="pointerLockEnabled:true"
+                      position="0 1.7 0"
+                      capture-mouse
+                      static-body="shape: sphere; sphereRadius: 0.0002"
+                      super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
-            <a-cursor id="cursor"
-                      rayOrigin="entity"
-                      far="5"
-                      interval="100"
-                      objects=".grabbable, .clickable">
-            </a-cursor>
+                <a-cursor id="cursor"
+                          downEvents="gamepadbuttondown:7"
+                          upEvents="gamepadbuttonup:7"
+                          rayOrigin="entity"
+                          far="5"
+                          interval="100"
+                          objects=".grabbable, .clickable">
+                </a-cursor>
+            </a-entity>
         </a-entity>
 
         <a-entity id="groundPlane"
