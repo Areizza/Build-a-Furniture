@@ -1,71 +1,5 @@
 'use strict';
 
-const templates =
-        {
-            "table":
-            [
-                {
-                    "id": "tableTop",
-                    "class": "grabbable table tableTop",
-                    "furniture": "tier: 0; totalSnapPoints: 4;",
-                    "mixin": "part",
-                    "scale": "2 2 2",
-                    "gltf": "#tableTopModel",
-                    "body": "type: dynamic; mass: 20; shape: none;",
-                    "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
-        
-                    "entity":
-                    [
-                        {
-                            "position": "0.62 -0.07 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "-0.62 -0.07 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "-0.62 -0.07 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "0.62 -0.07 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        }
-                    ]
-                },
-        
-                {
-                    "id": "tableLeg",
-                    "class": "grabbable table tableLeg",
-                    "mixin": "part",
-                    "furniture": "tier: 1; totalSnapPoints: 1;",
-                    "scale": "2 2 2",
-                    "gltf": "#tableLegModel",
-                    "body": "type: dynamic; mass: 10; shape: none;",
-                    "shape__main": "shape: box; halfExtents: 0.036 0.345 0.036;",
-        
-                    "entity":
-                    [
-                        {
-                            "position": "0 0.345 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;"
-                        }
-                    ]
-                }
-            ]
-        }
-
 AFRAME.registerComponent('spawner',
 {
     schema:
@@ -81,15 +15,10 @@ AFRAME.registerComponent('spawner',
         const self = this;
         const el = this.el;
 
-        this.el.addEventListener('click', function (event)
+        this.el.addEventListener('grab-start', function (event)
         {
             self.spawnPiece(self.data.furniture, self.data.piece);
         });
-
-        //this.el.addEventListener('gamepadbuttondown', function (event)
-        //{
-        //    self.spawnPiece(self.data.furniture, self.data.piece);
-        //});
 
         el.addEventListener('hover-start', function (event)
         {
@@ -204,7 +133,7 @@ AFRAME.registerComponent('spawner',
         {
             entity.setAttribute('position', self.data.position);
         }
-        
+
         sceneEl.appendChild(entity);
     },
 });
