@@ -1,75 +1,5 @@
 'use strict';
 
-const templates =
-        {
-            "table":
-            [
-                {
-                    "id": "tableTop",
-                    "class": "grabbable table tableTop",
-                    "furniture": "tier: 0; totalSnapPoints: 4;",
-                    "mixin": "part",
-                    "scale": "1 1 1",
-                    "gltf": "#tableTopModel",
-                    "body": "type: dynamic; mass: 20; shape: none;",
-                    "shape__main": "shape: box; halfExtents: 0.72 0.061 0.72",
-                    //"position": "0 0.09 0",
-                    //"rotation": "180 0 0",
-        
-                    "entity":
-                    [
-                        {
-                            "position": "0.62 -0.07 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "-0.62 -0.07 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "-0.62 -0.07 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        },
-                        {
-                            "position": "0.62 -0.07 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
-                        }
-                    ]
-                },
-        
-                {
-                    "id": "tableLeg",
-                    "class": "grabbable table tableLeg",
-                    "mixin": "part",
-                    "furniture": "tier: 1; totalSnapPoints: 1;",
-                    "scale": "1 1 1",
-                    "gltf": "#tableLegModel",
-                    "body": "type: dynamic; mass: 10; shape: none;",
-                    "shape__main": "shape: box; halfExtents: 0.036 0.345 0.036;",
-                    //"rotation": " ",
-                    //"position": "0 0.7 -4",
-        
-                    "entity":
-                    [
-                        {
-                            "position": "0 0.345 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;"
-                        }
-                    ]
-                }
-            ]
-        }
-
 AFRAME.registerComponent('spawner',
 {
     schema:
@@ -85,15 +15,13 @@ AFRAME.registerComponent('spawner',
         const self = this;
         const el = this.el;
 
-        this.el.addEventListener('click', function (event)
+        this.el.addEventListener('grab-start', function (event)
         {
             self.spawnPiece(self.data.furniture, self.data.piece);
         });
 
         el.addEventListener('hover-start', function (event)
         {
-            //self.el.object3D.material.set(1, 0.9, 1);
-
             let mesh = el.getObject3D('mesh');
 
             if (mesh)
@@ -138,7 +66,6 @@ AFRAME.registerComponent('spawner',
         let entity = document.createElement("a-entity");
 
         let jsonStr= templates;
-        //let jsonObj = JSON.parse(jsonStr);
 
         let search = eval("jsonStr." + furniture);
         let result;
@@ -148,17 +75,9 @@ AFRAME.registerComponent('spawner',
         for (let i = 0; i < search.length; i++)
         {
             if (search[i].id == piece) {
-                //console.log(search[i].id);
                 result = search[i];
             }
         }
-            
-        // for(let property in result) {
-        //     output += property + "='" + result.property + "' ";
-                //THIS IS SO DUMB THAT IT DOESN'T WORK >:(
-        //     console.log(property)
-        //     //console.log(result.id);
-        // }
 
         output += "id= '" + result.id + "' ";
         output += "class= '" + result.class + "' ";
@@ -214,7 +133,7 @@ AFRAME.registerComponent('spawner',
         {
             entity.setAttribute('position', self.data.position);
         }
-        
+
         sceneEl.appendChild(entity);
     },
 });
