@@ -38,10 +38,53 @@
 
                 <!-- load asset models -->
                 <a-asset-item id="tableTopModel"
-                              src="/assets/models/tableTopConnected/tableTopConnected.gltf">
+                              src="/assets/models/tableTop/tableTop.gltf">
                 </a-asset-item>
                 <a-asset-item id="tableLegModel"
                               src="/assets/models/tableLeg/tableLeg.gltf">
+                </a-asset-item>
+                <a-asset-item id="tableSkirtModel"
+                              src="/assets/models/tableSkirt/tableSkirt.gltf">
+                </a-asset-item>
+
+                <a-asset-item id="chairBackModel"
+                              src="/assets/models/chairBack/chairBack.gltf">
+                </a-asset-item>
+                <a-asset-item id="chairBackLegModel"
+                              src="/assets/models/chairBack/chairBackLeg.gltf">
+                </a-asset-item>
+                <a-asset-item id="chairFrontLegModel"
+                              src="/assets/models/chairBack/chairFrontLeg.gltf">
+                </a-asset-item>
+                <a-asset-item id="chairSeatModel"
+                              src="/assets/models/chairBack/chairSeat.gltf">
+                </a-asset-item>
+                <a-asset-item id="chairSkirtModel"
+                              src="/assets/models/chairBack/chairSkirt.gltf">
+                </a-asset-item>
+
+                <a-asset-item id="shelfBackModel"
+                              src="/assets/models/chairBack/shelfBack.gltf">
+                </a-asset-item>
+                <a-asset-item id="shelfSideModel"
+                              src="/assets/models/chairBack/shelfSide.gltf">
+                </a-asset-item>
+                <a-asset-item id="shelfTopModel"
+                              src="/assets/models/chairBack/shelfTop.gltf">
+                </a-asset-item>
+                <a-asset-item id="shelfSkirtModel"
+                              src="/assets/models/chairBack/shelfSkirt.gltf">
+                </a-asset-item>
+                <a-asset-item id="shelfBottomModel"
+                              src="/assets/models/chairBack/shelfBottom.gltf">
+                </a-asset-item>
+                <a-asset-item id="shelfRackModel"
+                              src="/assets/models/chairBack/shelfRack.gltf">
+                </a-asset-item>
+
+                <!--Box-->
+                <a-asset-item id="boxMesh"
+                              src="/assets/box/boxes.gltf" >
                 </a-asset-item>
 
                 <!-- Load audio files -->
@@ -162,24 +205,314 @@
                       sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
             </a-entity>
 
-            <!-- Boxes -->
+            <!-- TABLE BOX -->
             <a-entity id="boxTableTop"
                       position="-5.7 1.252 0"
-                      scale="1 1 1"
-                      geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
                       material="color:lightblue;"
                       hoverable
                       spawner="furniture:table; piece:tableTop; position: -2.5 0.1 -0.4"
                       class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableTop.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableTop.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
             </a-entity>
             <a-entity id="boxTableLeg"
                       position="-10.7 0.75 0"
-                      scale="1 1 1"
-                      geometry="primitive:box; width:0.3; height:0.3; depth:0.3;"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
                       material="color:lightblue;"
                       hoverable
                       spawner="furniture:table; piece:tableLeg; position: -10.7 1.0 1"
                       class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableLeg.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableLeg.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxTableSkirt"
+                      position="-8 0.3 0"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:table; piece:tableSkirt; position: -8 1.0 1"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableSkirt.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/tableSkirt.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <!--CHAIR BOX-->
+            <a-entity id="boxChairBack"
+                      position="-4.2 1.252 3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:chair; piece:chairBack; position: -4.2 1.0 2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairBack.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairBack.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxChairBackLeg"
+                      position="-6.7 0.75 3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:chair; piece:chairBackLeg; position: -6.7 1.0 2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairBackLeg.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairBackLeg.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxChairFrontLeg"
+                      position="-8 0.75 3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:chair; piece:chairFrontLeg; position: -8 1.0 2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairFrontLeg.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairFrontLeg.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxChairSeat"
+                      position="-10.7 1.252 3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:chair; piece:chairSeat; position: -10.7 1.0 2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairSeat.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairSeat.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxChairSkirt"
+                      position="-9.5 0.3 3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:chair; piece:chairSkirt; position: -9.5 1.0 2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairSkirt.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/chairSkirt.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <!--SHELF BOX-->
+            <a-entity id="boxShelfBack"
+                      position="-4.6 0.75 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfBack; position: -4.6 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfBack.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfBack.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxShelfSide"
+                      position="-5 1.252 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfSide; position: -5 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfSideBoard.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfSideBoard.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+            
+            <a-entity id="boxShelfTop"
+                      position="-8.2 0.75 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfTop; position: -8.2 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfTop.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfTop.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxShelfSkirt"
+                      position="-7.5 0.3 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfSkirt; position: -7.5 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfSkirt.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfSkirt.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxShelfBottom"
+                      position="-12.2 0.75 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfBottom; position: -12.2 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfBottom.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfBottom.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+            </a-entity>
+
+            <a-entity id="boxShelfRack"
+                      position="-11.8 1.252 -3.33"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#boxMesh"
+                      material="color:lightblue;"
+                      hoverable
+                      spawner="furniture:shelf; piece:shelfRack; position: -11.8 1.0 -2.7"
+                      class="clickable">
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfRack.png"
+                                rotation="0 90 0"
+                                position="0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
+                      <a-image  id="boxTableImage"
+                                src="assets/graphics/Furniture/shelfRack.png"
+                                rotation="0 90 0"
+                                position="-0.501 0 0"
+                                material="alphaTest:0.5"
+                      ></a-image>
             </a-entity>
 
             <a-entity id="warehouseEnv"

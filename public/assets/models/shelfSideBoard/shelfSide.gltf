@@ -1,0 +1,195 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 1476,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 339,
+      "max": [
+        0.0284852087497711,
+        -0.015224814414978,
+        0.182005271315575
+      ],
+      "min": [
+        -0.0284852087497711,
+        -1.98477530479431,
+        -0.182003736495972
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 339,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 339,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Substance Painter 2019.3.3",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 5904,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4068,
+      "byteOffset": 5904,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4068,
+      "byteOffset": 9972,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2712,
+      "byteOffset": 14040,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 16752,
+      "uri": "shelfSide.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "shelfMat_baseColor.png"
+    },
+    {
+      "uri": "shelfMat_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "shelfMat_normal.png"
+    },
+    {
+      "uri": "shelfMat_emissive.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "BLEND",
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 3
+      },
+      "name": "shelfMat",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "rightBoard",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "root",
+      "scale": [
+        9.8499755859375,
+        9.8499755859375,
+        9.8499755859375
+      ],
+      "translation": [
+        0.0,
+        9.8499755859375,
+        -7.51018524169922e-06
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "rightBoard"
+    },
+    {
+      "mesh": 0,
+      "name": "rightBoard"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    }
+  ]
+}
