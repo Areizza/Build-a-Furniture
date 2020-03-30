@@ -38,50 +38,54 @@
             </a-asset-item>
 
             <!-- load asset models -->
-                <a-asset-item id="tableTopModel"
-                            src="/assets/models/table/tableTop/tableTop.gltf">
-                </a-asset-item>
-                <a-asset-item id="tableSkirtModel"
-                            src="/assets/models/table/tableSkirt/tableSkirt.gltf">
-                </a-asset-item>
-                <a-asset-item id="tableLegModel"
-                            src="/assets/models/table/tableLeg/tableLeg.gltf">
-                </a-asset-item>
+            <a-asset-item id="tableTopModel"
+                        src="/assets/models/table/tableTop/tableTop.gltf">
+            </a-asset-item>
+            <a-asset-item id="tableSkirtModel"
+                        src="/assets/models/table/tableSkirt/tableSkirt.gltf">
+            </a-asset-item>
+            <a-asset-item id="tableLegModel"
+                        src="/assets/models/table/tableLeg/tableLeg.gltf">
+            </a-asset-item>
 
-                <a-asset-item id="chairBackModel"
-                            src="/assets/models/chair/chairBack/chairBack.gltf">
-                </a-asset-item>
-                <a-asset-item id="chairBackLegModel"
-                            src="/assets/models/chair/chairBack/chairBackLeg.gltf">
-                </a-asset-item>
-                <a-asset-item id="chairFrontLegModel"
-                            src="/assets/models/chair/chairBack/chairFrontLeg.gltf">
-                </a-asset-item>
-                <a-asset-item id="chairSeatModel"
-                            src="/assets/models/chair/chairBack/chairSeat.gltf">
-                </a-asset-item>
-                <a-asset-item id="chairSkirtModel"
-                            src="/assets/models/chair/chairBack/chairSkirt.gltf">
-                </a-asset-item>
+            <a-asset-item id="chairBackModel"
+                        src="/assets/models/chair/chairBack/chairBack.gltf">
+            </a-asset-item>
+            <a-asset-item id="chairBackLegModel"
+                        src="assets/models/chair/chairLegBack/chairLegBack.gltf">
+            </a-asset-item>
+            <a-asset-item id="chairFrontLegModel"
+                        src="/assets/models/chair/chairLegFront/chairLegFront.gltf">
+            </a-asset-item>
+            <a-asset-item id="chairSeatModel"
+                        src="/assets/models/chair/chairSeat/chairSeat.gltf">
+            </a-asset-item>
+            <a-asset-item id="chairSkirtModel"
+                        src="/assets/models/chair/chairSkirt/chairSkirt.gltf">
+            </a-asset-item>
 
-                <a-asset-item id="shelfBackModel"
-                            src="/assets/models/shelf/shelfBack/shelfBack.gltf">
-                </a-asset-item>
-                <a-asset-item id="shelfSideModel"
-                            src="/assets/models/shelf/shelfBack/shelfSide.gltf">
-                </a-asset-item>
-                <a-asset-item id="shelfTopModel"
-                            src="/assets/models/shelf/shelfBack/shelfTop.gltf">
-                </a-asset-item>
-                <a-asset-item id="shelfSkirtModel"
-                            src="/assets/models/shelf/shelfBack/shelfSkirt.gltf">
-                </a-asset-item>
-                <a-asset-item id="shelfBottomModel"
-                            src="/assets/models/shelf/shelfBack/shelfBottom.gltf">
-                </a-asset-item>
-                <a-asset-item id="shelfRackModel"
-                            src="/assets/models/shelf/shelfBack/shelfRack.gltf">
-                </a-asset-item>
+            <a-asset-item id="shelfBackModel"
+                        src="assets/models/shelf/shelfBack/shelfBack.gltf">
+            </a-asset-item>
+            <a-asset-item id="shelfSideModel"
+                        src="/assets/models/shelf/shelfSideBoard/shelfSide.gltf">
+            </a-asset-item>
+            <a-asset-item id="shelfTopModel"
+                        src="/assets/models/shelf/shelfTop/shelfTop.gltf">
+            </a-asset-item>
+            <a-asset-item id="shelfSkirtModel"
+                        src="/assets/models/shelf/shelfSkirt/shelfSkirt.gltf">
+            </a-asset-item>
+            <a-asset-item id="shelfBottomModel"
+                        src="assets/models/shelf/shelfBottom/shelfBottom.gltf">
+            </a-asset-item>
+            <a-asset-item id="shelfRackModel"
+                        src="/assets/models/shelf/shelfRack/shelfRack.gltf">
+            </a-asset-item>
+
+            <!-- load graphics -->
+            <img id="catalogue"
+                     src="assets/graphics/catalogue.png">
 
             <!-- load audio files -->
             <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
@@ -123,9 +127,9 @@
                   movement-controls
                   position="0 0 0">
             <a-entity camera
-                      wasd-controls="acceleration: 150"
+                      wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
-                      position="0 1.7 0"
+                      position="0 1.3 0"
                       capture-mouse
                       static-body="shape: sphere; sphereRadius: 0.0002"
                       super-hands="colliderEvent: raycaster-intersection;
@@ -143,6 +147,17 @@
             </a-entity>
         </a-entity>
 
+        <!-- Catalogue -->
+        <a-image    id="catalogueImg"
+                    src="#catalogue"
+                    position="-3.8 1 -3.5"
+                    rotation="0 90 0"
+                    scale="1.5 1 1"
+                    material="alphaTest: 0.5">
+        </a-image>
+        <!-- TO DO: add clickable planes over top the catalogue to start the different sets of instructions -->
+
+        <!-- Solid boundaries -->
         <a-entity id="groundPlane"
                   position="0 -0.01 0"
                   rotation="-90 0 0"

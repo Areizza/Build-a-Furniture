@@ -1,5 +1,40 @@
 'use strict';
 
+const instructions = {
+    "table":
+    [
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_table_0.png",
+            "repeats": "4",
+            "id":
+            [
+                "tableTop",
+                "tableSkirt"
+            ]
+        },
+
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_table_1.png",
+            "repeats": "4",
+            "id":
+            [
+                "tableLeg"
+            ]
+        }
+    ],
+
+    "chair":
+    [
+
+    ],
+
+    "shelf":
+    [
+        
+    ]
+};
+
+
 AFRAME.registerSystem('builder', {
     // Initial state.
     schema: {
