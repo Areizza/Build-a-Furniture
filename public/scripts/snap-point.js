@@ -78,6 +78,7 @@ AFRAME.registerComponent('snap-point', {
                     if (targetSnapComp.furnitureData.tier - self.furnitureData.tier === 1) 
                     {
                         let childPiece = targetEl.parentEl;
+                        targetSnapComp.data.isEnabled = false;
 
                         // Create a new piece and attach it instead.
                         let newPiece = document.createElement('a-entity');

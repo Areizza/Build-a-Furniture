@@ -17,18 +17,21 @@ AFRAME.registerComponent('shipping-platform', {
             {
                 let targetEl = event.detail.intersectedEls[i];
 
-                if (targetEl.classList.contains(self.data.requiredPiece))
-                {
-                    // If the dropped piece is the one we are looking for, remove this instance
-                    // and emit the sendPiece event for the Builder.
-                    el.sceneEl.removeChild(targetEl);
-                    socket.emit('sendPiece', { pieceId: self.data.requiredPiece, });
-                }
-                else
-                {
-                    // If not, launch the piece back at the player.
-                    targetEl.body.velocity.set(-5, 6, 0);
-                }
+                el.sceneEl.removeChild(targetEl);
+                socket.emit('sendPiece', { pieceId: self.data.requiredPiece, });
+
+                //if (targetEl.classList.contains(self.data.requiredPiece))
+                //{
+                //    // If the dropped piece is the one we are looking for, remove this instance
+                //    // and emit the sendPiece event for the Builder.
+                //    el.sceneEl.removeChild(targetEl);
+                //    socket.emit('sendPiece', { pieceId: self.data.requiredPiece, });
+                //}
+                //else
+                //{
+                //    // If not, launch the piece back at the player.
+                //    targetEl.body.velocity.set(-5, 6, 0);
+                //}
             }
         });
 
