@@ -104,6 +104,7 @@ AFRAME.registerComponent('spawner',
         for (let i = 0; i < result.entity.length; i++)
         {
             let childEntity = document.createElement("a-entity");
+            let image = document.createElement("a-image");
 
             output += "<a-entity ";
             output += "position= '" + result.entity[i].position + "' ";
@@ -116,6 +117,12 @@ AFRAME.registerComponent('spawner',
             childEntity.setAttribute('class', result.entity[i].class);
             childEntity.setAttribute('mixin', result.entity[i].mixin);
             childEntity.setAttribute('snap-point', result.entity[i].snap_point);
+
+            image.setAttribute('src', result.entity[i].image);
+            image.setAttribute('rotation', {x:90, y:0, z:0});
+            image.setAttribute('material', {alphaTest:0.5});
+            image.setAttribute('scale', {x:0.1, y:0.1, z:0.1});
+            childEntity.appendChild(image);
 
             entity.appendChild(childEntity);
         }

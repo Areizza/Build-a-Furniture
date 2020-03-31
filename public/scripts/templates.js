@@ -19,50 +19,58 @@ const templates =
                             "position": "0 -0.045 0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
+                            "snap_point": "snapId: 3; snapTo: 4;",
+                            "image": "/assets/graphics/snapPointImages/table_redHeart.png"
                         },
                         {
                             "position": "-0 -0.045 -0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
+                            "snap_point": "snapId: 3; snapTo: 4;",
+                            "image": "/assets/graphics/snapPointImages/table_redHeart.png"
                         },
                         {
                             "position": "-0.62 -0.045 0",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
+                            "snap_point": "snapId: 3; snapTo: 4;",
+                            "image": "/assets/graphics/snapPointImages/table_redHeart.png"
                         },
                         {
                             "position": "0.62 -0.045 0",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
+                            "snap_point": "snapId: 3; snapTo: 4;",
+                            "image": "/assets/graphics/snapPointImages/table_redHeart.png"
                         },
 
                         {
                             "position": "0.62 -0.045 0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
+                            "snap_point": "snapId: 1; snapTo: 2;",
+                            "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png"
                         },
                         {
                             "position": "-0.62 -0.045 -0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
+                            "snap_point": "snapId: 1; snapTo: 2;",
+                            "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png"
                         },
                         {
                             "position": "-0.62 -0.045 0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
+                            "snap_point": "snapId: 1; snapTo: 2;",
+                            "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png"
                         },
                         {
                             "position": "0.62 -0.045 -0.62",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 1; snapTo: 2;"
+                            "snap_point": "snapId: 1; snapTo: 2;",
+                            "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png"
                         }
                     ]
             },

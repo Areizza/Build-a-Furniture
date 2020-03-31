@@ -13,7 +13,7 @@ const instructions = {
                 },
 
                 {
-                    "id": "tableSkirt",
+                    "id": "tableLeg",
                     "quantity": 4
                 },
             ]
@@ -24,7 +24,7 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "tableLeg",
+                    "id": "tableSkirt",
                     "quantity": 4
                 }
             ]
