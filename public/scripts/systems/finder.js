@@ -108,36 +108,22 @@ const instructions = {
                 {
                     "id": "shelfTop",
                     "quantity": 1
-                }
-            ]
-        },
-
-        {
-            "src": "/../../assets/graphics/warehouse/WH_shelf_2.png",
-            "parts":
-            [
+                },
                 {
                     "id": "shelfSkirt",
                     "quantity": 1
                 }
             ]
         },
-
+        
         {
-            "src": "/../../assets/graphics/warehouse/WH_shelf_3.png",
+            "src": "/../../assets/graphics/warehouse/WH_shelf_2.png",
             "parts":
             [
                 {
                     "id": "shelfBottom",
                     "quantity": 1
-                }
-            ]
-        },
-
-        {
-            "src": "/../../assets/graphics/warehouse/WH_shelf_4.png",
-            "parts":
-            [
+                },
                 {
                     "id": "shelfRack",
                     "quantity": 5
