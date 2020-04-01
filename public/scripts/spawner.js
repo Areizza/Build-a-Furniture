@@ -119,9 +119,9 @@ AFRAME.registerComponent('spawner',
             childEntity.setAttribute('snap-point', result.entity[i].snap_point);
 
             image.setAttribute('src', result.entity[i].image);
-            image.setAttribute('rotation', {x:90, y:0, z:0});
+            image.setAttribute('rotation', result.entity[i].rotate);
             image.setAttribute('material', {alphaTest:0.5});
-            image.setAttribute('scale', {x:0.1, y:0.1, z:0.1});
+            image.setAttribute('scale', result.entity[i].scale);
             childEntity.appendChild(image);
 
             entity.appendChild(childEntity);
