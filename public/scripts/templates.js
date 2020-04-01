@@ -295,38 +295,11 @@ const templates =
     "chair":
         [
             {
-                "id": "chairBack",
-                "class": "grabbable chair chairBack",
-                "furniture": "tier: 0; totalSnapPoints: 9;",
-                "mixin": "part",
-                "scale": "1.5 1.5 1.5",
-                "gltf": "/assets/models/chair/chairBack/chairBack.gltf",
-                "body": "type: dynamic; mass: 12; shape: none;",
-                "shape__main": "shape: box; halfExtents: 0.212 0.192 0.025",
-
-                "entity":
-                    [
-                        {
-                            "position": "-0.138 0.166 -0.012",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
-                        },
-                        {
-                            "position": "0.138 0.166 -0.012",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;"
-                        },
-                    ]
-            },
-
-            {
                 "id": "chairBackLeg",
                 "class": "grabbable chair chairBackLeg",
                 "mixin": "part",
                 "furniture": "tier: 1; totalSnapPoints: 1;",
-                "scale": "1.5 1.5 1.5",
+                "scale": "1.2 1.2 1.2",
                 "gltf": "assets/models/chair/chairLegBack/chairLegBack.gltf",
                 "body": "type: dynamic; mass: 10; shape: none;",
                 "shape__main": "shape: box; halfExtents: 0.0185 0.4445 .0225;",
@@ -334,13 +307,13 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 0.45 0",
+                            "position": "0 0.42 -0.008",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
                             "snap_point": "snapId: 2; snapTo: 1;"
                         },
                         {
-                            "position": "0 0 0.22",
+                            "position": "0 0 0.022",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
                             "snap_point": "snapId: 2; snapTo: 1;"
@@ -353,7 +326,7 @@ const templates =
                 "class": "grabbable chair chairFrontLeg",
                 "mixin": "part",
                 "furniture": "tier: 1; totalSnapPoints: 1;",
-                "scale": "1.5 1.5 1.5",
+                "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairLegFront/chairLegFront.gltf",
                 "body": "type: dynamic; mass: 10; shape: none;",
                 "shape__main": "shape: box; halfExtents: 0.019 0.2295 0.023;",
@@ -376,11 +349,38 @@ const templates =
             },
 
             {
+                "id": "chairBack",
+                "class": "grabbable chair chairBack",
+                "furniture": "tier: 0; totalSnapPoints: 9;",
+                "mixin": "part",
+                "scale": "1.2 1.2 1.2",
+                "gltf": "/assets/models/chair/chairBack/chairBack.gltf",
+                "body": "type: dynamic; mass: 12; shape: none;",
+                "shape__main": "shape: box; halfExtents: 0.212 0.192 0.025",
+
+                "entity":
+                    [
+                        {
+                            "position": "-0.189 0.140 0.003",
+                            "class": "snapPoint",
+                            "mixin": "sphereCollider",
+                            "snap_point": "snapId: 0; snapTo: 4;"
+                        },
+                        {
+                            "position": "0.189 0.140 0.003",
+                            "class": "snapPoint",
+                            "mixin": "sphereCollider",
+                            "snap_point": "snapId: 3; snapTo: 4;"
+                        },
+                    ]
+            },
+
+            {
                 "id": "chairSeat",
                 "class": "grabbable chair chairSeat",
                 "mixin": "part",
                 "furniture": "tier: 2; totalSnapPoints: 1;",
-                "scale": "1.5 1.5 1.5",
+                "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairSeat/chairSeat.gltf",
                 "body": "type: dynamic; mass: 6; shape: none;",
                 "shape__main": "shape: box; halfExtents: 0.204 0.026 0.187;",
@@ -388,13 +388,13 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0.182 0 -0.148",
+                            "position": "0.182 0 -0.155",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 3;"
                         },
                         {
-                            "position": "-0.182 0 -0.148",
+                            "position": "-0.182 0 -0.155",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 3;"
@@ -419,7 +419,7 @@ const templates =
                 "class": "grabbable chair chairSkirt",
                 "mixin": "part",
                 "furniture": "tier: 1; totalSnapPoints: 2;",
-                "scale": "1.5 1.5 1.5",
+                "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairSkirt/chairSkirt.gltf",
                 "body": "type: dynamic; mass: 6; shape: none;",
                 "shape__main": "shape: box; halfExtents: 0.0165 0.0175 0.166;",
