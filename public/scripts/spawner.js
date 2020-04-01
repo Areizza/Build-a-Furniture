@@ -92,13 +92,18 @@ AFRAME.registerComponent('spawner',
             let image = document.createElement("a-image");
 
             childEntity.setAttribute('position', result.entity[i].position);
-            childEntity.setAttribute('class', result.entity[i].class);
-            childEntity.setAttribute('mixin', result.entity[i].mixin);
+            childEntity.setAttribute('class', "snapPoint");
+            childEntity.setAttribute('mixin', 'sphereCollider');
             childEntity.setAttribute('snap-point', result.entity[i].snap_point);
 
+            if (result.entity[i].rotate)
+            {
+                childEntity.setAttribute('rotation', result.entity[i].rotate);
+            }
+
             image.setAttribute('src', result.entity[i].image);
-            image.setAttribute('rotation', result.entity[i].rotate);
-            image.setAttribute('material', {alphaTest:0.5});
+            image.setAttribute('rotation', result.entity[i].imgRotate);
+            image.setAttribute('material', { alphaTest: 0.5 });
             image.setAttribute('scale', result.entity[i].scale);
             childEntity.appendChild(image);
 

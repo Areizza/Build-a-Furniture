@@ -17,75 +17,61 @@ const templates =
                     [
                         {
                             "position": "0 -0.045 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
-                            "rotate": "90 180 0",
+                            "imgRotate": "90 180 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "-0 -0.045 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "-0.62 -0.045 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 4;",
+                            "rotate": "0 90 0",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
-                            "rotate": "90 90 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "0.62 -0.045 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 4;",
+                            "rotate": "0 -90 0",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
-                            "rotate": "90 -90 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
 
                         {
                             "position": "0.62 -0.045 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "-0.62 -0.045 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "-0.62 -0.045 0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
                             "position": "0.62 -0.045 -0.62",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         }
                     ]
@@ -105,11 +91,9 @@ const templates =
                     [
                         {
                             "position": "0 0.345 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 2; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/table_yellowStar.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         }
                     ]
@@ -128,12 +112,10 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 0.09 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
+                            "position": "0 0.0395 0",
                             "snap_point": "snapId: 4; snapTo: 3;",
                             "image": "/assets/graphics/snapPointImages/table_redCross.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         }
                     ]
@@ -157,84 +139,66 @@ const templates =
                     [
                         {
                             "position": "3.94 0 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 6;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowTriangle.png",
-                            "rotate": "0 90 0",
+                            "imgRotate": "0 90 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "-3.94 0 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 6;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowTriangle.png",
-                            "rotate": "0 90 0",
+                            "imgRotate": "0 90 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 8.67 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 2; snapTo: 8;",
                             "image": "/assets/graphics/snapPointImages/shelf_brownHeart.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 -8.67 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 10;",
                             "image": "/assets/graphics/snapPointImages/shelf_purpleHeart.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
 
                         {
                             "position": "0 6.74 0.09",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteHeart.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 4.05 0.09",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteHeart.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 1.43 0.09",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteHeart.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 -1.25 0.09",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteHeart.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
                             "position": "0 -4.05 0.09",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteHeart.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -254,11 +218,9 @@ const templates =
                     [
                         {
                             "position": "0 0 -1.54",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 5; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/shelf_whiteStar.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -278,21 +240,17 @@ const templates =
                     [
                         {
                             "position": "0.285 0.004 -1.74",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
-                            "rotate": "0 90 0",
+                            "imgRotate": "0 90 0",
                             "scale": "0.4 0.4 0.4"
                         },
 
                         {
                             "position": "0.285 0.004 1.74",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
-                            "rotate": "0 90 0",
+                            "imgRotate": "0 90 0",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -312,11 +270,9 @@ const templates =
                     [
                         {
                             "position": "0 0.28 0",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 7; snapTo: 9;",
                             "image": "/assets/graphics/snapPointImages/shelf_greenCross.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -336,21 +292,17 @@ const templates =
                     [
                         {
                             "position": "0 -0.16 1.5",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 8; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/shelf_brownSquare.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         
                         {
                             "position": "0 -0.16 -1.75",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 9; snapTo: 7;",
                             "image": "/assets/graphics/snapPointImages/shelf_greenSquare.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -370,11 +322,9 @@ const templates =
                     [
                         {
                             "position": "0 0 -1.8",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 10; snapTo: 3;",
                             "image": "/assets/graphics/snapPointImages/shelf_purpleCircle.png",
-                            "rotate": "0 0 90",
+                            "imgRotate": "0 0 90",
                             "scale": "0.4 0.4 0.4"
                         }
                     ]
@@ -398,20 +348,16 @@ const templates =
                     [
                         {
                             "position": "0 0.42 -0.007",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 1; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/chair_greenCircle.png",
-                            "rotate": "-4.95 0 0",
+                            "imgRotate": "-4.95 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "0 0 0.023",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 2; snapTo: 6;",
                             "image": "/assets/graphics/snapPointImages/chair_redCircle.png",
-                            "rotate": "2.5 0 0",
+                            "imgRotate": "2.5 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]
@@ -431,20 +377,16 @@ const templates =
                     [
                         {
                             "position": "0 0.231 -0.005",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 3; snapTo: 00000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueTriangle.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "0 0.09 -0.015",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 4; snapTo: 8;",
                             "image": "/assets/graphics/snapPointImages/chair_purpleSquare.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]
@@ -464,20 +406,16 @@ const templates =
                     [
                         {
                             "position": "-0.189 0.140 0.003",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 5; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/chair_greenHeart.png",
-                            "rotate": "-5 13 0",
+                            "imgRotate": "-5 13 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "0.189 0.140 0.003",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 5; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/chair_greenHeart.png",
-                            "rotate": "-5 -13 0",
+                            "imgRotate": "-5 -13 0",
                             "scale": "0.04 0.04 0.04"
                         },
                     ]
@@ -497,38 +435,30 @@ const templates =
                     [
                         {
                             "position": "0.182 0 -0.156",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 6; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/chair_redDiamond.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "-0.182 0 -0.156",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 6; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/chair_redDiamond.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "0.170 -0.026 0.141",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 7; snapTo: 0000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "-0.170 -0.026 0.141",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 7; snapTo: 0000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
-                            "rotate": "90 0 0",
+                            "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]
@@ -538,7 +468,7 @@ const templates =
                 "id": "chairSkirt",
                 "class": "grabbable chair chairSkirt",
                 "mixin": "part",
-                "furniture": "tier: 1; totalSnapPoints: 2;",
+                "furniture": "tier: 2; totalSnapPoints: 2;",
                 "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairSkirt/chairSkirt.gltf",
                 "body": "type: dynamic; mass: 6; shape: none;",
@@ -548,11 +478,9 @@ const templates =
                     [
                         {
                             "position": "0 0 0.166",
-                            "class": "snapPoint",
-                            "mixin": "sphereCollider",
                             "snap_point": "snapId: 8; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/chair_purpleCross.png",
-                            "rotate": "0 0 0",
+                            "imgRotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]

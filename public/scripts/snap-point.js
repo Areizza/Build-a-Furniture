@@ -12,10 +12,8 @@ AFRAME.registerComponent('snap-point', {
     init: function ()
     {
         const self = this;
-        this.el.parentEl.addEventListener('loaded', function (event)
-        {
-            self.furnitureData = self.el.parentEl.getAttribute('furniture');
-        });
+
+        self.furnitureData = self.el.parentEl.components['furniture'];
 
         this.collideHandler = function (event)
         {
@@ -61,7 +59,7 @@ AFRAME.registerComponent('snap-point', {
 
     playSound: function ()
     {
-        //get the sound entity for successful snap
+        // Get the sound entity for successful snap
         let audio = document.getElementById("rig");
         audio.components.sound.playSound();
     },
@@ -82,7 +80,7 @@ AFRAME.registerComponent('snap-point', {
                 {
                     data.isEnabled = false;
                     let parentPiece = el.parentEl;
-                    if (targetSnapComp.furnitureData.tier - self.furnitureData.tier === 1) 
+                    if (targetSnapComp.furnitureData.data.tier - self.furnitureData.data.tier === 1) 
                     {
                         let childPiece = targetEl.parentEl;
                         targetSnapComp.data.isEnabled = false;
@@ -102,14 +100,37 @@ AFRAME.registerComponent('snap-point', {
                         //    });
 
                         parentPiece.appendChild(newPiece);
+
+                        // Get the rotation data
+                        let rotComp = el.components['rotation'];
+                        let rot = { x: 0, y: 0, z: 0 };
+                        if (rotComp)
+                        {
+                            rot = { x: rotComp.data.x, y: rotComp.data.y, z: rotComp.data.z };
+                        }
+
                         newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * shape.halfExtents.y, z: el.object3D.position.z });
+                        newPiece.setAttribute('rotation', { x: rot.x, y: rot.y, z: rot.z });
 
                         // Copy the bounding box of the original object and add it to the parent object using the currentAttached value as the shape__id.
-                        parentPiece.setAttribute('shape__' + self.furnitureData.currentAttached,
+                        parentPiece.setAttribute('shape__' + self.furnitureData.data.currentAttached,
                             {
                                 offset: { x: el.object3D.position.x, y: -1 * shape.halfExtents.y, z: el.object3D.position.z },
-                                halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z }
+                                halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z },
+                                //orientation: { x: rot.x, y: rot.y, z: rot.z, w: 1 } // Not sure why this doesn't work.
                             });
+
+                        for (var i = 0; i < childPiece.children.length; i++)
+                        {
+                            let point = childPiece.children[i];
+                            let snapComp = point.components['snap-point'];
+                            if (snapComp && snapComp.data.isEnabled)
+                            {
+                                childPiece.removeChild(point);
+                                newPiece.appendChild(point);
+                                i--;
+                            }
+                        }
 
                         // Remove the snap-points and then the original child object.
                         childPiece.removeChild(targetEl);
@@ -117,11 +138,10 @@ AFRAME.registerComponent('snap-point', {
                         childPiece.parentEl.removeChild(childPiece);
 
                         // Increment the number of objects currently attached to the parent
-                        self.furnitureData.currentAttached += 1;
+                        self.furnitureData.data.currentAttached += 1;
                         el.sceneEl.emit('pieceSnapped');
+                        this.playSound(); // Play successful snap sound effect
                     }
-
-                    this.playSound(); //play successful snap sound effect
                 }
             }
             else
