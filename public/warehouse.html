@@ -77,96 +77,7 @@
                 </a-mixin>
 
             </a-assets>
-
-            <!-- Shipping Platform -->  
-            <a-entity id="platform"
-                      position="1 0.1 0"
-                      scale="1 1 1"
-                      aabb-collider="objects: .grabbable; interval: 80; debug: false"
-                      shipping-platform="requiredPiece: tableTop;"
-                      geometry="primitive:box; width:2; height:0.1; depth:1.5;"
-                      material="color:#46d246;">
-            </a-entity>
-
-            <!-- Instructions to update -->
-            <!-- we need a function to update the src for this a-image -->
-            <a-image id="instructions"
-                     src="#instructionTable_0"
-                     position="2.3 0.5 0"
-                     rotation="-20 -90 0"
-                     scale="1 0.6 1">
-            </a-image>
-
-            <!-- Camera -->
-            <a-entity id="rig"
-                      movement-controls
-                      position="0 0 0">
-                <a-entity id="camera"
-                          camera
-                          wasd-controls="acceleration: 50"
-                          look-controls="pointerLockEnabled:true"
-                          position="0 1.3 0"
-                          capture-mouse
-                          static-body="shape: sphere; sphereRadius: 0.0002"
-                          super-hands="colliderEvent: raycaster-intersection;
-                             colliderEventProperty: els;
-                             colliderEndEvent:raycaster-intersection-cleared;
-                             colliderEndEventProperty: clearedEls;">
-                    <a-cursor id="cursor"
-                              downEvents="gamepadbuttondown"
-                              upEvents="gamepadbuttonup"
-                              rayOrigin="entity"
-                              far="5"
-                              interval="100"
-                              objects=".grabbable, .clickable">
-                    </a-cursor>
-                </a-entity>
-            </a-entity>
-
-            <a-entity id="groundPlane"
-                      position="-7 -0.01 0"
-                      rotation="-90 0 0"
-                      scale="0.973 -0.684 -0.478"
-                      geometry="primitive: plane; width: 25.0; height: 25.0"
-                      material="transparent: true;"
-                      static-body
-                      shadow>
-            </a-entity>
-
-            <!-- ambient sound plane -->
-            <a-entity id="ceilingPlane"
-                      position="-7 3.5 0"
-                      rotation="90 0 0"
-                      scale="0.973 -0.684 -0.478"
-                      geometry="primitive:plane; width:25; height:25;"
-                      material="transparent: true;"
-                      sound="src: #warehouseAmbiance; volume: 5.0; autoplay: true; loop: true;">
-            </a-entity>
-            <!-- welding sound -->
-            <a-entity id="weldEmit"
-                      position="-4.5 1 6"
-                      scale="1 1 1"
-                      geometry="primitive:sphere; radius:0.5;"
-                      material="transparent: true;"
-                      sound="src: #weldTrack; volume: 5.0; autoplay: true; loop: true;">
-            </a-entity>
-            <!-- wood sound -->
-            <a-entity id="woodEmit"
-                      position="-16 1 -6"
-                      scale="1 1 1"
-                      geometry="primitive:sphere; radius:0.5;"
-                      material="transparent: true;"
-                      sound="src: #woodTrack; volume: 4.0; autoplay: true; loop: true;">
-            </a-entity>
-            <!-- pin sound -->
-            <a-entity id="pinEmit"
-                      position="0 1 -6"
-                      scale="1 1 1"
-                      geometry="primitive:sphere; radius:0.5;"
-                      material="transparent: true;"
-                      sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
-            </a-entity>
-
+            
             <!-- TABLE BOX -->
             <a-entity id="boxTableTop"
                       position="-5.7 1.252 0"
@@ -479,6 +390,86 @@
                       ></a-image>
             </a-entity>
 
+            <!-- Shipping Platform -->  
+            <a-entity id="platform"
+                      position="1 0.1 0"
+                      scale="1 1 1"
+                      aabb-collider="objects: .grabbable; interval: 80; debug: false"
+                      shipping-platform="requiredPiece: tableTop;"
+                      geometry="primitive:box; width:2; height:0.1; depth:1.5;"
+                      material="color:#46d246;">
+            </a-entity>
+
+            <!-- Instructions to update -->
+            <!-- we need a function to update the src for this a-image -->
+            <a-image id="instructions"
+                     src="#instructionTable_0"
+                     position="2.3 0.5 0"
+                     rotation="-20 -90 0"
+                     scale="1 0.6 1">
+            </a-image>
+
+            <!-- Camera -->
+            <a-entity id="rig"
+                      movement-controls
+                      position="0 0 0">
+                <a-entity id="camera"
+                          camera
+                          wasd-controls="acceleration: 50"
+                          look-controls="pointerLockEnabled:true"
+                          position="0 1.3 0"
+                          capture-mouse
+                          static-body="shape: sphere; sphereRadius: 0.0002"
+                          super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;">
+                    <a-cursor id="cursor"
+                              downEvents="gamepadbuttondown"
+                              upEvents="gamepadbuttonup"
+                              rayOrigin="entity"
+                              far="5"
+                              interval="100"
+                              objects=".grabbable, .clickable">
+                    </a-cursor>
+                </a-entity>
+            </a-entity>
+
+            <!-- ambient sound plane -->
+            <a-entity id="ceilingPlane"
+                      position="-7 3.5 0"
+                      rotation="90 0 0"
+                      scale="0.973 -0.684 -0.478"
+                      geometry="primitive:plane; width:25; height:25;"
+                      material="transparent: true;"
+                      sound="src: #warehouseAmbiance; volume: 5.0; autoplay: true; loop: true;"
+                      static-body>
+            </a-entity>
+            <!-- welding sound -->
+            <a-entity id="weldEmit"
+                      position="-4.5 1 6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #weldTrack; volume: 5.0; autoplay: true; loop: true;">
+            </a-entity>
+            <!-- wood sound -->
+            <a-entity id="woodEmit"
+                      position="-16 1 -6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #woodTrack; volume: 4.0; autoplay: true; loop: true;">
+            </a-entity>
+            <!-- pin sound -->
+            <a-entity id="pinEmit"
+                      position="0 1 -6"
+                      scale="1 1 1"
+                      geometry="primitive:sphere; radius:0.5;"
+                      material="transparent: true;"
+                      sound="src: #pinTrack; volume: 3.0; autoplay: true; loop: true;">
+            </a-entity>
+
             <a-entity id="warehouseEnv"
                       gltf-model="#warehouse"
                       position="8 0 0"
@@ -508,6 +499,53 @@
             </a-entity>
 
             <a-entity light="type: ambient; color: #CCC; intensity: 0.25">
+            </a-entity>
+
+            <!-- Solid boundaries -->
+            <a-entity id="groundPlane"
+                      position="-7 0.01 0"
+                      rotation="-90 0 0"
+                      scale="0.973 -0.684 -0.478"
+                      geometry="primitive: plane; width: 25.0; height: 25.0"
+                      material="transparent: true;"
+                      static-body
+                      shadow>
+            </a-entity>
+            <a-entity id="frontWall"
+                    position="-7.8 1.5 -7.8"
+                    rotation="0 0 0"
+                    scale="1.4 0.46 1"
+                    geometry="primitive: plane; width: 25.0; height: 10.5"
+                    material="transparent: true; opacity: 0.0;"
+                    static-body
+                    shadow>
+            </a-entity>
+            <a-entity id="leftWall"
+                    position="-18 1.6 0"
+                    rotation="0 90 0"
+                    scale="0.7 0.6 1"
+                    geometry="primitive: plane; width: 36.5; height: 9.4"
+                    material="transparent: true; opacity: 0.0;"
+                    static-body
+                    shadow>
+            </a-entity>
+            <a-entity id="backWall"
+                    position="-7.8 1.8 7.5"
+                    rotation="-180 0 0"
+                    scale="1 0.6 1"
+                    geometry="primitive: plane; width: 25.0; height: 10.5"
+                    material="transparent: true; opacity: 0.0;"
+                    static-body
+                    shadow>
+            </a-entity>
+            <a-entity id="rightWall"
+                    position="3.6 1.8 0"
+                    rotation="0 -90 0"
+                    scale="0.5 0.6 1"
+                    geometry="primitive: plane; width: 36.5; height: 9.4"
+                    material="transparent: true; opacity: 0.0;"
+                    static-body
+                    shadow>
             </a-entity>
         </a-scene>
     </body>
