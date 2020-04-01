@@ -33,12 +33,103 @@ const instructions = {
 
     "chair":
     [
+        {
+            "src": "/../../assets/graphics/warehouse/WH_chair_0.png",
+            "parts":
+            [
+                {
+                    "id": "chairBack",
+                    "quantity": 1
+                },
 
+                {
+                    "id": "chairLegBack",
+                    "quantity": 2
+                },
+            ]
+        },
+
+        {
+            "src": "/../../assets/graphics/warehouse/WH_chair_1.png",
+            "parts":
+            [
+                {
+                    "id": "chairSeat",
+                    "quantity": 1
+                }
+            ]
+        },
+
+        {
+            "src": "/../../assets/graphics/warehouse/WH_chair_2.png",
+            "parts":
+            [
+                {
+                    "id": "chairLegFront",
+                    "quantity": 2
+                }
+            ]
+        },
+
+        {
+            "src": "/../../assets/graphics/warehouse/WH_chair_3.png",
+            "parts":
+            [
+                {
+                    "id": "chairSkirt",
+                    "quantity": 2
+                }
+            ]
+        }
     ],
 
     "shelf":
     [
+        {
+            "src": "/../../assets/graphics/warehouse/WH_shelf_0.png",
+            "parts":
+            [
+                {
+                    "id": "shelfBack",
+                    "quantity": 1
+                },
+
+                {
+                    "id": "shelfSideBoard",
+                    "quantity": 2
+                }
+            ]
+        },
+
+        {
+            "src": "/../../assets/graphics/warehouse/WH_shelf_1.png",
+            "parts":
+            [
+                {
+                    "id": "shelfTop",
+                    "quantity": 1
+                },
+                {
+                    "id": "shelfSkirt",
+                    "quantity": 1
+                }
+            ]
+        },
         
+        {
+            "src": "/../../assets/graphics/warehouse/WH_shelf_2.png",
+            "parts":
+            [
+                {
+                    "id": "shelfBottom",
+                    "quantity": 1
+                },
+                {
+                    "id": "shelfRack",
+                    "quantity": 5
+                }
+            ]
+        }
     ]
 };
 

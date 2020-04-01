@@ -1,6 +1,6 @@
 'use strict';
 
-const instructions = {
+const instructions = { //by "repeats" it means number of "snaps"
     "table":
     [
         {
@@ -25,12 +25,63 @@ const instructions = {
 
     "chair":
     [
-
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_chair_0.png",
+            "repeats": "2",
+            "id":
+            [
+                "chairBack",
+                "chairLegBack"
+            ]
+        },
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_chair_1.png",
+            "repeats": "3", //3 snaps because it should snap to the two back legs too!
+            "id":
+            [
+                "chairSeat",
+                "chairLegFront"
+            ]
+        },
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_chair_2.png",
+            "repeats": "2",
+            "id":
+            [
+                "chairSkirt"
+            ]
+        },
     ],
 
     "shelf":
     [
-        
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_shelf_0.png",
+            "repeats": "2",
+            "id":
+            [
+                "shelfBack",
+                "shelfSideBoard"
+            ]
+        },
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_shelf_1.png",
+            "repeats": "2", //two snaps because top to shelf (from prev step) and skirt to top
+            "id":
+            [
+                "shelfTop",
+                "shelfSkirt"
+            ]
+        },
+        {
+            "src": "/../../assets/graphics/livingRoom/LR_shelf_2.png",
+            "repeats": "5", //bottom to shelf and 5 racks to the back
+            "id":
+            [
+                "shelfBottom",
+                "shelfRack"
+            ]
+        },
     ]
 };
 
