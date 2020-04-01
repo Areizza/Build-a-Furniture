@@ -40,13 +40,18 @@ io.on('connection', function(socket)
         console.log(socket.id + ' has disconnected');
     });
 
+    // Custom events
     socket.on('buildChosen', function (data)
     {
-         console.log('Build chosen heard');
+        console.log('Build chosen heard');
         socket.broadcast.emit('setFurn', data);
     });
 
-    // Custom events
+    socket.on('sendInstructs', function (data)
+    {
+        socket.broadcast.emit('setInstructs', data);
+    });
+
     socket.on('sendPiece', function(data)
     {
         console.log('Piece sent heard');

@@ -402,7 +402,6 @@
             </a-entity>
 
             <!-- Instructions to update -->
-            <!-- we need a function to update the src for this a-image -->
             <a-image id="instructions"
                      src="#instructionTable_0"
                      position="2.3 0.5 0"
@@ -426,10 +425,8 @@
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
                     <a-cursor id="cursor"
-                              downEvents="gamepadbuttondown"
-                              upEvents="gamepadbuttonup"
                               rayOrigin="entity"
-                              far="5"
+                              far="2"
                               interval="100"
                               objects=".grabbable, .clickable">
                     </a-cursor>

@@ -98,6 +98,11 @@ AFRAME.registerSystem('builder', {
     {
         const self = this;
         const sceneEl = this.sceneEl;
+        const instructPanel = document.getElementById("instructions");
+
+        this.current = null;
+        this.currentId = null;
+        this.step = 0;
 
         sceneEl.addEventListener('pieceSnapped', function (event)
         {
@@ -114,6 +119,25 @@ AFRAME.registerSystem('builder', {
             }
         });
 
+        socket.on('setFurn', function (data)
+        {
+            // Get the instruction object for the specified id
+            self.current = instructions[data.id];
+            self.currentId = data.id;
+            self.step = 0
+
+            // Send the parts required out to the app.
+            sceneEl.emit("setParts", instructions[self.step].parts);
+
+            // Send this step's instructions to the other player.
+            socket.emit("sendInstructs", instructions[self.step].src);
+        });
+
+        socket.on('setInstructs', function (data)
+        {
+            instructPanel.setAttribute("src", data);
+        });
+
         socket.on('spawnPiece', function (data)
         {
             console.log("Spawning piece");
@@ -123,20 +147,20 @@ AFRAME.registerSystem('builder', {
             spawner.setAttribute('material', { color: '#996600', });
             spawner.setAttribute('dynamic-body', '');
             spawner.setAttribute('hoverable', '');
-            spawner.setAttribute('spawner', { furniture: 'table', piece: data.pieceId, isOneUse: true });
-            spawner.setAttribute('position', { x: -2.3, y: 2, z: 0.3});
+            spawner.setAttribute('spawner', { furniture: data.buildId, piece: data.pieceId, isOneUse: true });
+            spawner.setAttribute('position', { x: -2.3, y: 0.8, z: 0.3});
 
             sceneEl.appendChild(spawner);
             spawner.addEventListener('loaded', function (event)
             {
                 // Add some velocity to the box once it has loaded.
-                spawner.body.velocity.set(3, -1, 0);
+                spawner.body.velocity.set(3, -1.2, 0);
             });
 
-            if (self.data.step == 0)
+            if (self.step == 0)
             {
                 socket.emit('progress');
-                self.data.step++;
+                self.step++;
             }
         });
     },

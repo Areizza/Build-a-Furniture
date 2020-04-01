@@ -50,25 +50,13 @@
             <a-mixin id="sphereCollider"
                      class="snapPoint"
                      geometry="primitive: sphere; radius: 0.10;"
-                     material="color: blue; shader: flat; opacity: 0.8;"
-                     transparent="true"
+                     material="transparent: true; opacity: 0.0"
                      visible="true"
                      sphere-collider="objects: .snapPoint; radius: 0.08">
             </a-mixin>
 
             <a-mixin id="part"
                      hoverable grabbable draggable droppable>
-            </a-mixin>
-
-            <a-mixin id="tableLeg"
-                     gltf-model="#tableLegModel"
-                     scale="1 1 1"
-                     body="type: dynamic; mass: 10; shape: none;"
-                     shape__main="shape: box;
-                                  halfExtents: 0.036 0.345 0.036;"
-                     furniture="tier: 1; totalSnapPoints: 1;"
-                     mixin="part">
-
             </a-mixin>
         </a-assets>
 
@@ -94,10 +82,8 @@
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;">
                 <a-cursor id="cursor"
-                          downEvents="gamepadbuttondown:7"
-                          upEvents="gamepadbuttonup:7"
                           rayOrigin="entity"
-                          far="5"
+                          far="2"
                           interval="100"
                           objects=".grabbable, .clickable">
                 </a-cursor>

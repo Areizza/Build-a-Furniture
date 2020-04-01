@@ -13,7 +13,7 @@ const instructions = {
                 },
 
                 {
-                    "id": "tableLeg",
+                    "id": "tableSkirt",
                     "quantity": 4
                 },
             ]
@@ -24,7 +24,7 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "tableSkirt",
+                    "id": "tableLeg",
                     "quantity": 4
                 }
             ]
@@ -147,18 +147,29 @@ AFRAME.registerSystem('finder', {
         var initialState = this.initialState;
         const self = this;
         const sceneEl = this.sceneEl;
+        const instructPanel = document.getElementById("instructions");
 
         this.current = null;
+        this.currentId = null;
         this.step = 0;
 
         socket.on('setFurn', function (data)
         {
             // Get the instruction object for the specified id
             this.current = instructions[data.id]; 
+            this.currentId = data.id;
             this.step = 0
 
             // Send the parts required out to the app.
-            sceneEl.emit("setInstruct", instructions[this.step]) 
+            sceneEl.emit("setParts", instructions[this.step].parts);
+
+            // Send this step's instructions to the other player.
+            socket.emit("sendInstructs", instructions[this.step].src);
+        });
+
+        socket.on('setInstructs', function (data)
+        {
+            instructPanel.setAttribute("src", data);
         });
 
         // Part of the game state library.
@@ -183,10 +194,5 @@ AFRAME.registerSystem('finder', {
                 state: newState
             });
         }
-    },
-
-    getInstruct: function (furnitureId)
-    {
-
     },
 });
