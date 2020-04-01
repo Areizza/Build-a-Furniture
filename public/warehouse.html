@@ -39,7 +39,7 @@
 
                 <!--Box-->
                 <a-asset-item id="boxMesh"
-                              src="/assets/box/boxes.gltf" >
+                              src="/assets/box/boxes.gltf">
                 </a-asset-item>
 
                 <!-- Load audio files -->
@@ -61,10 +61,10 @@
                      src="assets/graphics/warehouse/WH_instructions_table.png">
 
                 <!-- Mixins -->
+                <!--geometry="primitive: sphere; radius: 0.10;"
+                material="color: blue; shader: flat; opacity: 0.6;"-->
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
-                         geometry="primitive: sphere; radius: 0.10;"
-                         material="color: blue; shader: flat; opacity: 0.6;"
                          transparent="true"
                          visible="true"
                          sphere-collider="objects: .snapPoint; radius: 0.08">
