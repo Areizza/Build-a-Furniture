@@ -44,6 +44,8 @@
             <!-- load audio files -->
             <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
                    src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
+            <audio id="success" crossorigin="anonymous" response-type="arraybuffer"
+                   src="assets/sounds/success.ogg" preload="auto"></audio>
 
             <a-mixin id="sphereCollider"
                      class="snapPoint"
@@ -79,7 +81,8 @@
         <!-- Camera -->
         <a-entity id="rig"
                   movement-controls
-                  position="0 0 0">
+                  position="0 0 0"
+                  sound="src: #success; volume: 1.0;">
             <a-entity camera
                       wasd-controls="acceleration: 100"
                       look-controls="pointerLockEnabled:true"
