@@ -59,6 +59,13 @@ AFRAME.registerComponent('snap-point', {
         }
     },
 
+    playSound: function ()
+    {
+        //get the sound entity for successful snap
+        let audio = document.getElementById("rig");
+        audio.components.sound.playSound();
+    },
+
     checkCollision: function (targetEl)
     {
         const self = this;
@@ -115,7 +122,7 @@ AFRAME.registerComponent('snap-point', {
 
                     }
 
-                    //el.removeEventListener("collisions", this.collideHandler);
+                    this.playSound(); //play successful snap sound effect
                 }
             }
             else
