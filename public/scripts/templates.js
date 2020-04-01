@@ -397,21 +397,21 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 0.42 -0.008",
+                            "position": "0 0.42 -0.007",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;",
+                            "snap_point": "snapId: 1; snapTo: 5;",
                             "image": "/assets/graphics/snapPointImages/chair_greenCircle.png",
-                            "rotate": "0 0 0",
+                            "rotate": "-4.95 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
-                            "position": "0 0 0.022",
+                            "position": "0 0 0.023",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;",
+                            "snap_point": "snapId: 2; snapTo: 6;",
                             "image": "/assets/graphics/snapPointImages/chair_redCircle.png",
-                            "rotate": "0 0 0",
+                            "rotate": "2.5 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]
@@ -430,10 +430,10 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 0.23 0",
+                            "position": "0 0.231 -0.005",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;",
+                            "snap_point": "snapId: 3; snapTo: 00000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueTriangle.png",
                             "rotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
@@ -442,7 +442,7 @@ const templates =
                             "position": "0 0.09 -0.015",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;",
+                            "snap_point": "snapId: 4; snapTo: 8;",
                             "image": "/assets/graphics/snapPointImages/chair_purpleSquare.png",
                             "rotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
@@ -466,7 +466,7 @@ const templates =
                             "position": "-0.189 0.140 0.003",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 0; snapTo: 4;",
+                            "snap_point": "snapId: 5; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/chair_greenHeart.png",
                             "rotate": "-5 13 0",
                             "scale": "0.04 0.04 0.04"
@@ -475,7 +475,7 @@ const templates =
                             "position": "0.189 0.140 0.003",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 3; snapTo: 4;",
+                            "snap_point": "snapId: 5; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/chair_greenHeart.png",
                             "rotate": "-5 -13 0",
                             "scale": "0.04 0.04 0.04"
@@ -496,28 +496,28 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0.182 0 -0.155",
+                            "position": "0.182 0 -0.156",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 4; snapTo: 3;",
+                            "snap_point": "snapId: 6; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/chair_redDiamond.png",
-                            "rotate": "0 -45 0",
+                            "rotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
-                            "position": "-0.182 0 -0.155",
+                            "position": "-0.182 0 -0.156",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 4; snapTo: 3;",
+                            "snap_point": "snapId: 6; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/chair_redDiamond.png",
-                            "rotate": "0 45 0",
+                            "rotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "0.170 -0.026 0.141",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 4; snapTo: 3;",
+                            "snap_point": "snapId: 7; snapTo: 0000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
                             "rotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
@@ -526,7 +526,7 @@ const templates =
                             "position": "-0.170 -0.026 0.141",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 4; snapTo: 3;",
+                            "snap_point": "snapId: 7; snapTo: 0000;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
                             "rotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
@@ -550,7 +550,7 @@ const templates =
                             "position": "0 0 0.166",
                             "class": "snapPoint",
                             "mixin": "sphereCollider",
-                            "snap_point": "snapId: 2; snapTo: 1;",
+                            "snap_point": "snapId: 8; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/chair_purpleCross.png",
                             "rotate": "0 0 0",
                             "scale": "0.04 0.04 0.04"
