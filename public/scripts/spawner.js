@@ -70,25 +70,12 @@ AFRAME.registerComponent('spawner',
         let search = eval("jsonStr." + furniture);
         let result;
 
-        let output = "<a-entity "
-
         for (let i = 0; i < search.length; i++)
         {
             if (search[i].id == piece) {
                 result = search[i];
             }
         }
-
-        output += "id= '" + result.id + "' ";
-        output += "class= '" + result.class + "' ";
-        output += "furniture= '" + result.furniture + "' ";
-        output += "mixin= '" + result.mixin + "' ";
-        output += "scale= '" + result.scale + "' ";
-        output += "gltf-model= '" + result.gltf + "' ";
-        output += "body= '" + result.body + "' ";
-        output += "shape__main= '" + result.shape__main + "' ";
-        output += "position= '" + result.position + "' ";
-        output += "rotation= '" + result.rotation + "'>";
 
         entity.setAttribute('id', result.id);
         entity.setAttribute('class', result.class);
@@ -99,19 +86,10 @@ AFRAME.registerComponent('spawner',
         entity.setAttribute('body', result.body);
         entity.setAttribute('shape__main', result.shape__main);
 
-        //entity.setAttribute('rotation', result.rotation);
-
         for (let i = 0; i < result.entity.length; i++)
         {
             let childEntity = document.createElement("a-entity");
             let image = document.createElement("a-image");
-
-            output += "<a-entity ";
-            output += "position= '" + result.entity[i].position + "' ";
-            output += "class= '" + result.entity[i].class + "' ";
-            output += "mixin= '" + result.entity[i].mixin + "' ";
-            output += "snap-point= '" + result.entity[i].snap_point + "'>";
-            output += "</a-entity>";
 
             childEntity.setAttribute('position', result.entity[i].position);
             childEntity.setAttribute('class', result.entity[i].class);
@@ -126,8 +104,6 @@ AFRAME.registerComponent('spawner',
 
             entity.appendChild(childEntity);
         }
-
-        output += "</a-entity>";
 
         // If the spawner is a single use, spawn the item at the position of the spawner and
         // remove the spawner element. Otherwise use the spawnPosition.

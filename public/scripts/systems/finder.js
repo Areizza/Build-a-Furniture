@@ -136,7 +136,7 @@ const instructions = {
 AFRAME.registerSystem('finder', {
     // Initial state.
     schema: {
-        step: { default: 0 },
+        current: { default: '' },
         isComplete: { default: false },
         totalSteps: { default: 0 },
         requiredPiece: { default: '' },
@@ -147,6 +147,46 @@ AFRAME.registerSystem('finder', {
         var initialState = this.initialState;
         const self = this;
         const sceneEl = this.sceneEl;
-        var state = this.data;
+
+        this.current = null;
+        this.step = 0;
+
+        socket.on('setFurn', function (data)
+        {
+            // Get the instruction object for the specified id
+            this.current = instructions[data.id]; 
+            this.step = 0
+
+            // Send the parts required out to the app.
+            sceneEl.emit("setInstruct", instructions[this.step]) 
+        });
+
+        // Part of the game state library.
+        function registerHandler(eventName, handler)
+        {
+            sceneEl.addEventListener(eventName, function (param)
+            {
+                let newState = handler(AFRAME.utils.extend({}, state), param);
+                publishState(eventName, newState);
+            });
+        }
+
+        // Part of the game state library.
+        function publishState(event, newState)
+        {
+            let oldState = AFRAME.utils.extend({}, state);
+            sceneEl.setAttribute('gamestate', newState);
+            state = newState;
+            sceneEl.emit('gamestate-changed', {
+                event: event,
+                diff: AFRAME.utils.diff(oldState, newState),
+                state: newState
+            });
+        }
+    },
+
+    getInstruct: function (furnitureId)
+    {
+
     },
 });

@@ -43,7 +43,7 @@ io.on('connection', function(socket)
     socket.on('buildChosen', function (data)
     {
          console.log('Build chosen heard');
-        //socket.broadcast.emit('spawnPiece', data.pieceId);
+        socket.broadcast.emit('setFurn', data);
     });
 
     // Custom events

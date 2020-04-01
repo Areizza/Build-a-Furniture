@@ -112,7 +112,6 @@ AFRAME.registerComponent('snap-point', {
                         // Increment the number of objects currently attached to the parent
                         self.furnitureData.currentAttached += 1;
                         el.sceneEl.emit('pieceSnapped');
-
                     }
 
                     //el.removeEventListener("collisions", this.collideHandler);
