@@ -109,13 +109,19 @@ AFRAME.registerComponent('snap-point', {
                             rot = { x: rotComp.data.x, y: rotComp.data.y, z: rotComp.data.z };
                         }
 
-                        newPiece.setAttribute('position', { x: el.object3D.position.x, y: -1 * shape.halfExtents.y, z: el.object3D.position.z });
+                        let position = {
+                            x: el.object3D.position.x - targetEl.object3D.position.x,
+                            y: el.object3D.position.y - targetEl.object3D.position.y,
+                            z: el.object3D.position.z - targetEl.object3D.position.z
+                            };
+
+                        newPiece.setAttribute('position', position);
                         newPiece.setAttribute('rotation', { x: rot.x, y: rot.y, z: rot.z });
 
                         // Copy the bounding box of the original object and add it to the parent object using the currentAttached value as the shape__id.
                         parentPiece.setAttribute('shape__' + self.furnitureData.data.currentAttached,
                             {
-                                offset: { x: el.object3D.position.x, y: -1 * shape.halfExtents.y, z: el.object3D.position.z },
+                                offset: position,
                                 halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z },
                                 //orientation: { x: rot.x, y: rot.y, z: rot.z, w: 1 } // Not sure why this doesn't work.
                             });
@@ -123,10 +129,25 @@ AFRAME.registerComponent('snap-point', {
                         for (var i = 0; i < childPiece.children.length; i++)
                         {
                             let point = childPiece.children[i];
+                            let image = point.children[0];
                             let snapComp = point.components['snap-point'];
                             if (snapComp && snapComp.data.isEnabled)
                             {
-                                childPiece.removeChild(point);
+                                let clonePoint = document.createElement("a-entity");
+                                let cloneImage = document.createElement("a-cloneImage");
+
+                                clonePoint.setAttribute('position', { x: point.object3D.position.x, y: point.object3D.position.y, z: point.object3D.position.z });
+                                clonePoint.setAttribute('class', "snapPoint");
+                                clonePoint.setAttribute('mixin', 'sphereCollider');
+                                clonePoint.setAttribute('snap-point', { snapId: snapComp.data.snapId, snapTo: snapComp.data.snapTo });
+                                clonePoint.setAttribute('rotation', { x: point.object3D.rotation.x, y: point.object3D.rotation.y, z: point.object3D.rotation.z});
+
+                                cloneImage.setAttribute('src', image.getAttribute('src'));
+                                cloneImage.setAttribute('rotation', image.getAttribute('rotation'));
+                                cloneImage.setAttribute('material', { alphaTest: 0.5 });
+                                cloneImage.setAttribute('scale', image.getAttribute('scale'));
+                                clonePoint.appendChild(cloneImage);
+                                //childPiece.removeChild(point);
                                 newPiece.appendChild(point);
                                 i--;
                             }
