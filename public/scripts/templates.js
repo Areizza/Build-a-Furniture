@@ -239,7 +239,7 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0.285 0.004 -1.74",
+                            "position": "0.285 0.95 -1.74",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
                             "imgRotate": "0 90 0",
@@ -247,7 +247,7 @@ const templates =
                         },
 
                         {
-                            "position": "0.285 0.004 1.74",
+                            "position": "0.285 0.95 1.74",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
                             "imgRotate": "0 90 0",
