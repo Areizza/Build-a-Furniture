@@ -211,7 +211,7 @@ AFRAME.registerSystem('builder', {
             self.step = 0;
             self.snapsHeard = 0;
 
-            instructPanel.setAttribute("src", "\assets\graphics/placeholder.png"); // TODO: Default image.
+            instructPanel.setAttribute("src", "/assets/graphics/livingroom/waiting.png");
         }
     },
 });

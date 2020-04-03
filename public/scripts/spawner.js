@@ -65,7 +65,7 @@ AFRAME.registerComponent('spawner',
 
         let entity = document.createElement("a-entity");
 
-        let jsonStr= templates;
+        let jsonStr = templates;
 
         let search = eval("jsonStr." + furniture);
         let result;

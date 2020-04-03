@@ -211,7 +211,7 @@ AFRAME.registerSystem('finder', {
             self.totalSteps = 0;
             self.step = 0;
 
-            instructPanel.setAttribute("src", ""); // TODO: Default image.
+            instructPanel.setAttribute("src", "/assets/graphics/warehouse/waiting.png");
         }
     },
 });
