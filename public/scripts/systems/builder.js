@@ -122,7 +122,7 @@ AFRAME.registerSystem('builder', {
 
                 if (self.step < self.totalSteps)
                 {
-                    socket.emit("sendInstructs", instructions[self.step].src);
+                    socket.emit("sendInstructs", self.current[self.step].src);
                 }
                 else
                 {
@@ -185,7 +185,7 @@ AFRAME.registerSystem('builder', {
             spawner.setAttribute('material', { color: '#996600', });
             spawner.setAttribute('dynamic-body', '');
             spawner.setAttribute('hoverable', '');
-            spawner.setAttribute('spawner', { furniture: data.buildId, piece: data.pieceId, isOneUse: true });
+            spawner.setAttribute('spawner', { furniture: self.currentId, piece: data.pieceId, isOneUse: true });
             spawner.setAttribute('position', { x: -2.3, y: 0.8, z: 0.3});
 
             sceneEl.appendChild(spawner);
@@ -212,6 +212,7 @@ AFRAME.registerSystem('builder', {
             self.snapsHeard = 0;
 
             instructPanel.setAttribute("src", "/assets/graphics/livingroom/waiting.png");
+            console.log('reset');
         }
     },
 });

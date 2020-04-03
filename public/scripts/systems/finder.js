@@ -95,7 +95,7 @@ const instructions = {
                 },
 
                 {
-                    "id": "shelfSideBoard",
+                    "id": "shelfSide",
                     "quantity": 2
                 }
             ]
@@ -157,12 +157,8 @@ AFRAME.registerSystem('finder', {
             self.step++;
             if (self.step < self.totalSteps)
             {
-                socket.emit("sendInstructs", instructions[self.step].src);
-                sceneEl.emit("setParts", instructions[self.step].parts);
-            }
-            else
-            {
-
+                socket.emit("sendInstructs", self.current[self.step].src);
+                sceneEl.emit("setParts", self.current[self.step].parts);
             }
         });
 

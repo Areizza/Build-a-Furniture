@@ -24,9 +24,6 @@ AFRAME.registerComponent('shipping-platform', {
             {
                 let targetEl = event.detail.intersectedEls[i];
 
-                //socket.emit('sendPiece', { buildId: targetEl.classList[1], pieceId: targetEl.classList[2] });
-                //el.sceneEl.removeChild(targetEl);
-
                 let isRejected = true
                 for (var i = 0; i < self.requiredPieces.length; i++)
                 {
