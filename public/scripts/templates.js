@@ -377,17 +377,17 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 0.231 -0.005",
+                            "position": "0 0.23 -0.005",
                             "snap_point": "snapId: 3; snapTo: 7;",
                             "image": "/assets/graphics/snapPointImages/chair_blueTriangle.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
-                            "position": "0 0.09 -0.015",
+                            "position": "0 0.09 -0.013",
                             "snap_point": "snapId: 4; snapTo: 8;",
                             "image": "/assets/graphics/snapPointImages/chair_purpleSquare.png",
-                            "imgRotate": "0 0 0",
+                            "imgRotate": "-4.27 0 0",
                             "scale": "0.04 0.04 0.04"
                         }
                     ]

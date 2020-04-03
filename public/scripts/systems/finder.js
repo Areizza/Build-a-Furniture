@@ -38,7 +38,7 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "chairBack",
+                    "id": "chairSeat",
                     "quantity": 1
                 },
 
@@ -54,8 +54,8 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "chairSeat",
-                    "quantity": 1
+                    "id": "chairLegFront",
+                    "quantity": 2
                 }
             ]
         },
@@ -65,7 +65,7 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "chairLegFront",
+                    "id": "chairSkirt",
                     "quantity": 2
                 }
             ]
@@ -76,8 +76,8 @@ const instructions = {
             "parts":
             [
                 {
-                    "id": "chairSkirt",
-                    "quantity": 2
+                    "id": "chairBack",
+                    "quantity": 1
                 }
             ]
         }
