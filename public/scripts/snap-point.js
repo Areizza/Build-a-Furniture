@@ -90,7 +90,7 @@ AFRAME.registerComponent('snap-point', {
                         let shape = childPiece.components.shape__main.data;
                         newPiece.setAttribute('gltf-model', childPiece.components['gltf-model'].data);
 
-                        // Repostion a primitive.
+                        // Reposition a primitive.
                         //newPiece.setAttribute('geometry',
                         //    {
                         //        primitive: geo.primitive,
@@ -128,10 +128,10 @@ AFRAME.registerComponent('snap-point', {
                             {
                                 offset: position,
                                 halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z },
-                                orientation: quaternion // Not sure why this doesn't work.
-                                //{ x: rot.x / 180 * Math.PI, y: rot.y / 180 * Math.PI, z: rot.z / 180 * Math.PI, w: 1 }
+                                orientation: quaternion
                             });
 
+                        // Copy each of the still enabled snap-points and add them to the parent object.
                         for (var i = 0; i < childPiece.children.length; i++)
                         {
                             let point = childPiece.children[i];

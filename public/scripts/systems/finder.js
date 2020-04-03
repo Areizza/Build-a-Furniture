@@ -135,11 +135,7 @@ const instructions = {
 
 AFRAME.registerSystem('finder', {
     // Initial state.
-    schema: {
-        current: { default: '' },
-        isComplete: { default: false },
-        totalSteps: { default: 0 },
-    },
+    schema: {},
 
     init: function ()
     {
@@ -207,7 +203,7 @@ AFRAME.registerSystem('finder', {
             self.totalSteps = 0;
             self.step = 0;
 
-            instructPanel.setAttribute("src", "/assets/graphics/warehouse/waiting.png");
+            instructPanel.setAttribute("src", "/../../assets/graphics/warehouse/waiting.png");
             console.log('reset');
         }
     },

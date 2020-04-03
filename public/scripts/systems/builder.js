@@ -212,7 +212,7 @@ AFRAME.registerSystem('builder', {
             self.step = 0;
             self.snapsHeard = 0;
 
-            instructPanel.setAttribute("src", "/assets/graphics/livingroom/waiting.png");
+            instructPanel.setAttribute("src", "/../../assets/graphics/livingroom/waiting.png");
             console.log('reset');
         }
     },

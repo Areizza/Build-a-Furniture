@@ -336,8 +336,8 @@ const templates =
     "chair":
         [
             {
-                "id": "chairBackLeg",
-                "class": "grabbable chair chairBackLeg",
+                "id": "chairLegBack",
+                "class": "grabbable chair chairLegBack",
                 "mixin": "part",
                 "furniture": "tier: 1; totalSnapPoints: 1;",
                 "scale": "1.2 1.2 1.2",
@@ -365,8 +365,8 @@ const templates =
             },
 
             {
-                "id": "chairFrontLeg",
-                "class": "grabbable chair chairFrontLeg",
+                "id": "chairLegFront",
+                "class": "grabbable chair chairLegFront",
                 "mixin": "part",
                 "furniture": "tier: 1; totalSnapPoints: 1;",
                 "scale": "1.2 1.2 1.2",
