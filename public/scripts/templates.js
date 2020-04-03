@@ -16,21 +16,21 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 -0.045 0.62",
+                            "position": "0 -0.023 0.62",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
                             "imgRotate": "90 180 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "-0 -0.045 -0.62",
+                            "position": "-0 -0.023 -0.62",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "-0.62 -0.045 0",
+                            "position": "-0.62 -0.023 0",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "rotate": "0 90 0",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
@@ -38,7 +38,7 @@ const templates =
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "0.62 -0.045 0",
+                            "position": "0.62 -0.023 0",
                             "snap_point": "snapId: 3; snapTo: 4;",
                             "rotate": "0 -90 0",
                             "image": "/assets/graphics/snapPointImages/table_redHeart.png",
@@ -47,28 +47,28 @@ const templates =
                         },
 
                         {
-                            "position": "0.62 -0.045 0.62",
+                            "position": "0.62 -0.023 0.62",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "-0.62 -0.045 -0.62",
+                            "position": "-0.62 -0.023 -0.62",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "-0.62 -0.045 0.62",
+                            "position": "-0.62 -0.023 0.62",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.05 0.05 0.05"
                         },
                         {
-                            "position": "0.62 -0.045 -0.62",
+                            "position": "0.62 -0.023 -0.62",
                             "snap_point": "snapId: 1; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/table_yellowDiamond.png",
                             "imgRotate": "90 0 0",
@@ -239,7 +239,7 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0.285 0.95 -1.74",
+                            "position": "-0.285 0.95 1.74",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
                             "imgRotate": "0 90 0",
@@ -291,7 +291,7 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "0 -0.16 1.5",
+                            "position": "0 -0.16 -1.75",
                             "snap_point": "snapId: 8; snapTo: 2;",
                             "image": "/assets/graphics/snapPointImages/shelf_brownSquare.png",
                             "imgRotate": "90 0 0",
@@ -299,7 +299,8 @@ const templates =
                         },
                         
                         {
-                            "position": "0 -0.16 -1.75",
+                            
+                            "position": "0 -0.16 1.5",
                             "snap_point": "snapId: 9; snapTo: 7;",
                             "image": "/assets/graphics/snapPointImages/shelf_greenSquare.png",
                             "imgRotate": "90 0 0",
@@ -377,7 +378,7 @@ const templates =
                     [
                         {
                             "position": "0 0.231 -0.005",
-                            "snap_point": "snapId: 3; snapTo: 00000;",
+                            "snap_point": "snapId: 3; snapTo: 7;",
                             "image": "/assets/graphics/snapPointImages/chair_blueTriangle.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
@@ -395,7 +396,7 @@ const templates =
             {
                 "id": "chairBack",
                 "class": "grabbable chair chairBack",
-                "furniture": "tier: 0; totalSnapPoints: 9;",
+                "furniture": "tier: 2; totalSnapPoints: 9;",
                 "mixin": "part",
                 "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairBack/chairBack.gltf",
@@ -425,7 +426,7 @@ const templates =
                 "id": "chairSeat",
                 "class": "grabbable chair chairSeat",
                 "mixin": "part",
-                "furniture": "tier: 2; totalSnapPoints: 1;",
+                "furniture": "tier: 0; totalSnapPoints: 1;",
                 "scale": "1.2 1.2 1.2",
                 "gltf": "/assets/models/chair/chairSeat/chairSeat.gltf",
                 "body": "type: dynamic; mass: 6; shape: none;",
@@ -449,14 +450,14 @@ const templates =
                         },
                         {
                             "position": "0.170 -0.026 0.141",
-                            "snap_point": "snapId: 7; snapTo: 0000;",
+                            "snap_point": "snapId: 7; snapTo: 3;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"
                         },
                         {
                             "position": "-0.170 -0.026 0.141",
-                            "snap_point": "snapId: 7; snapTo: 0000;",
+                            "snap_point": "snapId: 7; snapTo: 3;",
                             "image": "/assets/graphics/snapPointImages/chair_blueDiamond.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.04 0.04 0.04"

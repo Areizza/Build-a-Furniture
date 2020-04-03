@@ -80,7 +80,7 @@ AFRAME.registerComponent('snap-point', {
                 {
                     data.isEnabled = false;
                     let parentPiece = el.parentEl;
-                    if (targetSnapComp.furnitureData.data.tier - self.furnitureData.data.tier === 1) 
+                    if (targetSnapComp.furnitureData.data.tier > self.furnitureData.data.tier) 
                     {
                         let childPiece = targetEl.parentEl;
                         targetSnapComp.data.isEnabled = false;
@@ -134,9 +134,15 @@ AFRAME.registerComponent('snap-point', {
                             if (snapComp && snapComp.data.isEnabled)
                             {
                                 let clonePoint = document.createElement("a-entity");
-                                let cloneImage = document.createElement("a-cloneImage");
+                                let cloneImage = document.createElement("a-image");
 
-                                clonePoint.setAttribute('position', { x: point.object3D.position.x, y: point.object3D.position.y, z: point.object3D.position.z });
+                                let pointPos = { 
+                                    x: position.x + point.object3D.position.x,
+                                    y: position.y + point.object3D.position.y,
+                                    z: position.z + point.object3D.position.z
+                                };
+
+                                clonePoint.setAttribute('position', pointPos);
                                 clonePoint.setAttribute('class', "snapPoint");
                                 clonePoint.setAttribute('mixin', 'sphereCollider');
                                 clonePoint.setAttribute('snap-point', { snapId: snapComp.data.snapId, snapTo: snapComp.data.snapTo });
@@ -147,9 +153,7 @@ AFRAME.registerComponent('snap-point', {
                                 cloneImage.setAttribute('material', { alphaTest: 0.5 });
                                 cloneImage.setAttribute('scale', image.getAttribute('scale'));
                                 clonePoint.appendChild(cloneImage);
-                                //childPiece.removeChild(point);
-                                newPiece.appendChild(point);
-                                i--;
+                                parentPiece.appendChild(clonePoint);
                             }
                         }
 
