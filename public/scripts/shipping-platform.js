@@ -60,6 +60,10 @@ AFRAME.registerComponent('shipping-platform', {
                 {
                     // If the piece is not required launch it back at the player.
                     targetEl.body.velocity.set(-4, 5, 0);
+
+                    // play error sound
+                    let audio = document.getElementById("platform");
+                    audio.components.sound.playSound();
                 }
             }
 

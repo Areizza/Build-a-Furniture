@@ -123,5 +123,9 @@ AFRAME.registerComponent('spawner',
         }
 
         sceneEl.appendChild(entity);
+
+        // play sound
+        let audio = document.getElementById("groundPlane");
+        audio.components.sound.playSound();
     },
 });

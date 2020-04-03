@@ -56,6 +56,11 @@
                 <audio id="pinTrack" crossorigin="anonymous" response-type="arraybuffer"
                        src="assets/sounds/pinTrack.ogg" preload="auto">
                 </audio>
+                <audio id="error" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/error.ogg" preload="auto">
+                </audio>
+                <audio id="fall" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/woodFall.ogg" preload="auto"></audio>
 
                 <!-- Load instructions -->
                 <a-asset-img id="beginImg"
@@ -398,7 +403,8 @@
                       aabb-collider="objects: .grabbable; interval: 200; debug: false"
                       shipping-platform
                       geometry="primitive:box; width:2; height:0.1; depth:1.5;"
-                      material="color:#46d246;">
+                      material="color:#46d246;"
+                      sound="src: #error; volume: 1.0;">
             </a-entity>
 
             <!-- Instructions to update -->
@@ -506,6 +512,7 @@
                       scale="0.973 -0.684 -0.478"
                       geometry="primitive: plane; width: 25.0; height: 25.0"
                       material="transparent: true;"
+                      sound="src: #fall; volume: 2.0;"
                       static-body
                       shadow>
             </a-entity>
