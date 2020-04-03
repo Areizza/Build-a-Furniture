@@ -50,6 +50,8 @@
                        src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
                 <audio id="success" crossorigin="anonymous" response-type="arraybuffer"
                        src="assets/sounds/success.ogg" preload="auto"></audio>
+                <audio id="fall" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/woodFall.ogg" preload="auto"></audio>
 
                 <a-mixin id="sphereCollider"
                          class="snapPoint"
@@ -149,6 +151,7 @@
                   scale="1 1.5 1"
                   geometry="primitive: plane; width: 25.0; height: 25.0"
                   material="transparent: true; opacity: 0.0;"
+                  sound="src: #fall; volume: 1.0;"
                   static-body
                   shadow>
         </a-entity>
