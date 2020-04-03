@@ -34,39 +34,33 @@ app.get('/', function(req, res)
 io.on('connection', function(socket)
 {
     console.log(socket.id + ' has connected');
+
+    //socket.broadcast.emit('playerConnect');
     
     socket.on('disconnect', function(data)
     {
         console.log(socket.id + ' has disconnected');
+        //socket.broadcast.emit('playerDisconnect');
     });
 
     // Custom events
     socket.on('buildChosen', function (data)
     {
-        console.log('Build chosen heard');
-        socket.broadcast.emit('setFurn', data);
+        socket.broadcast.emit('setBuild', data);
     });
 
     socket.on('sendInstructs', function (data)
     {
-        socket.broadcast.emit('setInstructs', data);
+        socket.broadcast.emit('nextStep', data);
     });
 
     socket.on('sendPiece', function(data)
     {
-        console.log('Piece sent heard');
         socket.broadcast.emit('spawnPiece', data);
-    });
-
-    socket.on('progress', function(data)
-    {
-        console.log('Progress heard');
-        socket.broadcast.emit('nextStep', data);
     });
 
     socket.on('buildComplete', function (data)
     {
-        console.log('Build complete heard');
         socket.broadcast.emit('endGame');
     });
 });

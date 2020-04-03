@@ -12,9 +12,7 @@ AFRAME.registerComponent('catalogue',
         const el = this.el;
 
         el.addEventListener('click', function(event) {
-            console.log(self.data.furniture)   
+            el.sceneEl.emit('changeBuild', { id: self.data.furniture }); 
         })
     },
-
-    
 });

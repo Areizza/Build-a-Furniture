@@ -58,8 +58,8 @@
                 </audio>
 
                 <!-- Load instructions -->
-                <img id="instructionTable_0"
-                     src="assets/graphics/warehouse/WH_instructions_table.png">
+                <a-asset-img id="beginImg"
+                     src="assets/graphics/placeholder.png">
 
                 <!-- Mixins -->
                 <!--geometry="primitive: sphere; radius: 0.10;"
@@ -395,15 +395,15 @@
             <a-entity id="platform"
                       position="1 0.1 0"
                       scale="1 1 1"
-                      aabb-collider="objects: .grabbable; interval: 80; debug: false"
-                      shipping-platform="requiredPiece: tableTop;"
+                      aabb-collider="objects: .grabbable; interval: 200; debug: false"
+                      shipping-platform
                       geometry="primitive:box; width:2; height:0.1; depth:1.5;"
                       material="color:#46d246;">
             </a-entity>
 
             <!-- Instructions to update -->
             <a-image id="instructions"
-                     src="#instructionTable_0"
+                     src="#beginImg"
                      position="2.3 0.5 0"
                      rotation="-20 -90 0"
                      scale="1 0.6 1">

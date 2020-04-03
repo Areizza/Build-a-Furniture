@@ -39,26 +39,29 @@
             </a-asset-item>
 
             <!-- load graphics -->
-            <img id="catalogue"
-                     src="assets/graphics/catalogue.png">
+            <a-asset-img id="catalogue"
+                 src="assets/graphics/catalogue.png">
 
-            <!-- load audio files -->
-            <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
-                   src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
-            <audio id="success" crossorigin="anonymous" response-type="arraybuffer"
-                   src="assets/sounds/success.ogg" preload="auto"></audio>
+            <a-asset-img id="beginImg"
+                         src="assets/graphics/placeholder.png">
 
-            <a-mixin id="sphereCollider"
-                     class="snapPoint"
-                     geometry="primitive: sphere; radius: 0.08;"
-                     material="transparent: true; opacity: 0.0"
-                     visible="true"
-                     sphere-collider="objects: .snapPoint; radius: 0.08">
-            </a-mixin>
+                <!-- load audio files -->
+                <audio id="livingRoomAmbiance" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/livingRoomAmbiance.ogg" preload="auto"></audio>
+                <audio id="success" crossorigin="anonymous" response-type="arraybuffer"
+                       src="assets/sounds/success.ogg" preload="auto"></audio>
 
-            <a-mixin id="part"
-                     hoverable grabbable draggable droppable>
-            </a-mixin>
+                <a-mixin id="sphereCollider"
+                         class="snapPoint"
+                         geometry="primitive: sphere; radius: 0.08;"
+                         material="transparent: true; opacity: 0.0"
+                         visible="true"
+                         sphere-collider="objects: .snapPoint; radius: 0.08">
+                </a-mixin>
+
+                <a-mixin id="part"
+                         hoverable grabbable draggable droppable>
+                </a-mixin>
         </a-assets>
 
         <a-entity id="livingRoomEnv"
@@ -73,7 +76,7 @@
                   position="0 0 0"
                   sound="src: #success; volume: 1.0;">
             <a-entity camera
-                      wasd-controls="acceleration: 50"
+                      wasd-controls="acceleration: 5"
                       look-controls="pointerLockEnabled:true"
                       position="0 1.3 0"
                       capture-mouse
@@ -91,43 +94,52 @@
             </a-entity>
         </a-entity>
 
+        <!-- Instructions -->
+        <a-image id="instructions"
+                 src="#beginImg"
+                 position="0.07 1.148 -5.959"
+                 rotation="0 0 0"
+                 scale="1.5 1 1"
+                 material="alphaTest: 0.5">
+        </a-image>
+
         <!-- Catalogue -->
-        <a-image    id="catalogueImg"
-                    src="#catalogue"
-                    position="-3.9 1 -3.5"
-                    rotation="0 90 0"
-                    scale="1.5 1 1"
-                    material="alphaTest: 0.5">
+        <a-image id="catalogueImg"
+                 src="#catalogue"
+                 position="-3.9 1 -3.5"
+                 rotation="0 90 0"
+                 scale="1.5 1 1"
+                 material="alphaTest: 0.5">
         </a-image>
         <!-- Table clickable -->
-        <a-entity   id="tableClick"
-                    class="clickable"
-                    position="-3.8 1.24 -3.18"
-                    rotation="0 90 0"
-                    scale="0.75 0.41 1"
-                    geometry="primitive: plane;"
-                    material="transparent: true; opacity: 0.0;"
-                    catalogue="furniture: table">
+        <a-entity id="tableClick"
+                  class="clickable"
+                  position="-3.8 1.24 -3.18"
+                  rotation="0 90 0"
+                  scale="0.75 0.41 1"
+                  geometry="primitive: plane;"
+                  material="transparent: true; opacity: 0.0;"
+                  catalogue="furniture: table">
         </a-entity>
         <!-- Chair clickable -->
-        <a-entity   id="chairClick"
-                    class="clickable"
-                    position="-3.8 0.77 -3.18"
-                    rotation="0 90 0"
-                    scale="0.75 0.41 1"
-                    geometry="primitive: plane;"
-                    material="transparent: true; opacity: 0.0;"
-                    catalogue="furniture: chair">
+        <a-entity id="chairClick"
+                  class="clickable"
+                  position="-3.8 0.77 -3.18"
+                  rotation="0 90 0"
+                  scale="0.75 0.41 1"
+                  geometry="primitive: plane;"
+                  material="transparent: true; opacity: 0.0;"
+                  catalogue="furniture: chair">
         </a-entity>
         <!-- Shelf clickable -->
-        <a-entity   id="shelfClick"
-                    class="clickable"
-                    position="-3.8 1 -3.88"
-                    rotation="0 90 0"
-                    scale="0.62 0.71 1"
-                    geometry="primitive: plane;"
-                    material="transparent: true; opacity: 0.0;"
-                    catalogue="furniture: shelf">
+        <a-entity id="shelfClick"
+                  class="clickable"
+                  position="-3.8 1 -3.88"
+                  rotation="0 90 0"
+                  scale="0.62 0.71 1"
+                  geometry="primitive: plane;"
+                  material="transparent: true; opacity: 0.0;"
+                  catalogue="furniture: shelf">
         </a-entity>
 
         <!-- Solid boundaries -->

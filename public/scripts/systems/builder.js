@@ -1,11 +1,11 @@
 'use strict';
 
-const instructions = { //by "repeats" it means number of "snaps"
+const instructions = { // By "snaps" it means number of snap events that should occur per step.
     "table":
     [
         {
-            "src": "/../../assets/graphics/livingRoom/LR_table_0.png",
-            "repeats": "4",
+            "src": "/../../assets/graphics/warehouse/WH_table_0.png",
+            "snaps": "4",
             "id":
             [
                 "tableTop",
@@ -14,8 +14,8 @@ const instructions = { //by "repeats" it means number of "snaps"
         },
 
         {
-            "src": "/../../assets/graphics/livingRoom/LR_table_1.png",
-            "repeats": "4",
+            "src": "/../../assets/graphics/warehouse/WH_table_1.png",
+            "snaps": "4",
             "id":
             [
                 "tableLeg"
@@ -26,38 +26,45 @@ const instructions = { //by "repeats" it means number of "snaps"
     "chair":
     [
         {
-            "src": "/../../assets/graphics/livingRoom/LR_chair_0.png",
-            "repeats": "2",
+            "src": "/../../assets/graphics/warehouse/WH_chair_0.png",
+            "snaps": "2",
             "id":
             [
-                "chairBack",
+                "chairSeat",
                 "chairLegBack"
             ]
         },
         {
-            "src": "/../../assets/graphics/livingRoom/LR_chair_1.png",
-            "repeats": "3", //3 snaps because it should snap to the two back legs too!
+            "src": "/../../assets/graphics/warehouse/WH_chair_1.png",
+            "snaps": "3", //3 snaps because it should snap to the two back legs too!
             "id":
             [
-                "chairSeat",
                 "chairLegFront"
             ]
         },
         {
-            "src": "/../../assets/graphics/livingRoom/LR_chair_2.png",
-            "repeats": "2",
+            "src": "/../../assets/graphics/warehouse/WH_chair_2.png",
+            "snaps": "2",
             "id":
             [
                 "chairSkirt"
             ]
+        },
+        {
+            "src": "/../../assets/graphics/warehouse/WH_chair_3.png",
+            "snaps": "1",
+            "id":
+                [
+                    "chairBack"
+                ]
         },
     ],
 
     "shelf":
     [
         {
-            "src": "/../../assets/graphics/livingRoom/LR_shelf_0.png",
-            "repeats": "2",
+            "src": "/../../assets/graphics/warehouse/WH_shelf_0.png",
+            "snaps": "2",
             "id":
             [
                 "shelfBack",
@@ -65,8 +72,8 @@ const instructions = { //by "repeats" it means number of "snaps"
             ]
         },
         {
-            "src": "/../../assets/graphics/livingRoom/LR_shelf_1.png",
-            "repeats": "2", //two snaps because top to shelf (from prev step) and skirt to top
+            "src": "/../../assets/graphics/warehouse/WH_shelf_1.png",
+            "snaps": "2", //two snaps because top to shelf (from prev step) and skirt to top
             "id":
             [
                 "shelfTop",
@@ -74,8 +81,8 @@ const instructions = { //by "repeats" it means number of "snaps"
             ]
         },
         {
-            "src": "/../../assets/graphics/livingRoom/LR_shelf_2.png",
-            "repeats": "5", //bottom to shelf and 5 racks to the back
+            "src": "/../../assets/graphics/warehouse/WH_shelf_2.png",
+            "snaps": "5", //bottom to shelf and 5 racks to the back
             "id":
             [
                 "shelfBottom",
@@ -88,11 +95,7 @@ const instructions = { //by "repeats" it means number of "snaps"
 
 AFRAME.registerSystem('builder', {
     // Initial state.
-    schema: {
-        step: { default: 0 },
-        isComplete: { default: false },
-        totalSteps: { default: 5 },
-    },
+    schema: {},
 
     init: function ()
     {
@@ -102,40 +105,75 @@ AFRAME.registerSystem('builder', {
 
         this.current = null;
         this.currentId = null;
+        this.totalSteps = 0;
         this.step = 0;
+        this.isReady = true;
+
+        // TODO: Implement a snap-system that enables/disbales certain snaps when needed.
+        this.snapsHeard = 0;
 
         sceneEl.addEventListener('pieceSnapped', function (event)
         {
-            self.data.step++;
+            self.snapsHeard++;
 
-            if (self.data.step === self.data.totalSteps)
+            if (self.current?.snaps !== self.snapsHeard)
             {
-                self.data.isComplete = true;
-                socket.emit('buildComplete');
-            }
-            else
-            {
-                socket.emit('progress', { step: self.data.step });
+                self.step++;
+
+                if (self.step < self.totalSteps)
+                {
+                    socket.emit("sendInstructs", instructions[self.step].src);
+                }
+                else
+                {
+                    socket.emit('buildComplete');
+                    // TODO: Congrats!
+                    reset();
+                }
             }
         });
 
-        socket.on('setFurn', function (data)
+        sceneEl.addEventListener('changeBuild', function (event)
         {
-            // Get the instruction object for the specified id
-            self.current = instructions[data.id];
-            self.currentId = data.id;
-            self.step = 0
+            if (event.detail.id !== self.currentId)
+            {
+                if (self.isReady)
+                {
+                    self.currentId = event.detail.id;
+                    socket.emit('buildChosen', { id: self.currentId });
 
-            // Send the parts required out to the app.
-            sceneEl.emit("setParts", instructions[self.step].parts);
+                    // Get the instruction object for the specified id
+                    self.current = instructions[self.currentId];
+                    self.totalSteps = self.current.length;
+                    self.step = 0;
 
-            // Send this step's instructions to the other player.
-            socket.emit("sendInstructs", instructions[self.step].src);
+                    // Send this step's instructions to the other player.
+                    socket.emit("sendInstructs", self.current[self.step].src);
+                }
+                else
+                {
+                    // TODO: Popup text for "Waiting for Finder to join."
+                    console.log("Waiting for Finder!");
+                }
+            }
         });
 
-        socket.on('setInstructs', function (data)
+        socket.on('nextStep', function (data)
         {
             instructPanel.setAttribute("src", data);
+        });
+
+        socket.on('playerConnect', function (data)
+        {
+            // TODO: Tell player connected.
+            self.isReady = true;
+        });
+
+        socket.on('playerDisconnect', function (data)
+        {
+            // TODO: Warn player disconnected.
+            //self.isReady = false;
+            reset();
         });
 
         socket.on('spawnPiece', function (data)
@@ -163,5 +201,17 @@ AFRAME.registerSystem('builder', {
                 self.step++;
             }
         });
+
+        // Reset the system to the default state.
+        function reset()
+        {
+            self.current = null;
+            self.currentId = null;
+            self.totalSteps = 0;
+            self.step = 0;
+            self.snapsHeard = 0;
+
+            instructPanel.setAttribute("src", "\assets\graphics/placeholder.png"); // TODO: Default image.
+        }
     },
 });
