@@ -152,14 +152,14 @@ const templates =
                             "scale": "0.4 0.4 0.4"
                         },
                         {
-                            "position": "0 8.67 0",
+                            "position": "0 8.654 0",
                             "snap_point": "snapId: 2; snapTo: 8;",
                             "image": "/assets/graphics/snapPointImages/shelf_brownHeart.png",
                             "imgRotate": "90 0 0",
                             "scale": "0.4 0.4 0.4"
                         },
                         {
-                            "position": "0 -8.67 0",
+                            "position": "0 -8.654 0",
                             "snap_point": "snapId: 3; snapTo: 10;",
                             "image": "/assets/graphics/snapPointImages/shelf_purpleHeart.png",
                             "imgRotate": "90 0 0",
@@ -239,7 +239,7 @@ const templates =
                 "entity":
                     [
                         {
-                            "position": "-0.285 1.05 1.74",
+                            "position": "-0.285 1.05 -1.74",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
                             "imgRotate": "0 90 0",
@@ -247,7 +247,7 @@ const templates =
                         },
 
                         {
-                            "position": "0.285 1.05 1.74",
+                            "position": "0.285 1.05 -1.74",
                             "snap_point": "snapId: 6; snapTo: 1;",
                             "image": "/assets/graphics/snapPointImages/shelf_yellowHeart.png",
                             "imgRotate": "0 90 0",
