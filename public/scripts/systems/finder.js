@@ -208,6 +208,7 @@ AFRAME.registerSystem('finder', {
             self.step = 0;
 
             instructPanel.setAttribute("src", "/assets/graphics/warehouse/waiting.png");
+            console.log('reset');
         }
     },
 });

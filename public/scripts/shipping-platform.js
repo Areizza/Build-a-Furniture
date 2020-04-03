@@ -67,7 +67,7 @@ AFRAME.registerComponent('shipping-platform', {
             // Tell the finder system that the state must be updated
             if (updateState)
             {
-                sceneEl.emit('stepFinished');
+                el.sceneEl.emit('stepFinished');
             }
         });
     },

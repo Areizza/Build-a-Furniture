@@ -82,7 +82,7 @@ const instructions = { // By "snaps" it means number of snap events that should 
         },
         {
             "src": "/../../assets/graphics/warehouse/WH_shelf_2.png",
-            "snaps": "5", //bottom to shelf and 5 racks to the back
+            "snaps": "6", //bottom to shelf and 5 racks to the back
             "id":
             [
                 "shelfBottom",
@@ -116,9 +116,10 @@ AFRAME.registerSystem('builder', {
         {
             self.snapsHeard++;
 
-            if (self.current?.snaps !== self.snapsHeard)
+            if (self.current?.snaps === self.snapsHeard)
             {
                 self.step++;
+                self.snapsHeard = 0;
 
                 if (self.step < self.totalSteps)
                 {

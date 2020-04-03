@@ -77,7 +77,6 @@ AFRAME.registerComponent('spawner',
             }
         }
 
-        entity.setAttribute('id', result.id);
         entity.setAttribute('class', result.class);
         entity.setAttribute('furniture', result.furniture);
         entity.setAttribute('mixin', result.mixin);
