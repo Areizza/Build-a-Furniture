@@ -115,6 +115,11 @@ AFRAME.registerComponent('snap-point', {
                             z: el.object3D.position.z - targetEl.object3D.position.z
                             };
 
+                        // The orientation value of shape takes a quaternion with radian values. :(
+                        let euler = new THREE.Euler(rot.x / 180 * Math.PI, rot.y / 180 * Math.PI, rot.z / 180 * Math.PI);
+                        let quaternion = new THREE.Quaternion();
+                        quaternion.setFromEuler(euler);
+
                         newPiece.setAttribute('position', position);
                         newPiece.setAttribute('rotation', { x: rot.x, y: rot.y, z: rot.z });
 
@@ -123,7 +128,8 @@ AFRAME.registerComponent('snap-point', {
                             {
                                 offset: position,
                                 halfExtents: { x: shape.halfExtents.x, y: shape.halfExtents.y, z: shape.halfExtents.z },
-                                //orientation: { x: rot.x, y: rot.y, z: rot.z, w: 1 } // Not sure why this doesn't work.
+                                orientation: quaternion // Not sure why this doesn't work.
+                                //{ x: rot.x / 180 * Math.PI, y: rot.y / 180 * Math.PI, z: rot.z / 180 * Math.PI, w: 1 }
                             });
 
                         for (var i = 0; i < childPiece.children.length; i++)
